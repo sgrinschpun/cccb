@@ -9,7 +9,6 @@ class IncomingMessage:
         value = {}
         try:
             value = json.loads(serialized_string)
-            print(value)
         except Exception as ex:
             raise DeserializationException(ex.message)
         _incoming_message = IncomingMessage()

@@ -11,5 +11,6 @@ def _initialize_log():
     _logger.setLevel(logging.INFO)
 
 def get_logger(logger_name):
+    global _logger
     if not _logger: _initialize_log()
     return logging.getLogger(logger_name)

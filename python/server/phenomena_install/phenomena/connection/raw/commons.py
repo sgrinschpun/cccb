@@ -27,7 +27,6 @@ class PetitionCommon():
         total_sent = 0
         message_length = len(msg)
         while total_sent < message_length:
-            print("THis is the message: {0}".format(str(msg)))
             sent = self._conn.send(msg[total_sent:])
             if sent == 0:
                 raise RuntimeError("socket connection broken")
@@ -81,7 +80,6 @@ class ServerPetitionHandler(PetitionCommon):
                 exc_type, exc_obj, exc_tb = sys.exc_info()
                 fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
                 message = "Exception: Type: {0} Name: {1} Line: {2} Messsage: {3}".format(exc_type, fname, exc_tb.tb_lineno, str(ex))
-                print("exception!: {0}".format(message))
                 out_message = OutcomingMessage.errorMessage(new_message, message)
                 self._sendData(out_message.serialize())
 

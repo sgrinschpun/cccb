@@ -12,8 +12,6 @@ def getNodeController():
     if _node_controller == None: _node_controller = NodeController()
     return _node_controller
 
-
-
 class NodeController(ExecutableNode):
     _commands = {'ADD': "_addParticle"}
 
@@ -23,9 +21,9 @@ class NodeController(ExecutableNode):
         self._last_node = ParticleAccumulatorNode()
         _node = get_save_node()
         _node.setInitNode(self._root_node)
-        #self._root_node.setNextNode(self._audiovideonode)
-        #self._audiovideonode.setNextNode(self._last_node)
-        self._root_node.setNextNode(self._last_node)
+        self._root_node.setNextNode(self._audiovideonode)
+        self._audiovideonode.setNextNode(self._last_node)
+        #self._root_node.setNextNode(self._last_node)
         self._identifier = "node"
 
     def _addParticle(self, **kwargs):
