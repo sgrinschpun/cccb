@@ -1,0 +1,24 @@
+FROM python:3.6
+RUN useradd -ms /bin/bash phenomena
+USER root
+RUN apt-get update && apt-get install -y \
+    python3\
+    python-pip\
+    python3-venv
+
+WORKDIR /home/phenomena
+COPY exec.sh phenomena_server.py ./
+ADD phenomena_install phenomena_install
+RUN python3 -m venv venv
+RUN venv/bin/pip install --upgrade pip
+RUN chown -R phenomena:phenomena ./
+USER phenomena
+RUN chmod +x exec.sh
+RUN chmod +x phenomena_install/setup.py
+WORKDIR /home/phenomena/phenomena_install
+RUN ../venv/bin/python3 setup.py install
+WORKDIR /home/phenomena
+RUN rm -Rf phenomena_install phenomena.egg-info
+#EXPOSE 8000/udp
+EXPOSE 16180
+ENTRYPOINT ["./exec.sh", "python3", "phenomena_server.py"]

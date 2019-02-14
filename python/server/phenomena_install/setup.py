@@ -1,0 +1,69 @@
+import os
+from setuptools.command.install import install
+from setuptools import find_packages
+from distutils import log
+from setuptools.command.install_scripts import install_scripts
+from os.path import expanduser, join
+from setuptools import setup
+HOME = expanduser("~")
+
+INSTALL_PATH = join(HOME, '.phenomena')
+CONFIG_PATH = join(INSTALL_PATH, 'conf')
+
+#class OverrideInstall(install):
+#    def run(self):
+#        uid, gid = 0, 0
+        #mode = 0770
+#        install.run(self) # calling install.run(self) insures that everything that happened previously still happens, so the installation does not break!
+        # here we start with doing our overriding and private magic ..
+#        log.info("Changing phenomenad daemon properties")
+        #os.chown("/etc/init.d/phenomenad", uid, gid)
+        #os.chmod("/etc/init.d/phenomenad", mode)
+
+packages = ['phenomena']
+#scripts = ['bin/myapp',]
+#cmdclasses = {'install_data': install_data}
+#data_files = [('/etc/init.d/', ['other/utils/phenomenad']), (CONFIG_PATH, ["other/config/particle_extra_info/part_extra_info.json"])]
+data_files = [(CONFIG_PATH, ["other/config/part_extra_info.json", 
+                            "other/config/mass_width_2017.mcd",
+                            "other/config/inelastic_2body_data.json"])]
+setup_args = {
+        'name': 'phenomena',
+        'version': '0.1',
+        'packages': find_packages(),
+        #    'cmdclass': cmdclasses,
+        'data_files': data_files,
+        #'cmdclass':{'install': OverrideInstall}
+        #    'scripts': scripts,
+        #    'include_package_data': True,
+        #    'test_suite': 'nose.collector'
+        }
+
+setup(**setup_args, install_requires=["mido", "python-osc",
+					'pkgconfig', 
+					'atomicwrites==1.2.1',
+					'attrs==18.2.0',
+					'cycler==0.10.0',
+					'decaylanguage==0.2.0',
+					'funcsigs==1.0.2',
+					'importlib-resources==1.0.1',
+					'more-itertools==4.3.0',
+					'numpy==1.15.2',
+					'pandas==0.23.4',
+					'particletools==1.0.0rc6',
+					'pathlib2==2.3.2',
+					'pluggy==0.8.0',
+					'plumbum==1.6.7',
+					'py==1.7.0',
+					'pynput==1.4',
+					'pyparsing==2.2.2',
+					'PyPDT==0.7.4',
+					'pytest==3.9.3',
+					'python-dateutil==2.7.3',
+					'pytz==2018.5',
+					'PyYAML==3.13',
+					'scandir==1.9.0',
+					'scikit-hep==0.3.0',
+					'six==1.11.0',
+					'subprocess32==3.5.3',
+					'typing==3.6.6'])
