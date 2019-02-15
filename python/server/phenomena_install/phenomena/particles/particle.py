@@ -129,14 +129,15 @@ def toDictionary(particle):
     '''
     This method is used to extract the information required by the visualization and sonification nodes and send it through the socket
     '''
+    print("COMPOSITION:", particle.composition)
     return {"name": particle.name,
             "parent": particle.parent,
             "id": particle.id,
             "type": particle.type,
             "mass": particle.mass,
             "charge": particle.charge,
-            "transformtime": particle.transformtime,
-            "composition": "[{0}]".format(",".join(particle.composition)),
+            "transformtime": particle.transformtime, 
+            "composition": "[{0}]".format(",".join(map(lambda x:str(x, "utf-8"), particle.composition))),
             "p": particle.p,
             "theta": particle.theta,
             "phi": particle.phi,

@@ -20,7 +20,7 @@ class OSCMessageSender(MessageSender):
         module_path = "/{0}".format(module_path.replace(".", "/"))
         bundle = osc_bundle_builder.OscBundleBuilder(osc_bundle_builder.IMMEDIATELY)
         msg = osc_message_builder.OscMessageBuilder(address = module_path)
-        self._addArgument(msg, "id", OSCMessageSender.getCommandId())
+        self._addArgument(msg, "command_id", OSCMessageSender.getCommandId())
         self._addArgument(msg, "command_name", command_name)
         for name, value in kwargs.items():
             self._addArgument(msg, name, value)

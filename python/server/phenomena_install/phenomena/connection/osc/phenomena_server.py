@@ -41,7 +41,7 @@ class OSCPhenomenaServer(PhenomenaServer):
         try:
             module_path = str(address)[1:].replace('/', '.')
             params = dict(zip(args[::2], args[1::2]))
-            _id = params.pop("id")
+            _id = params.pop("command_id")
             command_name = params.pop("command_name")
             new_message = IncomingMessage.fromData(command_id = _id, command_name = command_name, module_path=module_path, params = params)
             node = self._node_controller.findModule(new_message.module_path)
