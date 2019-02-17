@@ -1,1 +1,1 @@
-from .timecontroller import TimeController
+from timecontroller import TimeController

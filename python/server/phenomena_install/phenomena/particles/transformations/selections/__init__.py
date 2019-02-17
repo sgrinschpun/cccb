@@ -1,2 +1,2 @@
-from .channelselector import ChannelSelector
-from .typeselector import TypeSelector
+from channelselector import ChannelSelector
+from typeselector import TypeSelector
