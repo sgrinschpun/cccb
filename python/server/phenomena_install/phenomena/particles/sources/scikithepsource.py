@@ -4,10 +4,9 @@ from skhep.pdg import ParticleDataTable
 from skhep.simulation import pdgid as PDGID
 from skhep import units as u
 from phenomena.particles.particle import Particle
-from os.path import expanduser, join
-home = expanduser("~")
-tbl = ParticleDataTable(join(home, '.phenomena/conf/mass_width_2017.mcd'))
-#tbl = ParticleDataTable()
+
+#tbl = ParticleDataTable('data/mass_width_2017.mcd')
+tbl = ParticleDataTable()
 
 class SciKitHEPFetcher(object):
 
@@ -66,3 +65,11 @@ class SciKitHEPFetcher(object):
     @staticmethod
     def getCTau(pdgid):
         return tbl[pdgid].ctau
+
+    @staticmethod
+    def isLepton(pdgid):
+        return PDGID.isLepton(pdgid)
+
+    @staticmethod
+    def isSUSY(pdgid):
+        return PDGID.isSUSY(pdgid)

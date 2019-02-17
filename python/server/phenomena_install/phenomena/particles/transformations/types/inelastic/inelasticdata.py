@@ -13,10 +13,9 @@ import json
 import pkg_resources
 from phenomena.particles.sources import ParticleDataSource, ParticleDataToolFetcher, ExtraInfoFetcher
 #from phenomena.particles.models import UndercoverParticle
-from os.path import expanduser, join
-home = expanduser("~")
-JSON_PATH= join(home, '.phenomena/conf/inelastic_2body_data.json')  # always use slash
-#JSON_PATH = pkg_resources.resource_filename(__name__, path)
+
+path = 'data/inelastic_2body_data.json'  # always use slash
+JSON_PATH = pkg_resources.resource_filename(__name__, path)
 DATA = json.load(open(JSON_PATH))
 
 def load_file():
