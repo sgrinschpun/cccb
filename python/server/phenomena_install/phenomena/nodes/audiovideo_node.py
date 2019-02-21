@@ -97,8 +97,10 @@ class JsonRemoteAudioVideoNode(ParticleActionNodeChain):
             msg.add_arg(message['PARAMS']['transformtime'])
             msg.add_arg(message['PARAMS']['composition'])
             msg.add_arg(message['PARAMS']['p'])
-            msg.add_arg(message['PARAMS']['theta'])
-            msg.add_arg(message['PARAMS']['phi'])
+            msg.add_arg(message['PARAMS']['E'])
+            msg.add_arg(message['PARAMS']['vx'])
+            msg.add_arg(message['PARAMS']['vy'])
+            msg.add_arg(message['PARAMS']['vz'])
             msg.add_arg(message['PARAMS']['beta'])
             msg.add_arg(message['PARAMS']['type'])
         elif(message['CMD'] == "REMOVE"):
@@ -106,8 +108,8 @@ class JsonRemoteAudioVideoNode(ParticleActionNodeChain):
             msg.add_arg(message['PARAMS']['id'])
         bundle.add_content(msg.build())
         bundle = bundle.build()
-        message_sender.send(bundle)   
-        
+        message_sender.send(bundle)
+
         #here ends shit
         #message_sender = connection.OSCMessageSender(JsonRemoteAudioVideoNode._IP, JsonRemoteAudioVideoNode._PORT)
         #command_name = message.pop("CMD")

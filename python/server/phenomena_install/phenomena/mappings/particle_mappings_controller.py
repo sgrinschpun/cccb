@@ -11,8 +11,10 @@ class MappingsController:
                                "composition": MirrorMapping(),
                                "type": MirrorMapping(),
                                "p": MirrorMapping(),
-                               "theta": MirrorMapping(),
-                               "phi": MirrorMapping(),
+                               "E": MirrorMapping(),
+                               "vx": MirrorMapping(),
+                               "vy": MirrorMapping(),
+                               "vz": MirrorMapping(),
                                "beta": MirrorMapping()
                                }
 
