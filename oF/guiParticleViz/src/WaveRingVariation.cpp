@@ -66,7 +66,7 @@ void WaveRingVariation::drawFbo(){
   ofEnableBlendMode(OF_BLENDMODE_ALPHA);
   ofFill();
   ofSetColor(0,0,0, fadeAmnt);
-  ofDrawRectangle(0,0,1024,768);
+  ofDrawRectangle(0,0,ofGetWidth(),ofGetHeight());
 }
 
 void WaveRingVariation::draw() {
