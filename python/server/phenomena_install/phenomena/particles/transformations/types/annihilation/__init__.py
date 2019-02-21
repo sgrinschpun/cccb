@@ -1,2 +1,2 @@
-from annihilationtransformation import Annihilation
-from annihilationkinematics import AnnihilationKinematics
+from .annihilationtransformation import Annihilation
+from .annihilationkinematics import AnnihilationKinematics
