@@ -2,4 +2,4 @@ include phenomena/particles/transformations/types/inelastic/data/inelastic_2body
 include phenomena/particles/transformations/types/inelastic/data/inelastic_1body_data.json
 include phenomena/particles/sources/particle_extra_info/part_extra_info.json
 include phenomena/particles/sources/data/mass_width_2017.mcd
-
+include phenomena/particles/transformations/types/hadronization/data/hadronization_data.json
