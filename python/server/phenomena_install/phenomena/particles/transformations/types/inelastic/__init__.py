@@ -1,2 +1,2 @@
-from inelastictransformation import InelasticCollision, InelasticCollisionWithProton, InelasticCollisionWithNeutron
-from inelastickinematics import InelasticKinematics, LAB2BodyInelastic
+from .inelastictransformation import InelasticCollision, InelasticCollisionWithProton, InelasticCollisionWithNeutron
+from .inelastickinematics import InelasticKinematics, LAB2BodyInelastic

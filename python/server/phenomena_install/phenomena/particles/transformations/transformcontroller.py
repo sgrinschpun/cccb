@@ -10,9 +10,9 @@ __status__ = "Development"
 from random import shuffle
 
 from phenomena.particles.transformations.selections import TypeSelector, ChannelSelector
-from kinematicscontroller import KinematicsController, VirtualKinematicsController
 from phenomena.particles.transformations.types.decaysviavirtual.virtualparticlechannel import VirtualParticleChannel
 from phenomena.particles.transformations.time import TimeController
+from .kinematicscontroller import KinematicsController, VirtualKinematicsController
 
 class TransformController(object):
     '''

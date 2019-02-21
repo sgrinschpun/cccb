@@ -98,10 +98,10 @@ class ParticleDataToolFetcher(object):
         pdgid_list = map(ParticleDataToolFetcher.getPDGId, listofdecayedparticles)
         part_list = []
         for item in ParticleDataToolFetcher.getParticleList():
-         channels = ParticleDataToolFetcher.getDecayChannels(item[0])
-         for channel in channels:
-             if set(pdgid_list) == set(channel[1]):
-                 part_list.append((channel[0],[item[1].name]))
+            channels = ParticleDataToolFetcher.getDecayChannels(item[0])
+            for channel in channels:
+                if set(pdgid_list) == set(channel[1]):
+                    part_list.append((channel[0],[item[1].name]))
         return part_list
 
     @staticmethod
@@ -116,9 +116,9 @@ class ParticleDataToolFetcher(object):
                 return BR
 
     @staticmethod
-    def getChannel(particle, id):
+    def getChannel(particle, particle_id):
         'get a specific channel from decay values'
-        return ParticleDataToolFetcher.getDecayParticles(particle)[id]
+        return ParticleDataToolFetcher.getDecayParticles(particle)[particle_id]
 
 
     @staticmethod
@@ -126,8 +126,8 @@ class ParticleDataToolFetcher(object):
         '''Get all the particles that decay to integer = 2 or 3 or .. particles'''
         part_list = []
         for item in ParticleDataToolFetcher.getParticleList():
-         channels = ParticleDataToolFetcher.getDecayChannels(item[0])
-         for channel in channels:
-             if len(channel[1]) == integer and channel[0] != 0.0:
-                 part_list.append(item[1].name)
+            channels = ParticleDataToolFetcher.getDecayChannels(item[0])
+            for channel in channels:
+                if len(channel[1]) == integer and channel[0] != 0.0:
+                    part_list.append(item[1].name)
         return part_list

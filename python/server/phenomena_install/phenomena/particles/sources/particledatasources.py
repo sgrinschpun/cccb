@@ -6,11 +6,11 @@ __version__ = "0.1"
 __email__ = "sgrinschpun@ifae.es"
 __status__ = "Development"
 
-from datasources import DataSource
-from particledatatools import ParticleDataToolFetcher
-from scikithepsource import SciKitHEPFetcher
-from extra_info import ExtraInfoFetcher
-from decaylanguagesource import DecayLanguageFetcher
+from .datasources import DataSource
+from .particledatatools import ParticleDataToolFetcher
+from .scikithepsource import SciKitHEPFetcher
+from .extra_info import ExtraInfoFetcher
+from .decaylanguagesource import DecayLanguageFetcher
 
 from skhep import units as u
 
