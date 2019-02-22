@@ -64,7 +64,7 @@ class ParticleData(object):
 
     @property
     def type(self):
-        return self._type
+        return self._type.decode("utf-8") 
 
     def _set_type(self):
         self._type= ParticleDataSource.getType(self._name)

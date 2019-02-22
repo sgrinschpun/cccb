@@ -7,9 +7,6 @@ from phenomena.connection.phenomena_message import IncomingMessage, OutcomingMes
 from pythonosc import dispatcher
 from pythonosc import osc_server
 from .commons import PORT, HOST
-
-
-  
  
 class OSCPhenomenaServer(PhenomenaServer):
 

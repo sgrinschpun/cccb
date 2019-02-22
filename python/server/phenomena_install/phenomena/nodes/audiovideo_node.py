@@ -4,9 +4,7 @@ from phenomena.nodes import get_save_node
 from phenomena.particles.particle_action import ParticleActionNodeChain
 from phenomena.particles import Particle
 from phenomena.utils import get_logger
-from pythonosc import osc_message_builder
-from pythonosc import udp_client
-from pythonosc import osc_bundle_builder
+from phenomena.connection import OSCBundledMessageSender
 
 class JsonRemoteAudioVideoNode(ParticleActionNodeChain):
     #_IP =  "172.16.7.173"
@@ -70,7 +68,6 @@ class JsonRemoteAudioVideoNode(ParticleActionNodeChain):
             self._sendMessage("particle", new_message)
         return new_messages
 
-
     def _removeParticlesMessage(self, particles_list):
         new_messages = []
         for particle in particles_list:
@@ -84,33 +81,7 @@ class JsonRemoteAudioVideoNode(ParticleActionNodeChain):
     def _sendMessage(self, module_path, message):
         self._log.info("Sending new Message to: {0}!".format(module_path))
         self._log.debug("Message: {0}".format(message))
-        #here begins shit
-        message_sender = udp_client.SimpleUDPClient(JsonRemoteAudioVideoNode._IP, JsonRemoteAudioVideoNode._PORT)
-        bundle = osc_bundle_builder.OscBundleBuilder(osc_bundle_builder.IMMEDIATELY)
-        if(message['CMD'] == "ADD"):
-            msg = osc_message_builder.OscMessageBuilder(address = "/particles/ADD")
-            msg.add_arg(message['PARAMS']['parent'])
-            msg.add_arg(message['PARAMS']['id'])
-            msg.add_arg(message['PARAMS']['name'])
-            msg.add_arg(message['PARAMS']['mass'])
-            msg.add_arg(message['PARAMS']['charge'])
-            msg.add_arg(message['PARAMS']['transformtime'])
-            msg.add_arg(message['PARAMS']['composition'])
-            msg.add_arg(message['PARAMS']['p'])
-            msg.add_arg(message['PARAMS']['E'])
-            msg.add_arg(message['PARAMS']['vx'])
-            msg.add_arg(message['PARAMS']['vy'])
-            msg.add_arg(message['PARAMS']['vz'])
-            msg.add_arg(message['PARAMS']['beta'])
-            msg.add_arg(message['PARAMS']['type'])
-        elif(message['CMD'] == "REMOVE"):
-            msg = osc_message_builder.OscMessageBuilder(address = "/particles/REMOVE")
-            msg.add_arg(message['PARAMS']['id'])
-        bundle.add_content(msg.build())
-        bundle = bundle.build()
-        message_sender.send(bundle)
-
-        #here ends shit
-        #message_sender = connection.OSCMessageSender(JsonRemoteAudioVideoNode._IP, JsonRemoteAudioVideoNode._PORT)
-        #command_name = message.pop("CMD")
-        #message_sender.sendMessage(module_path, command_name = command_name, **message['PARAMS'])
+        print("PARAMS********************", message['PARAMS'])
+        message_sender = OSCBundledMessageSender(JsonRemoteAudioVideoNode._IP, JsonRemoteAudioVideoNode._PORT)
+        command_name = message.pop("CMD")
+        message_sender.sendMessage(module_path, command_name = command_name, **message['PARAMS'])
