@@ -116,12 +116,12 @@ class ParticleAccumulatorNode(ParticleActionNodeChain):
         self._transform_lock.acquire()
         tr_new_particles = []
         try:
-            print ("particle: {0}".format(particle.name)),
+            print ("Particle: {0}".format(particle.name)),
+            print ("Will transform through: : {0}".format(particle.transformation.selectedType.type)),
             print ("Will transform in: "),
-            for new_particle in new_particles:
-                print ("Particle causes error:  " + new_particle.name)
+            for idx, new_particle in enumerate(new_particles):
+                print ("New particle {0}:  {1}".format(idx+1,new_particle.name))
                 tr_new_particles.append(ServerParticle.fromparticle(new_particle, parent = particle.id))
-            print (" New particles: ")
             for new_particle in new_particles: print (new_particle.name, new_particle.p, new_particle.phi, new_particle.theta)
             self._node.getNextNode(self).transformParticle(particle, tr_new_particles)
         finally:

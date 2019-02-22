@@ -29,7 +29,7 @@ class TransformationChannel(Channel):
 
     @property
     def length(self):
-        return len(self.ids)
+        return len(list(self.ids))
 
     @property
     def nameSet(self):
@@ -120,12 +120,12 @@ class TransformationChannels(object):
     def from_decaylistNames(cls, decaylist):
         tclist = []
         for channel in decaylist:
-            TC = TransformationChannel(channel[0],map(ParticleDataSource.getPDGId,channel[1]))
+            TC = TransformationChannel(channel[0],list(map(ParticleDataSource.getPDGId,channel[1])))
             if all([
                 TC.length in [2,3],
                 TC.nameSet.intersection(TransformationChannels.EXCLUDED) == set([])
             ]):
-                tclist.append()
+                tclist.append(TC)
         return cls(tclist)
 
     @property
