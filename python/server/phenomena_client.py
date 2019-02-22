@@ -12,7 +12,7 @@ class Phenomena:
 
     def _sendMessage(self, module_path, command_name, **kwargs):
         message_sender = OSCMessageSender(HOST)
-        return message_sender.sendMessage(module_path="node", command_name="ADD", **kwargs)
+        return message_sender.sendMessage(module_path = module_path, command_name = command_name, **kwargs)
 
 
 if __name__ == '__main__':

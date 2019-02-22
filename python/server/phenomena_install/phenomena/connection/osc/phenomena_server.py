@@ -4,7 +4,6 @@ import os
 from phenomena.utils.log import get_logger
 from phenomena.connection.interface import PhenomenaServer
 from phenomena.connection.phenomena_message import IncomingMessage, OutcomingMessage
-from phenomena.nodes.node_controller import getNodeController
 from pythonosc import dispatcher
 from pythonosc import osc_server
 from .commons import PORT, HOST
@@ -14,7 +13,7 @@ from .commons import PORT, HOST
  
 class OSCPhenomenaServer(PhenomenaServer):
 
-    def __init__(self, node_controller = getNodeController()):
+    def __init__(self, node_controller):
         self._log = get_logger("Connection.OCSServer")
         self._log.info("Creating Server")
         self._dispatcher = dispatcher.Dispatcher()
@@ -43,7 +42,7 @@ class OSCPhenomenaServer(PhenomenaServer):
             params = dict(zip(args[::2], args[1::2]))
             _id = params.pop("command_id")
             command_name = params.pop("command_name")
-            new_message = IncomingMessage.fromData(command_id = _id, command_name = command_name, module_path=module_path, params = params)
+            new_message = IncomingMessage.fromData(command_id = _id, command_name = command_name, module_path = module_path, params = params)
             node = self._node_controller.findModule(new_message.module_path)
             node.execute(new_message)
             out_message = OutcomingMessage.okMessage(new_message, new_message.params)
