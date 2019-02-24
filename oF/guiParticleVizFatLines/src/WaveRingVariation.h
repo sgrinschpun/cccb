@@ -19,6 +19,9 @@ public:
     void setRotAmp(ofVec3f rot_amp);
     void setSpeedAmp(float speed_amp);
     void setColorMode(bool col_mode);
+    void setStauration(int saturation);
+    void setBrightness(int brightness);
+    void setAlpha(int alpha);
     //shape
     void setNoiseStep(float noiseStep);
     void setNoiseAmount(float noiseAmount);

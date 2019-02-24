@@ -30,6 +30,9 @@ void ofApp::setup(){
     gui.add(width.set("width", 2, 0, 40));
     gui.add(noiseStep.set("noiseStep", 0.0,0, 1));
     gui.add(noiseAmount.set("noiseAmount", 0.40, 0.0, 100));
+    gui.add(saturation.set("saturation",200,0,255));
+    gui.add(brightness.set("brightness",255,0,255));
+    gui.add(alpha.set("alpha",100,0,255));
 
     imgcount = 0;
     guidraw = true;
@@ -58,6 +61,9 @@ void ofApp::update(){
         shapes[i].setCycle(framesPerCycle);
         shapes[i].setRadius(radius);
         shapes[i].setSegments(segments);
+        shapes[i].setStauration(saturation);
+        shapes[i].setBrightness(brightness);
+        shapes[i].setAlpha(alpha);
     }
 }
 
@@ -66,8 +72,6 @@ void ofApp::draw(){
     for (int i = 0; i < shapes.size(); i++) {
         shapes[i].draw();
     }
-
-
 
     if(guidraw) {
         gui.draw();

@@ -9,7 +9,10 @@ class WaveRing {
   private:
 
     //shape
-    ofMesh wigglyMeshRing;
+    ofxFatLine fatLine;
+    vector<ofDefaultVec3> fatLinePoints;
+    vector<ofFloatColor> fatLineColors;
+    vector<double> fatLineWidths;
     int segments;
     float width;
     float noiseStep;
@@ -29,15 +32,12 @@ class WaveRing {
     int col;
     float col_speed;
     bool col_mode;
+    int saturation;
+    int brightness;
+    int alpha;
 
-    void setupCircleMeshRing();
-    void updateWigglyMeshRing();
-
-    ofxFatLine fatLine;
-    vector<ofDefaultVec3> fatLinePoints;
-    vector<ofFloatColor> fatLineColors;
-    vector<double> fatLineWidths;
-
+    void setupCircleRing();
+    void updateWigglyCircleRing();
 
   public:
     shared_ptr<Cycle> cycle;
@@ -57,6 +57,9 @@ class WaveRing {
     void setRotAmp(ofVec3f rot_amp);
     void setSpeedAmp(float speed_amp);
     void setColorMode(bool col_mode);
+    void setStauration(int saturation);
+    void setBrightness(int brightness);
+    void setAlpha(int alpha);
 
     WaveRing(shared_ptr<Cycle>& cycle);
 
