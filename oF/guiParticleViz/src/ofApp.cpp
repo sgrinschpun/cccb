@@ -89,6 +89,10 @@ void ofApp::keyPressed(int key){
         guidraw = false;
     }
 
+    if (key == 'h') {
+        guidraw = true;
+    }
+
     if (key == 'f') {
       for (int i = 0; i < shapes.size(); i++) {
           shapes[i].GIFstart();
@@ -173,9 +177,9 @@ void ofApp::loadXML(){
       settings.popTag();
     settings.popTag();
     settings.pushTag("wiggle");
-      framesPerCycle.set(settings.getValue("framesPerCycle", 0));
-      noiseStep.set(settings.getValue("noiseStep", 0));
-      noiseAmount.set(settings.getValue("setNoiseAmount", 0));
+      framesPerCycle.set(settings.getValue("framesPerCycle", 0.00));
+      noiseStep.set(settings.getValue("noiseStep", 0.00));
+      noiseAmount.set(settings.getValue("noiseAmount", 0.00));
       settings.popTag();
     settings.pushTag("color");
     fadeAmnt.set(settings.getValue("fadeAmnt", 0));

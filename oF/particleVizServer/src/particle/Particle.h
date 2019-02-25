@@ -23,9 +23,11 @@ class Particle {
   void update();
   void draw();
 
+  ofPoint getPosition();
+
   //constructor
   Particle(shared_ptr<ParticleData>& _data);
   Particle(shared_ptr<ParticleData>& _data, ofPoint _position, ofVec3f _velocity);
-  
+
 };
 #endif

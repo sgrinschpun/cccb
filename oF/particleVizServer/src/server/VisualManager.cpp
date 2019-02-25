@@ -21,10 +21,21 @@ void VisualManager::updateMap(PhenomenaCMD phenoCMD) {
                                   phenoCMD.getParams().type,
                                   phenoCMD.getParams().energy
                                 );
-        ofVec3f velocity;
+
         ofPoint position;
-        velocity.set(ofRandom(-10.0, 10.0),ofRandom(-10.0, 10.0),0);
-        position.set(ofGetWidth()/2, ofGetHeight()/2,0);
+        particleIt = particleMap.find(phenoCMD.getParams().parent);
+        if (particleIt != particleMap.end()) {
+          position.set(particleIt->second->getPosition());
+        }
+        else {
+          position.set(ofGetWidth()/2, ofGetHeight()/2,0);
+        }
+
+        ofVec3f velocity;
+        velocity.set(phenoCMD.getParams().vy,phenoCMD.getParams().vz,phenoCMD.getParams().vx);
+        velocity.scale(phenoCMD.getParams().beta);
+        //velocity.set(ofRandom(-10.0, 10.0),ofRandom(-10.0, 10.0),0);
+        //position.set(ofGetWidth()/2, ofGetHeight()/2,0);
         particleMap.insert(make_pair(phenoCMD.getParams().id, make_shared<Particle>(newParticleData,position, velocity)));
     }
 

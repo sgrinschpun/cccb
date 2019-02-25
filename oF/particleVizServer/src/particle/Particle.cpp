@@ -51,3 +51,7 @@ void Particle::update(){
   model->setPosition(kinematics->getPosition());
   model->update();
 }
+
+ofPoint Particle::getPosition(){
+  return kinematics->getPosition();
+}
