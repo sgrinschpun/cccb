@@ -34,13 +34,10 @@ void ofApp::setup(){
     gui.add(brightness.set("brightness",255,0,255));
     gui.add(alpha.set("alpha",100,0,255));
 
-    imgcount = 0;
     guidraw = true;
 
     WaveRingVariation wrv;
     shapes.push_back(wrv);
-
-
 
 }
 
@@ -83,22 +80,19 @@ void ofApp::draw(){
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
     if(key == 's'){
-        img.grabScreen(0,0,ofGetWidth(),ofGetHeight());
-        img.save("pic" + ofToString(imgcount) + ".png", OF_IMAGE_QUALITY_BEST);
-        imgcount++;
+      for (int i = 0; i < shapes.size(); i++) {
+          shapes[i].screenCapture();
+      }
     }
 
     if (key == 'g') {
         guidraw = false;
-
     }
 
     if (key == 'f') {
-      cout << "pressed f";
       for (int i = 0; i < shapes.size(); i++) {
           shapes[i].GIFstart();
       }
-
     }
 
     if (key == 'x') {

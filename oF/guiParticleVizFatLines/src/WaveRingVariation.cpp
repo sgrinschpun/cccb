@@ -12,9 +12,13 @@ WaveRingVariation::WaveRingVariation() {
     cycle = make_shared<Cycle>(framesPerCycle);
 
     //FBO
+    //fboWidth = 7680;
+    //fboHeight = 4320;
+    fboWidth = ofGetWidth();
+    fboHeight= ofGetHeight();
     ofFboSettings s;
-    s.width = ofGetWidth();
-    s.height = ofGetHeight();
+    s.width = fboWidth;
+    s.height = fboHeight;
     s.internalformat = GL_RGBA;
     //s.internalformat = GL_RGBA32F_ARB;
     //s.useDepth = true;
@@ -61,7 +65,7 @@ void WaveRingVariation::drawFbo(){
 
   ofEnableBlendMode(OF_BLENDMODE_ADD);
   ofPushMatrix();
-  ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
+  ofTranslate(fboWidth/2, fboHeight/2);
   for(int i=0; i<waverings.size(); i++){
     waverings[i].draw();
   }
@@ -70,7 +74,7 @@ void WaveRingVariation::drawFbo(){
   ofEnableBlendMode(OF_BLENDMODE_ALPHA);
   ofFill();
   ofSetColor(0,0,0, fadeAmnt);
-  ofDrawRectangle(0,0,ofGetWidth(),ofGetHeight());
+  ofDrawRectangle(0,0,fboWidth,fboHeight);
 }
 
 void WaveRingVariation::draw() {
@@ -79,6 +83,14 @@ void WaveRingVariation::draw() {
   if (start==true){
     getGIF();
   }
+}
+
+void WaveRingVariation::screenCapture() {
+  ofPixels pixels;
+  rgbaFbo.readToPixels(pixels);
+  img.setFromPixels(pixels);
+  img.save("pic" + ofToString(imgcount) + ".png", OF_IMAGE_QUALITY_BEST);
+  imgcount++;
 }
 
 void WaveRingVariation::getGIF() {

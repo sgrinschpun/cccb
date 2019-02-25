@@ -29,6 +29,7 @@ public:
     void loadXML();
 
     ofxPanel gui;
+    bool guidraw;
 
     //WaveRing panel parameters
     ofParameter<float> noiseStep;
@@ -51,8 +52,5 @@ public:
 
     vector<WaveRingVariation> shapes;
 
-    ofFbo image;
-    bool guidraw;
-    ofImage img;
-    int imgcount;
+
 };

@@ -42,6 +42,14 @@ public:
     void getGIF();
     void GIFstart();
 
+    //screenCapture
+    void screenCapture();
+    int imgcount {0};
+    ofImage img;
+    //bigfile
+    float fboWidth;
+    float fboHeight;
+
 private:
     vector<WaveRing> waverings;
     int shapes_num;
