@@ -40,6 +40,8 @@ void ofApp::setup(){
     WaveRingVariation wrv;
     shapes.push_back(wrv);
 
+    gifEncoder.setup(ofGetWidth(), ofGetHeight(), 3, 256);
+
 }
 
 //--------------------------------------------------------------
@@ -81,7 +83,6 @@ void ofApp::draw(){
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
     if(key == 's'){
-
         img.grabScreen(0,0,ofGetWidth(),ofGetHeight());
         img.save("pic" + ofToString(imgcount) + ".png", OF_IMAGE_QUALITY_BEST);
         imgcount++;
@@ -89,7 +90,102 @@ void ofApp::keyPressed(int key){
 
     if (key == 'g') {
         guidraw = false;
+
     }
+
+    if (key == 'x') {
+        buildXML();
+    }
+
+    if (key == 'l') {
+        loadXML();
+    }
+}
+
+void ofApp::buildXML(){
+  ofxXmlSettings settings;
+  settings.addTag("shape");
+  settings.pushTag("shape");
+    settings.addValue("shapes_num", shapes_num);
+    settings.addValue("radius", radius);
+    settings.addValue("width", width);
+    settings.addValue("segments", segments);
+    settings.addValue("speed", speed);
+  settings.popTag();
+  settings.addTag("variations");
+  settings.pushTag("variations");
+    settings.addTag("pos");
+    settings.pushTag("pos");
+      settings.addValue("x", pos->x);
+      settings.addValue("y", pos->y);
+      settings.addValue("z", pos->z);
+    settings.popTag();
+    settings.addTag("rot");
+    settings.pushTag("rot");
+      settings.addValue("x", rot->x);
+      settings.addValue("y", rot->y);
+      settings.addValue("z", rot->z);
+    settings.popTag();
+  settings.popTag();
+  settings.addTag("wiggle");
+  settings.pushTag("wiggle");
+    settings.setValue("framesPerCycle", framesPerCycle);
+    settings.setValue("noiseStep", noiseStep);
+    settings.setValue("noiseAmount", noiseAmount);
+  settings.popTag();
+  settings.addTag("color");
+  settings.pushTag("color");
+    settings.addValue("fadeAmnt", fadeAmnt);
+    settings.addValue("color_mode", color_mode);
+    settings.addValue("saturation", saturation);
+    settings.addValue("brightness", brightness);
+    settings.addValue("alpha", alpha);
+  settings.popTag();
+  settings.saveFile("settings.xml");
+}
+
+void ofApp::loadXML(){
+  ofxXmlSettings settings;
+  if(settings.loadFile("settings.xml")){
+    settings.pushTag("shape");
+      shapes_num.set(settings.getValue("shapes_num", 0));
+      radius.set(settings.getValue("radius", 0));
+      width.set(settings.getValue("width", 0));
+      segments.set(settings.getValue("segments", 0));
+      speed.set(settings.getValue("speed", 0.00));
+    settings.popTag();
+    settings.pushTag("variations");
+      settings.pushTag("pos");
+        ofVec3f position;
+        position.x = settings.getValue("x", 0);
+        position.y = settings.getValue("y", 0);
+        position.z = settings.getValue("z", 0);
+        pos.set(position);
+      settings.popTag();
+      settings.pushTag("rot");
+        ofVec3f rotation;
+        rotation.x = settings.getValue("x", 0);
+        rotation.y = settings.getValue("y", 0);
+        rotation.z = settings.getValue("z", 0);
+        rot.set(rotation);
+      settings.popTag();
+    settings.popTag();
+    settings.pushTag("wiggle");
+      framesPerCycle.set(settings.getValue("framesPerCycle", 0));
+      noiseStep.set(settings.getValue("noiseStep", 0));
+      noiseAmount.set(settings.getValue("setNoiseAmount", 0));
+      settings.popTag();
+    settings.pushTag("color");
+    fadeAmnt.set(settings.getValue("fadeAmnt", 0));
+    color_mode.set(settings.getValue("color_mode", 0));
+    saturation.set(settings.getValue("saturation", 0));
+    brightness.set(settings.getValue("brightness", 0));
+    alpha.set(settings.getValue("alpha", 0));
+    settings.popTag();
+  }
+  else{
+    ofLogError("Settings file did not load!");
+  }
 }
 
 //--------------------------------------------------------------

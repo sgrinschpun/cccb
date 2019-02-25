@@ -3,6 +3,8 @@
 #include "ofMain.h"
 #include "ofxGui.h"
 #include "WaveRingVariation.h"
+#include "ofxXmlSettings.h"
+#include "ofxGifEncoder.h"
 
 class ofApp : public ofBaseApp{
 
@@ -22,6 +24,9 @@ public:
     void windowResized(int w, int h);
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
+
+    void buildXML();
+    void loadXML();
 
     ofxPanel gui;
 
@@ -50,4 +55,6 @@ public:
     bool guidraw;
     ofImage img;
     int imgcount;
+
+    ofxGifEncoder gifEncoder;
 };
