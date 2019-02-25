@@ -23,7 +23,9 @@ class OSCBundledMessageSender(MessageSender):
             msg = osc_message_builder.OscMessageBuilder(address = "{0}/{1}".format(module_path, key))
             msg.add_arg(value)
             osc_bundle.add_content(msg.build())
-        msg = osc_message_builder.OscMessageBuilder(address = "{0}/{1}".format(module_path, command_name))
+        msg = osc_message_builder.OscMessageBuilder(address = "{0}/{1}".format(module_path, "operation"))
+        msg.add_arg(command_name)
+        osc_bundle.add_content(msg.build())
         osc_bundle = osc_bundle.build()
         self._client.send(osc_bundle)  
 
