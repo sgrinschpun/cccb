@@ -7,8 +7,9 @@ from phenomena.utils import get_logger
 from phenomena.connection import OSCBundledMessageSender
 
 class JsonRemoteAudioVideoNode(ParticleActionNodeChain):
-    #_IP =  "172.16.7.173"
+    #_IP =  "172.16.7.183"
     _IP = "127.0.0.1"
+    #_IP = "172.16.4.23"
     _PORT = 12345
     def __init__(self):
         super(ParticleActionNodeChain, self).__init__()
