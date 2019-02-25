@@ -30,6 +30,9 @@ WaveRingVariation::WaveRingVariation() {
     ofClear(255,255,255, 0);
     rgbaFbo.end();
 
+    gifEncoder = make_shared<ofxGifEncoder>();
+    gifEncoder -> setup(ofGetWidth(), ofGetHeight(), 0.25f, 256);
+    //gifEncoder -> setDitherMode(OFX_GIF_DITHER_BAYER4x4);
 }
 
 void WaveRingVariation::update() {
@@ -50,6 +53,7 @@ void WaveRingVariation::update() {
   //ofEnableAlphaBlending();
   rgbaFbo.begin();
   drawFbo();
+  ofClearAlpha();
   rgbaFbo.end();
 }
 
@@ -71,6 +75,31 @@ void WaveRingVariation::drawFbo(){
 
 void WaveRingVariation::draw() {
   rgbaFbo.draw(0,0);
+
+  if (start==true){
+    getGIF();
+  }
+}
+
+void WaveRingVariation::getGIF() {
+
+  if(framesCurr < framesTotal) {
+      rgbaFbo.readToPixels(pixels);
+      imgforgif.setFromPixels(pixels);
+      gifEncoder -> addFrame(imgforgif, 0.033f);
+  }
+
+  if(framesCurr == framesTotal) {
+      gifEncoder -> save("test.gif");
+      imgforgif.clear();
+      start = false;
+  }
+  framesCurr++;
+}
+
+void WaveRingVariation::GIFstart() {
+    start = true;
+    cout << start;
 }
 
 void WaveRingVariation::setShapeNum(int _shapes_num) {

@@ -4,7 +4,7 @@
 #include "ofxGui.h"
 #include "WaveRingVariation.h"
 #include "ofxXmlSettings.h"
-#include "ofxGifEncoder.h"
+
 
 class ofApp : public ofBaseApp{
 
@@ -55,6 +55,4 @@ public:
     bool guidraw;
     ofImage img;
     int imgcount;
-
-    ofxGifEncoder gifEncoder;
 };

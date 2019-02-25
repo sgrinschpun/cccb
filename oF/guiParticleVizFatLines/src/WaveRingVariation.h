@@ -2,6 +2,7 @@
 #include "ofMain.h"
 #include "WaveRing.h"
 #include "Cycle.h"
+#include "ofxGifEncoder.h"
 
 class WaveRingVariation {
 
@@ -30,6 +31,16 @@ public:
     void setSegments(int segments);
 
     shared_ptr<Cycle> cycle;
+
+
+    shared_ptr<ofxGifEncoder> gifEncoder;
+    ofPixels pixels;
+    ofImage imgforgif;
+    int framesTotal {60};
+    int framesCurr {0};
+    bool start {false};
+    void getGIF();
+    void GIFstart();
 
 private:
     vector<WaveRing> waverings;

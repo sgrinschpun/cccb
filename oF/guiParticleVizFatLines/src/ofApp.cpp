@@ -40,7 +40,7 @@ void ofApp::setup(){
     WaveRingVariation wrv;
     shapes.push_back(wrv);
 
-    gifEncoder.setup(ofGetWidth(), ofGetHeight(), 3, 256);
+
 
 }
 
@@ -90,6 +90,14 @@ void ofApp::keyPressed(int key){
 
     if (key == 'g') {
         guidraw = false;
+
+    }
+
+    if (key == 'f') {
+      cout << "pressed f";
+      for (int i = 0; i < shapes.size(); i++) {
+          shapes[i].GIFstart();
+      }
 
     }
 
