@@ -16,10 +16,12 @@
 using namespace std;
 
 class VisualManager{
-    map <int, shared_ptr<Particle> > particleMap;
+  map <int, shared_ptr<Particle> > particleMap;
+
 public:
-    VisualManager();
-    void updateMap(PhenomenaCMD phenoCMD);
-    void refreshMap();
-    void visualizeMap();
+  VisualManager();
+  void updateMap(PhenomenaCMD phenoCMD);
+  void refreshMap();
+  void visualizeMap();
+
 };

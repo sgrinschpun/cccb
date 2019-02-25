@@ -24,7 +24,7 @@ void OSCHandler::acumulativeParticleParse(ofxOscMessage message){
     if(message.getAddress() == "/particle/type")
         middleParams.type = message.getArgAsString(0);
     if(message.getAddress() == "/particle/E")
-        middleParams.E = message.getArgAsFloat(0);
+        middleParams.energy = message.getArgAsFloat(0);
     if(message.getAddress() == "/particle/vx")
         middleParams.vx = message.getArgAsFloat(0);
     if(message.getAddress() == "/particle/vy")

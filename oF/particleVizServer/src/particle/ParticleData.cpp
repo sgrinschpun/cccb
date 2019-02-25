@@ -1,17 +1,14 @@
 #include "ParticleData.h"
 
-ParticleData::ParticleData(int _id, int _parentId, string _name, string _type): id(_id), parentId(_parentId), name(_name), type(_type){
-}
-
-ParticleData::ParticleData(int _id, int _parentId, string _name, string _type, vector<string> _composition, double _mass, double _charge, vector<string> _decay): id(_id), parentId(_parentId), name(_name), type(_type), composition(_composition), mass(_mass), charge(_charge), decay(_decay){
+ParticleData::ParticleData(int _id, int _parent, string _name, float _mass, float _charge, string _type, float _energy): id(_id), parent(_parent), name(_name), mass(_mass), charge(_charge), type(_type), energy(_energy){
 }
 
 int ParticleData::getId(void){
   return id;
 }
 
-int ParticleData::getParentId(void){
-  return parentId;
+int ParticleData::getParent(void){
+  return parent;
 }
 
 string ParticleData::getName(void){
@@ -22,26 +19,14 @@ string ParticleData::getType(void){
   return type;
 }
 
-vector<string> ParticleData::getComposition(void){
-  return composition;
-}
-
-Boolean ParticleData::isFundamental(void){
-  return composition.empty();
-}
-
-double ParticleData::getMass(void){
+float ParticleData::getMass(void){
   return mass;
 }
 
-double ParticleData::getCharge(void){
+float ParticleData::getCharge(void){
   return charge;
 }
 
-vector<string> ParticleData::getDecay(void){
-  return decay;
-}
-
-Boolean ParticleData::isStable(void){
-  return decay.empty();
+float ParticleData::getEnergy(void){
+  return energy;
 }

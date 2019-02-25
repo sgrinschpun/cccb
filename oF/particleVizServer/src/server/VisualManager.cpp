@@ -13,16 +13,21 @@ void VisualManager::updateMap(PhenomenaCMD phenoCMD) {
     if (phenoCMD.getCMD() == "ADD"){
         cout << "Inserting particle to VisualManager Hashmap with id: "<< phenoCMD.getParams().id << endl;
         shared_ptr<ParticleData> newParticleData =
-        make_shared<ParticleData>(phenoCMD.getParams().id ,phenoCMD.getParams().parent,
-                                  phenoCMD.getParams().name, phenoCMD.getParams().type);
-        
+        make_shared<ParticleData>(phenoCMD.getParams().id,
+                                  phenoCMD.getParams().parent,
+                                  phenoCMD.getParams().name,
+                                  phenoCMD.getParams().mass,
+                                  phenoCMD.getParams().charge,
+                                  phenoCMD.getParams().type,
+                                  phenoCMD.getParams().energy
+                                );
         ofVec3f velocity;
         ofPoint position;
         velocity.set(ofRandom(-10.0, 10.0),ofRandom(-10.0, 10.0),0);
         position.set(ofGetWidth()/2, ofGetHeight()/2,0);
         particleMap.insert(make_pair(phenoCMD.getParams().id, make_shared<Particle>(newParticleData,position, velocity)));
     }
-    
+
     if (phenoCMD.getCMD() == "REMOVE"){
         map <int, shared_ptr<Particle>>::const_iterator i = particleMap.find(phenoCMD.getParams().id);
         if (i != particleMap.end()) {

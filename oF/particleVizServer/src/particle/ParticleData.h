@@ -5,29 +5,23 @@
 class ParticleData {
   private:
     int id;
-    int parentId;
+    int parent;
     string name;
+    float mass;
+    float charge;
     string type;
-    vector<string> composition;
-    double mass;
-    double charge;
-    vector<string> decay;
+    float energy;
 
   public:
     int getId();
-    int getParentId();
+    int getParent();
     string getName();
+    float getMass();
+    float getCharge();
     string getType();
-    vector<string> getComposition();
-    double getMass();
-    double getCharge();
-    vector<string> getDecay();
-    Boolean isStable();
-    Boolean isFundamental();
+    float getEnergy();
 
-    //constructor
-    ParticleData(int _id, int _parentId, string _name, string _type);
-    ParticleData(int _id, int _parentId, string _name, string _type, vector<string> _composition, double _mass, double _charge, vector<string> _decay);
+    ParticleData(int _id, int _parent, string _name, float _mass, float _charge, string _type, float _energy);
 
     ~ParticleData() {}
 

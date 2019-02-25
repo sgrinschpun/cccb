@@ -18,7 +18,7 @@ struct PhenomenaParams{
     float mass;
     float charge;
     string type;
-    float E;
+    float energy;
     float vx;
     float vy;
     float vz;
