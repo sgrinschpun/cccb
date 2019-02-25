@@ -11,3 +11,12 @@ https://forum.openframeworks.cc/t/how-to-compile-of-from-the-command-line-so-you
 edit .bash_profile
 OF_ROOT=~/Documents/of_v0.10.1_osx_release
 ```
+
+
+processes:
+```
+netstat -n -pudp  -> who is listening udp
+lsof -nP -iUDP:12345 -> who is listening udp on port 12345
+ps -a | grep python -> all python porcesses
+(sudo) kill -9 2022 -> kill process 2022
+```
