@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    ofSetWindowTitle("GuiWaveRing test");
+    ofSetWindowTitle("guiParticleViz");
     ofBackground(0);
     ofSetFrameRate(60);
     //ofSetBackgroundAuto(false);
