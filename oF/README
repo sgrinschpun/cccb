@@ -1,0 +1,13 @@
+ofxGifEncoder
+https://github.com/hamoid/ofxGifEncoder
+
+ofxFatLines
+https://github.com/roymacdonald/ofxFatLines
+
+Use atom:
+https://forum.openframeworks.cc/t/how-to-compile-of-from-the-command-line-so-you-can-break-up-with-xcode-and-use-atom-or-sublime/26137
+
+```
+edit .bash_profile
+OF_ROOT=~/Documents/of_v0.10.1_osx_release
+```

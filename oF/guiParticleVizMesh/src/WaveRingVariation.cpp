@@ -12,13 +12,9 @@ WaveRingVariation::WaveRingVariation() {
     cycle = make_shared<Cycle>(framesPerCycle);
 
     //FBO
-    //fboWidth = 7680;
-    //fboHeight = 4320;
-    fboWidth = ofGetWidth();
-    fboHeight= ofGetHeight();
     ofFboSettings s;
-    s.width = fboWidth;
-    s.height = fboHeight;
+    s.width = ofGetWidth();
+    s.height = ofGetHeight();
     s.internalformat = GL_RGBA;
     //s.internalformat = GL_RGBA32F_ARB;
     //s.useDepth = true;
@@ -34,9 +30,6 @@ WaveRingVariation::WaveRingVariation() {
     ofClear(255,255,255, 0);
     rgbaFbo.end();
 
-    gifEncoder = make_shared<ofxGifEncoder>();
-    gifEncoder -> setup(ofGetWidth(), ofGetHeight(), 0.25f, 256);
-    //gifEncoder -> setDitherMode(OFX_GIF_DITHER_BAYER4x4);
 }
 
 void WaveRingVariation::update() {
@@ -57,7 +50,6 @@ void WaveRingVariation::update() {
   //ofEnableAlphaBlending();
   rgbaFbo.begin();
   drawFbo();
-  ofClearAlpha();
   rgbaFbo.end();
 }
 
@@ -65,7 +57,7 @@ void WaveRingVariation::drawFbo(){
 
   ofEnableBlendMode(OF_BLENDMODE_ADD);
   ofPushMatrix();
-  ofTranslate(fboWidth/2, fboHeight/2);
+  ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
   for(int i=0; i<waverings.size(); i++){
     waverings[i].draw();
   }
@@ -74,44 +66,11 @@ void WaveRingVariation::drawFbo(){
   ofEnableBlendMode(OF_BLENDMODE_ALPHA);
   ofFill();
   ofSetColor(0,0,0, fadeAmnt);
-  ofDrawRectangle(0,0,fboWidth,fboHeight);
+  ofDrawRectangle(0,0,ofGetWidth(),ofGetHeight());
 }
 
 void WaveRingVariation::draw() {
   rgbaFbo.draw(0,0);
-
-  if (start==true){
-    getGIF();
-  }
-}
-
-void WaveRingVariation::screenCapture() {
-  ofPixels pixels;
-  rgbaFbo.readToPixels(pixels);
-  img.setFromPixels(pixels);
-  img.save("pic" + ofToString(imgcount) + ".png", OF_IMAGE_QUALITY_BEST);
-  imgcount++;
-}
-
-void WaveRingVariation::getGIF() {
-
-  if(framesCurr < framesTotal) {
-      rgbaFbo.readToPixels(pixels);
-      imgforgif.setFromPixels(pixels);
-      gifEncoder -> addFrame(imgforgif, 0.033f);
-  }
-
-  if(framesCurr == framesTotal) {
-      gifEncoder -> save("test.gif");
-      imgforgif.clear();
-      start = false;
-  }
-  framesCurr++;
-}
-
-void WaveRingVariation::GIFstart() {
-    start = true;
-    cout << start;
 }
 
 void WaveRingVariation::setShapeNum(int _shapes_num) {
@@ -178,21 +137,5 @@ void WaveRingVariation::setWidth(float _width){
 void WaveRingVariation::setSegments(int _segments){
   for(int i=0; i<waverings.size(); i++){
     waverings[i].setSegments(_segments);
-  }
-}
-
-void WaveRingVariation::setStauration(int _saturation){
-  for(int i=0; i<waverings.size(); i++){
-    waverings[i].setStauration(_saturation);
-  }
-}
-void WaveRingVariation::setBrightness(int _brightness){
-  for(int i=0; i<waverings.size(); i++){
-    waverings[i].setBrightness(_brightness);
-  }
-}
-void WaveRingVariation::setAlpha(int _alpha){
-  for(int i=0; i<waverings.size(); i++){
-    waverings[i].setAlpha(_alpha);
   }
 }

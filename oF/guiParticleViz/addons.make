@@ -1,1 +1,4 @@
+ofxFatLines
+ofxGifEncoder
 ofxGui
+ofxXmlSettings

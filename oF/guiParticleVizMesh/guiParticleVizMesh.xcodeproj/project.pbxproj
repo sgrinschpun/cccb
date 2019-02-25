@@ -9,168 +9,6 @@
 		<string>46</string>
 		<key>objects</key>
 		<dict>
-			<key>99B5EEB027A765BFB5715449</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>ofxXmlSettings.h</string>
-				<key>path</key>
-				<string>../../../of_v0.10.1_osx_release/addons/ofxXmlSettings/src/ofxXmlSettings.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>6ECEF0D76BC33727823EADFF</key>
-			<dict>
-				<key>children</key>
-				<array>
-					<string>96C70F353955D1180A596CFF</string>
-					<string>99B5EEB027A765BFB5715449</string>
-				</array>
-				<key>isa</key>
-				<string>PBXGroup</string>
-				<key>name</key>
-				<string>src</string>
-				<key>sourceTree</key>
-				<string>&lt;group&gt;</string>
-			</dict>
-			<key>8E3500906C57ECF6883C1668</key>
-			<dict>
-				<key>fileRef</key>
-				<string>96C70F353955D1180A596CFF</string>
-				<key>isa</key>
-				<string>PBXBuildFile</string>
-			</dict>
-			<key>96C70F353955D1180A596CFF</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.cpp.cpp</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>ofxXmlSettings.cpp</string>
-				<key>path</key>
-				<string>../../../of_v0.10.1_osx_release/addons/ofxXmlSettings/src/ofxXmlSettings.cpp</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>06356ED7AB0BBDBDBA944BD7</key>
-			<dict>
-				<key>fileRef</key>
-				<string>07CA4FF58D46AFE515F098AD</string>
-				<key>isa</key>
-				<string>PBXBuildFile</string>
-			</dict>
-			<key>07CA4FF58D46AFE515F098AD</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.cpp.cpp</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>tinyxmlparser.cpp</string>
-				<key>path</key>
-				<string>../../../of_v0.10.1_osx_release/addons/ofxXmlSettings/libs/tinyxmlparser.cpp</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>19D398F48DC32505DB3B697C</key>
-			<dict>
-				<key>fileRef</key>
-				<string>E542E25B692385AA0067C91D</string>
-				<key>isa</key>
-				<string>PBXBuildFile</string>
-			</dict>
-			<key>E542E25B692385AA0067C91D</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.cpp.cpp</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>tinyxmlerror.cpp</string>
-				<key>path</key>
-				<string>../../../of_v0.10.1_osx_release/addons/ofxXmlSettings/libs/tinyxmlerror.cpp</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>FF6D5596EB2CD6C3DF7B61EF</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>tinyxml.h</string>
-				<key>path</key>
-				<string>../../../of_v0.10.1_osx_release/addons/ofxXmlSettings/libs/tinyxml.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>6E54289412D2D94F45A05113</key>
-			<dict>
-				<key>children</key>
-				<array>
-					<string>956F9C17378425DBCB189414</string>
-					<string>FF6D5596EB2CD6C3DF7B61EF</string>
-					<string>E542E25B692385AA0067C91D</string>
-					<string>07CA4FF58D46AFE515F098AD</string>
-				</array>
-				<key>isa</key>
-				<string>PBXGroup</string>
-				<key>name</key>
-				<string>libs</string>
-				<key>sourceTree</key>
-				<string>&lt;group&gt;</string>
-			</dict>
-			<key>1F4FB5C423662B96ADFDCC0B</key>
-			<dict>
-				<key>children</key>
-				<array>
-					<string>6E54289412D2D94F45A05113</string>
-					<string>6ECEF0D76BC33727823EADFF</string>
-				</array>
-				<key>isa</key>
-				<string>PBXGroup</string>
-				<key>name</key>
-				<string>ofxXmlSettings</string>
-				<key>sourceTree</key>
-				<string>&lt;group&gt;</string>
-			</dict>
-			<key>972C5BBDAD4945EF471BD67A</key>
-			<dict>
-				<key>fileRef</key>
-				<string>956F9C17378425DBCB189414</string>
-				<key>isa</key>
-				<string>PBXBuildFile</string>
-			</dict>
-			<key>956F9C17378425DBCB189414</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.cpp.cpp</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>tinyxml.cpp</string>
-				<key>path</key>
-				<string>../../../of_v0.10.1_osx_release/addons/ofxXmlSettings/libs/tinyxml.cpp</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
 			<key>CD671A833D8B62A77FFB603E</key>
 			<dict>
 				<key>explicitFileType</key>
@@ -602,314 +440,6 @@
 				<key>sourceTree</key>
 				<string>SOURCE_ROOT</string>
 			</dict>
-			<key>E082AA026C71B5D23886ABCD</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>ofxGifEncoder.h</string>
-				<key>path</key>
-				<string>../../../of_v0.10.1_osx_release/addons/ofxGifEncoder/src/ofxGifEncoder.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>B14E015FFC058751EA927908</key>
-			<dict>
-				<key>fileRef</key>
-				<string>FA4A7051B97E47F59D407823</string>
-				<key>isa</key>
-				<string>PBXBuildFile</string>
-			</dict>
-			<key>FA4A7051B97E47F59D407823</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.cpp.cpp</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>ofxGifEncoder.cpp</string>
-				<key>path</key>
-				<string>../../../of_v0.10.1_osx_release/addons/ofxGifEncoder/src/ofxGifEncoder.cpp</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>FDFA5FF76B4D99842EE7B6F5</key>
-			<dict>
-				<key>children</key>
-				<array>
-					<string>BEC4643595C26BEA6D3D8A64</string>
-					<string>FA4A7051B97E47F59D407823</string>
-					<string>E082AA026C71B5D23886ABCD</string>
-				</array>
-				<key>isa</key>
-				<string>PBXGroup</string>
-				<key>name</key>
-				<string>src</string>
-				<key>sourceTree</key>
-				<string>&lt;group&gt;</string>
-			</dict>
-			<key>9B798131E8584BCD510B255B</key>
-			<dict>
-				<key>children</key>
-				<array>
-					<string>FDFA5FF76B4D99842EE7B6F5</string>
-				</array>
-				<key>isa</key>
-				<string>PBXGroup</string>
-				<key>name</key>
-				<string>ofxGifEncoder</string>
-				<key>sourceTree</key>
-				<string>&lt;group&gt;</string>
-			</dict>
-			<key>BEC4643595C26BEA6D3D8A64</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>ofxGifDitherTypes.h</string>
-				<key>path</key>
-				<string>../../../of_v0.10.1_osx_release/addons/ofxGifEncoder/src/ofxGifDitherTypes.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>03496563887FB527B9212A44</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>sincosineLut.h</string>
-				<key>path</key>
-				<string>../../../of_v0.10.1_osx_release/addons/ofxFatLines/src/sincosineLut.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>4FED954576B70D4AA8D42796</key>
-			<dict>
-				<key>fileRef</key>
-				<string>A35C1BE53EA5314AE16B9F8E</string>
-				<key>isa</key>
-				<string>PBXBuildFile</string>
-			</dict>
-			<key>A35C1BE53EA5314AE16B9F8E</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.cpp.cpp</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>sincosineLut.cpp</string>
-				<key>path</key>
-				<string>../../../of_v0.10.1_osx_release/addons/ofxFatLines/src/sincosineLut.cpp</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>12834375747DCA36F7A6245A</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>ofxFatLine.h</string>
-				<key>path</key>
-				<string>../../../of_v0.10.1_osx_release/addons/ofxFatLines/src/ofxFatLine.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>7AB2A2D0D03885EE1A41A760</key>
-			<dict>
-				<key>children</key>
-				<array>
-					<string>CC5AE143766FC5E6FFE1A9A0</string>
-					<string>12834375747DCA36F7A6245A</string>
-					<string>A35C1BE53EA5314AE16B9F8E</string>
-					<string>03496563887FB527B9212A44</string>
-				</array>
-				<key>isa</key>
-				<string>PBXGroup</string>
-				<key>name</key>
-				<string>src</string>
-				<key>sourceTree</key>
-				<string>&lt;group&gt;</string>
-			</dict>
-			<key>8A3DD780D89619FC9FE77FBA</key>
-			<dict>
-				<key>children</key>
-				<array>
-					<string>7AB2A2D0D03885EE1A41A760</string>
-				</array>
-				<key>isa</key>
-				<string>PBXGroup</string>
-				<key>name</key>
-				<string>ofxFatLines</string>
-				<key>sourceTree</key>
-				<string>&lt;group&gt;</string>
-			</dict>
-			<key>B51B07CF282953BE80009D12</key>
-			<dict>
-				<key>fileRef</key>
-				<string>CC5AE143766FC5E6FFE1A9A0</string>
-				<key>isa</key>
-				<string>PBXBuildFile</string>
-			</dict>
-			<key>CC5AE143766FC5E6FFE1A9A0</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.cpp.cpp</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>ofxFatLine.cpp</string>
-				<key>path</key>
-				<string>../../../of_v0.10.1_osx_release/addons/ofxFatLines/src/ofxFatLine.cpp</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>B97455D1C000834413B946D5</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>WaveRingVariation.h</string>
-				<key>path</key>
-				<string>src/WaveRingVariation.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>8930DB13C972726EE39C7066</key>
-			<dict>
-				<key>fileRef</key>
-				<string>7C7282DF8B028D23D749F915</string>
-				<key>isa</key>
-				<string>PBXBuildFile</string>
-			</dict>
-			<key>7C7282DF8B028D23D749F915</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.cpp.cpp</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>WaveRingVariation.cpp</string>
-				<key>path</key>
-				<string>src/WaveRingVariation.cpp</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>4F5133305D66148C6AE6A614</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>WaveRing.h</string>
-				<key>path</key>
-				<string>src/WaveRing.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>CA8134382EF6E9C2E7F5F218</key>
-			<dict>
-				<key>fileRef</key>
-				<string>4C61EF0190FC8065ADF72206</string>
-				<key>isa</key>
-				<string>PBXBuildFile</string>
-			</dict>
-			<key>4C61EF0190FC8065ADF72206</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.cpp.cpp</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>WaveRing.cpp</string>
-				<key>path</key>
-				<string>src/WaveRing.cpp</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>360379C482364C95A6F00032</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>Cycle.h</string>
-				<key>path</key>
-				<string>src/cycle/Cycle.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>3201C02FC86B7FDEA1AE221E</key>
-			<dict>
-				<key>children</key>
-				<array>
-					<string>D27A7EC024D5F89CB5AF95CD</string>
-					<string>360379C482364C95A6F00032</string>
-				</array>
-				<key>isa</key>
-				<string>PBXGroup</string>
-				<key>name</key>
-				<string>cycle</string>
-				<key>sourceTree</key>
-				<string>&lt;group&gt;</string>
-			</dict>
-			<key>DF27F6B4FC4103C63847A9FD</key>
-			<dict>
-				<key>fileRef</key>
-				<string>D27A7EC024D5F89CB5AF95CD</string>
-				<key>isa</key>
-				<string>PBXBuildFile</string>
-			</dict>
-			<key>D27A7EC024D5F89CB5AF95CD</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.cpp.cpp</string>
-				<key>fileEncoding</key>
-				<string>4</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>Cycle.cpp</string>
-				<key>path</key>
-				<string>src/cycle/Cycle.cpp</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
 			<key>6948EE371B920CB800B5AC1A</key>
 			<dict>
 				<key>children</key>
@@ -1075,13 +605,7 @@ fi
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
 						<string>src</string>
-						<string>src</string>
-						<string>src/cycle</string>
-						<string>../../../of_v0.10.1_osx_release/addons/ofxFatLines/src</string>
-						<string>../../../of_v0.10.1_osx_release/addons/ofxGifEncoder/src</string>
 						<string>../../../of_v0.10.1_osx_release/addons/ofxGui/src</string>
-						<string>../../../of_v0.10.1_osx_release/addons/ofxXmlSettings/libs</string>
-						<string>../../../of_v0.10.1_osx_release/addons/ofxXmlSettings/src</string>
 					</array>
 					<key>MACOSX_DEPLOYMENT_TARGET</key>
 					<string>10.9</string>
@@ -1122,13 +646,7 @@ fi
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
 						<string>src</string>
-						<string>src</string>
-						<string>src/cycle</string>
-						<string>../../../of_v0.10.1_osx_release/addons/ofxFatLines/src</string>
-						<string>../../../of_v0.10.1_osx_release/addons/ofxGifEncoder/src</string>
 						<string>../../../of_v0.10.1_osx_release/addons/ofxGui/src</string>
-						<string>../../../of_v0.10.1_osx_release/addons/ofxXmlSettings/libs</string>
-						<string>../../../of_v0.10.1_osx_release/addons/ofxXmlSettings/src</string>
 					</array>
 					<key>ICON</key>
 					<string>$(ICON_NAME_RELEASE)</string>
@@ -1164,10 +682,7 @@ fi
 			<dict>
 				<key>children</key>
 				<array>
-					<string>8A3DD780D89619FC9FE77FBA</string>
-					<string>9B798131E8584BCD510B255B</string>
 					<string>480A780D8D0308AE4A368801</string>
-					<string>1F4FB5C423662B96ADFDCC0B</string>
 				</array>
 				<key>isa</key>
 				<string>PBXGroup</string>
@@ -3933,13 +3448,7 @@ fi
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
 						<string>src</string>
-						<string>src</string>
-						<string>src/cycle</string>
-						<string>../../../of_v0.10.1_osx_release/addons/ofxFatLines/src</string>
-						<string>../../../of_v0.10.1_osx_release/addons/ofxGifEncoder/src</string>
 						<string>../../../of_v0.10.1_osx_release/addons/ofxGui/src</string>
-						<string>../../../of_v0.10.1_osx_release/addons/ofxXmlSettings/libs</string>
-						<string>../../../of_v0.10.1_osx_release/addons/ofxXmlSettings/src</string>
 					</array>
 					<key>MACOSX_DEPLOYMENT_TARGET</key>
 					<string>10.9</string>
@@ -4000,13 +3509,7 @@ fi
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
 						<string>src</string>
-						<string>src</string>
-						<string>src/cycle</string>
-						<string>../../../of_v0.10.1_osx_release/addons/ofxFatLines/src</string>
-						<string>../../../of_v0.10.1_osx_release/addons/ofxGifEncoder/src</string>
 						<string>../../../of_v0.10.1_osx_release/addons/ofxGui/src</string>
-						<string>../../../of_v0.10.1_osx_release/addons/ofxXmlSettings/libs</string>
-						<string>../../../of_v0.10.1_osx_release/addons/ofxXmlSettings/src</string>
 					</array>
 					<key>MACOSX_DEPLOYMENT_TARGET</key>
 					<string>10.9</string>
@@ -4031,12 +3534,6 @@ fi
 				<array>
 					<string>E4B69E200A3A1BDC003C02F2</string>
 					<string>E4B69E210A3A1BDC003C02F2</string>
-					<string>DF27F6B4FC4103C63847A9FD</string>
-					<string>CA8134382EF6E9C2E7F5F218</string>
-					<string>8930DB13C972726EE39C7066</string>
-					<string>B51B07CF282953BE80009D12</string>
-					<string>4FED954576B70D4AA8D42796</string>
-					<string>B14E015FFC058751EA927908</string>
 					<string>22EA8956062BFBF5CCE2A556</string>
 					<string>CC6AE43FBB8E56B055F7685D</string>
 					<string>3A26C1F83FB3D1E6F1C4219E</string>
@@ -4047,10 +3544,6 @@ fi
 					<string>E4CA57C5C3A20D0A38B7DFE7</string>
 					<string>E79C700DFB270169ABDA925C</string>
 					<string>59EE449B1209123021572C58</string>
-					<string>972C5BBDAD4945EF471BD67A</string>
-					<string>19D398F48DC32505DB3B697C</string>
-					<string>06356ED7AB0BBDBDBA944BD7</string>
-					<string>8E3500906C57ECF6883C1668</string>
 				</array>
 				<key>isa</key>
 				<string>PBXSourcesBuildPhase</string>
@@ -4090,7 +3583,7 @@ fi
 				<key>isa</key>
 				<string>PBXNativeTarget</string>
 				<key>name</key>
-				<string>guiParticleViz</string>
+				<string>GuiWaveRingVariation</string>
 				<key>productName</key>
 				<string>myOFApp</string>
 				<key>productReference</key>
@@ -4107,7 +3600,7 @@ fi
 				<key>isa</key>
 				<string>PBXFileReference</string>
 				<key>path</key>
-				<string>guiParticleVizDebug.app</string>
+				<string>GuiWaveRingVariationDebug.app</string>
 				<key>sourceTree</key>
 				<string>BUILT_PRODUCTS_DIR</string>
 			</dict>
@@ -4150,13 +3643,7 @@ fi
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
 						<string>src</string>
-						<string>src</string>
-						<string>src/cycle</string>
-						<string>../../../of_v0.10.1_osx_release/addons/ofxFatLines/src</string>
-						<string>../../../of_v0.10.1_osx_release/addons/ofxGifEncoder/src</string>
 						<string>../../../of_v0.10.1_osx_release/addons/ofxGui/src</string>
-						<string>../../../of_v0.10.1_osx_release/addons/ofxXmlSettings/libs</string>
-						<string>../../../of_v0.10.1_osx_release/addons/ofxXmlSettings/src</string>
 					</array>
 					<key>ICON</key>
 					<string>$(ICON_NAME_DEBUG)</string>
@@ -4208,13 +3695,7 @@ fi
 					<array>
 						<string>$(OF_CORE_HEADERS)</string>
 						<string>src</string>
-						<string>src</string>
-						<string>src/cycle</string>
-						<string>../../../of_v0.10.1_osx_release/addons/ofxFatLines/src</string>
-						<string>../../../of_v0.10.1_osx_release/addons/ofxGifEncoder/src</string>
 						<string>../../../of_v0.10.1_osx_release/addons/ofxGui/src</string>
-						<string>../../../of_v0.10.1_osx_release/addons/ofxXmlSettings/libs</string>
-						<string>../../../of_v0.10.1_osx_release/addons/ofxXmlSettings/src</string>
 					</array>
 					<key>ICON</key>
 					<string>$(ICON_NAME_RELEASE)</string>
@@ -4253,11 +3734,6 @@ fi
 					<string>E4B69E1D0A3A1BDC003C02F2</string>
 					<string>E4B69E1E0A3A1BDC003C02F2</string>
 					<string>E4B69E1F0A3A1BDC003C02F2</string>
-					<string>3201C02FC86B7FDEA1AE221E</string>
-					<string>4C61EF0190FC8065ADF72206</string>
-					<string>4F5133305D66148C6AE6A614</string>
-					<string>7C7282DF8B028D23D749F915</string>
-					<string>B97455D1C000834413B946D5</string>
 				</array>
 				<key>isa</key>
 				<string>PBXGroup</string>

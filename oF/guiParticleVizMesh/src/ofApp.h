@@ -3,8 +3,6 @@
 #include "ofMain.h"
 #include "ofxGui.h"
 #include "WaveRingVariation.h"
-#include "ofxXmlSettings.h"
-
 
 class ofApp : public ofBaseApp{
 
@@ -25,11 +23,7 @@ public:
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
 
-    void buildXML();
-    void loadXML();
-
     ofxPanel gui;
-    bool guidraw;
 
     //WaveRing panel parameters
     ofParameter<float> noiseStep;
@@ -44,13 +38,13 @@ public:
     ofParameter<ofVec3f> pos;
     ofParameter<ofVec3f> rot;
     ofParameter<float> speed;
-    //Color parameters
     ofParameter<bool> color_mode;
-    ofParameter<int> saturation;
-    ofParameter<int> brightness;
-    ofParameter<int> alpha;
+
 
     vector<WaveRingVariation> shapes;
 
-
+    ofFbo image;
+    bool guidraw;
+    ofImage img;
+    int imgcount;
 };
