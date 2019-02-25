@@ -27,7 +27,6 @@ struct PhenomenaParams{
     // string composition[2];
     // string  decay_time[2];
 
-
     bool equals(PhenomenaParams p) {
         return id == p.id;
     }
