@@ -26,7 +26,7 @@ void ofApp::setup(){
 
     //WaveRing
     gui.add(framesPerCycle.set("framesPerCycle", 50, 1, 500));
-    gui.add(segments.set("segments", 100, 1, 500));
+    gui.add(segments.set("segments", 100, 100, 100));
     gui.add(width.set("width", 2, 0, 40));
     gui.add(noiseStep.set("noiseStep", 0.0,0, 1));
     gui.add(noiseAmount.set("noiseAmount", 0.40, 0.0, 100));
