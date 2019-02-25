@@ -81,7 +81,6 @@ class JsonRemoteAudioVideoNode(ParticleActionNodeChain):
     def _sendMessage(self, module_path, message):
         self._log.info("Sending new Message to: {0}!".format(module_path))
         self._log.debug("Message: {0}".format(message))
-        print("PARAMS********************", message['PARAMS'])
         message_sender = OSCBundledMessageSender(JsonRemoteAudioVideoNode._IP, JsonRemoteAudioVideoNode._PORT)
         command_name = message.pop("CMD")
         message_sender.sendMessage(module_path, command_name = command_name, **message['PARAMS'])
