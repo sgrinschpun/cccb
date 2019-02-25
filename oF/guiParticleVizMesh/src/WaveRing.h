@@ -1,7 +1,6 @@
 #ifndef _WaveRing //
 #define _WaveRing //
 #include "ofMain.h"
-#include "ofxFatLine.h"
 #include "Cycle.h"
 
 class WaveRing {
@@ -9,10 +8,7 @@ class WaveRing {
   private:
 
     //shape
-    ofxFatLine fatLine;
-    vector<ofDefaultVec3> fatLinePoints;
-    vector<ofFloatColor> fatLineColors;
-    vector<double> fatLineWidths;
+    ofMesh wigglyMeshRing;
     int segments;
     float width;
     float noiseStep;
@@ -32,16 +28,14 @@ class WaveRing {
     int col;
     float col_speed;
     bool col_mode;
-    int saturation;
-    int brightness;
-    int alpha;
 
-    void setupCircleRing();
-    void updateWigglyCircleRing();
+    void setupCircleMeshRing();
+    void updateWigglyMeshRing();
 
   public:
     shared_ptr<Cycle> cycle;
 
+    void setup();
     void draw();
     void update();
 
@@ -57,9 +51,6 @@ class WaveRing {
     void setRotAmp(ofVec3f rot_amp);
     void setSpeedAmp(float speed_amp);
     void setColorMode(bool col_mode);
-    void setStauration(int saturation);
-    void setBrightness(int brightness);
-    void setAlpha(int alpha);
 
     WaveRing(shared_ptr<Cycle>& cycle);
 
