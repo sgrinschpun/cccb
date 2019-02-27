@@ -71,7 +71,7 @@ void WaveRingVariation::setShapeNum(int _shapesNum) {
     }
 }
 
-void WaveRingVariation::setFadeAmount(int _fadeAmnt){
+void WaveRingVariation::setFadeAmnt(int _fadeAmnt){
   fadeAmnt = _fadeAmnt;
 }
 

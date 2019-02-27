@@ -38,6 +38,7 @@ public:
 
 private:
   vector<WaveRing> waverings;
+  ofPoint position;
   int shapesNum {1};
   int framesPerCycle{50};
 
