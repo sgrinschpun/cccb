@@ -2,69 +2,67 @@
 
 WaveRing::WaveRing(shared_ptr<Cycle>& cycle):cycle(cycle){
 
-  segments = 100;
-  radius =ofGetHeight()/4;
-  width = 2;
-  noiseStep = 0.0;
-  noiseAmount = 0.40;
-
-  pos.set(0, 0, 0); //
-  rotate.set(0, 0, 0); //
-
-  speed = 0.001; //
-  speed_noise = ofRandom(10);
-  speed_amp = ofRandom(10)/10000;
-  pos_noise.set(ofRandom(10), ofRandom(10), ofRandom(10));
-  pos_amp.set(0, 0, 0);
-  rot_noise.set(ofRandom(10), ofRandom(10), ofRandom(10));
-  rot_amp.set(0, 0, 0);
-
-  col = ofRandom(255);
-  col_speed = 1;
-  col_mode = 0;  //
+  //pos.set(0, 0, 0); //
+  //rotate.set(0, 0, 0); //
+  //speedNoise = ofRandom(10);
+  //speed = ofRandom(10)/10000;
+  //posNoise.set(ofRandom(10), ofRandom(10), ofRandom(10));
+  //pos.set(0, 0, 0);
+  //rotNoise.set(ofRandom(10), ofRandom(10), ofRandom(10));
+  //rot.set(0, 0, 0);
 
   setupCircleMeshRing();
 
 }
 
-void WaveRing::setupCircleMeshRing(){
-  wigglyMeshRing.setMode(OF_PRIMITIVE_LINE_STRIP);
+void WaveRing::setupCircleRing(){
   ofPoint p;
+  ofFloatColor thisColor = ofColor::fromHsb(col, saturation, brightness, alpha);
   for(int i=0; i<=segments; i++){
     p.x =  (radius * cos(TWO_PI * i / segments));
     p.y =  (radius * sin(TWO_PI * i / segments));
-    wigglyMeshRing.addVertex(p);
+    fatLinePoints.push_back(p);
+    fatLineColors.push_back(thisColor);
+    fatLineWidths.push_back(width);
   }
-  noiseCursor = 0.1;
+  fatLine.add(fatLinePoints, fatLineColors, fatLineWidths);
+  fatLine.setFeather(2);
+  fatLine.setClosed(true);
+
 }
 
-void WaveRing::updateWigglyMeshRing(){
+void WaveRing::updateWigglyCircleRing(){
   float max = noiseAmount*(cycle -> getEaseQuart2());
   ofPoint p;
-  wigglyMeshRing.clear();
+  ofFloatColor thisColor;
+
+  if (col_mode) {
+    thisColor = ofColor::fromHsb(col, 0, 15, 255);
+  }else{
+    thisColor = ofColor::fromHsb(col, saturation, brightness, alpha);
+  }
 
   for(int i=0; i<=segments; i++){
     p.x =  radius*cos(TWO_PI * i / segments);
     p.y =  radius*sin(TWO_PI * i / segments);
-
     p.x += ofSignedNoise(noiseCursor+noiseStep*p.x/radius, noiseCursor+noiseStep*p.y/radius)*max;
     p.y += ofSignedNoise(noiseCursor+noiseStep*p.x/radius, noiseCursor+noiseStep*p.y/radius)*max;
-    wigglyMeshRing.addVertex(p);
+    fatLine.updatePoint(i, p);
+    fatLine.updateWeight(i, width);
+    fatLine.updateColor(i, thisColor);
   }
+  fatLine.update();
 }
 
 
 void WaveRing::draw(){
-  ofSetLineWidth(width);
-  ofNoFill();
+  ofEnableBlendMode(OF_BLENDMODE_ADD);
   ofPushMatrix();
     ofTranslate(pos);
     ofRotateX(rotate.x);
     ofRotateY(rotate.y);
     ofRotateZ(rotate.z);
-    if (col_mode)ofSetColor(col, 100);
-    else ofSetColor(ofColor::fromHsb(col, 100, 255, 100));
-    wigglyMeshRing.draw();
+    fatLine.draw();
   ofPopMatrix();
 }
 
@@ -72,30 +70,30 @@ void WaveRing::update(){
   if (cycle -> newLoop()==true){
      noiseCursor+= 0.1;
   }
-  updateWigglyMeshRing();
+  updateWigglyCircleRing();
 
-  speed = ofNoise(speed_noise)*speed_amp;
+  speed = ofNoise(speedNoise)*speed;
 
-  pos.set((ofNoise(pos_noise.x)*2-1)*pos_amp.x,
-          (ofNoise(pos_noise.y)*2-1)*pos_amp.y,
-          (ofNoise(pos_noise.z)*2-1)*pos_amp.z);
+  pos.set((ofNoise(posNoise.x)*2-1)*pos.x,
+          (ofNoise(posNoise.y)*2-1)*pos.y,
+          (ofNoise(posNoise.z)*2-1)*pos.z);
 
-  rotate.set((ofNoise(rot_noise.x)*2-1)*rot_amp.x,
-             (ofNoise(rot_noise.y)*2-1)*rot_amp.y,
-             (ofNoise(rot_noise.z)*2-1)*rot_amp.z);
+  rotate.set((ofNoise(rotNoise.x)*2-1)*rot.x,
+             (ofNoise(rotNoise.y)*2-1)*rot.y,
+             (ofNoise(rotNoise.z)*2-1)*rot.z);
 
-  speed_noise += 0.01;
+  speedNoise += 0.01;
 
-  pos_noise.x += speed;
-  pos_noise.y += speed;
-  pos_noise.z += speed;
+  posNoise.x += speed;
+  posNoise.y += speed;
+  posNoise.z += speed;
 
-  rot_noise.x += speed;
-  rot_noise.y += speed;
-  rot_noise.z += speed;
+  rotNoise.x += speed;
+  rotNoise.y += speed;
+  rotNoise.z += speed;
 
-  col += col_speed;
-  if(col >= 255 || col <= 0) col_speed *= -1;
+  col += colSpeed;
+  if(col >= 255 || col <= 0) colSpeed *= -1;
 }
 
 void WaveRing::setNoiseStep(float _noiseStep){
@@ -118,18 +116,30 @@ void WaveRing::setSegments(int _segments){
   segments = _segments;
 }
 
-void WaveRing::setPosAmp(ofVec3f _pos_amp) {
-    pos_amp = _pos_amp;
+void WaveRing::setPos(ofVec3f _pos) {
+    pos = _pos;
 }
 
-void WaveRing::setRotAmp(ofVec3f _rot_amp) {
-    rot_amp = _rot_amp;
+void WaveRing::setRot(ofVec3f _rot) {
+    rot = _rot;
 }
 
-void WaveRing::setSpeedAmp(float _speed_amp) {
-    speed_amp = _speed_amp;
+void WaveRing::setSpeed(float _speed) {
+    speed = _speed;
 }
 
-void WaveRing::setColorMode(bool _col_mode) {
-    col_mode = _col_mode;
+void WaveRing::setColorMode(bool _colMode) {
+    colMode = _colMode;
+}
+
+void WaveRing::setSaturation(int _saturation) {
+    saturation = _saturation;
+}
+
+void WaveRing::setBrightness(int _brightness) {
+    brightness = _brightness;
+}
+
+void WaveRing::setAlpha(int _alpha) {
+    alpha = _alpha;
 }

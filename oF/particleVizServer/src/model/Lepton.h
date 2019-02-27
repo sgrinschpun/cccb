@@ -5,8 +5,8 @@
 
 class Lepton: public Model {
   private:
-  void setColorMode();
-  void buildParameters();
+    static ofxXmlSettings settings;
+    static ofxXmlSettings setXMLsettings();
 
   public:
     Lepton(shared_ptr<ParticleData>& _particleData);

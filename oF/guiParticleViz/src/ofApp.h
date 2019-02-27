@@ -38,14 +38,14 @@ public:
     ofParameter<int> segments;
     ofParameter<float> width;
     //Variations panel parameters
-    ofParameter<int> shapes_num;
+    ofParameter<int> shapesNum;
     ofParameter<int> fadeAmnt;
     ofParameter<float> radius;
     ofParameter<ofVec3f> pos;
     ofParameter<ofVec3f> rot;
     ofParameter<float> speed;
     //Color parameters
-    ofParameter<bool> color_mode;
+    ofParameter<bool> colorMode;
     ofParameter<int> saturation;
     ofParameter<int> brightness;
     ofParameter<int> alpha;

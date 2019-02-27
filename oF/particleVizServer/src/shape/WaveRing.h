@@ -1,36 +1,39 @@
 #ifndef _WaveRing //
 #define _WaveRing //
 #include "ofMain.h"
+#include "ofxFatLine.h"
 #include "Cycle.h"
 
 class WaveRing {
 
   private:
-
-    //shape
-    ofMesh wigglyMeshRing;
-    int segments;
-    float width;
-    float noiseStep;
-    float noiseAmount;
-    float noiseCursor;
-    //variation
-    float radius;
-    ofPoint pos;
+    ofxFatLine fatLine;
+    vector<ofDefaultVec3> fatLinePoints;
+    vector<ofFloatColor> fatLineColors;
+    vector<double> fatLineWidths;
+    int segments {100};
+    float width {0};
+    float noiseStep {0.0};
+    float noiseAmount{0.0};
+    float noiseCursor {0.1};
+    float radius {0};
+    //ofPoint pos;
     ofVec3f rotate;
-    float speed;
-    float speed_noise;
-    float speed_amp;
-    ofVec3f pos_noise;
-    ofVec3f pos_amp;
-    ofVec3f rot_noise;
-    ofVec3f rot_amp;
-    int col;
-    float col_speed;
-    bool col_mode;
+    float speedNoise {ofRandom(10)};
+    float speed {ofRandom(10)/10000};
+    ofVec3f posNoise;
+    ofVec3f pos;
+    ofVec3f rotNoise;
+    ofVec3f rot;
+    int col {0};
+    float colSpeed {1};
+    bool colMode {0};
+    int saturation {255};
+    int brightness {255};
+    int alpha {255};
 
-    void setupCircleMeshRing();
-    void updateWigglyMeshRing();
+    void setupCircleRing();
+    void updateWigglyCircleRing();
 
   public:
     shared_ptr<Cycle> cycle;
@@ -38,18 +41,19 @@ class WaveRing {
     void draw();
     void update();
 
-    //shape
     void setNoiseStep(float _noiseStep);
     void setNoiseAmount(float _noiseAmount);
     void setWidth(float _width);
     void setCycle(int _framesPerCycle);
     void setSegments(int _segments);
-    //variation
-    void setRadius(float radius);
-    void setPosAmp(ofVec3f pos_amp);
-    void setRotAmp(ofVec3f rot_amp);
-    void setSpeedAmp(float speed_amp);
-    void setColorMode(bool col_mode);
+    void setRadius(float _radius);
+    void setPos(ofVec3f _pos);
+    void setRot(ofVec3f _rot);
+    void setSpeed(float _speed);
+    void setColorMode(bool _colMode);
+    void setSaturation(int _saturation);
+    void setBrightness(int _brightness);
+    void setAlpha(int _alpha);
 
     WaveRing(shared_ptr<Cycle>& cycle);
 

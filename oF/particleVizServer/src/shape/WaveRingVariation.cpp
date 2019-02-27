@@ -7,24 +7,24 @@
 
 WaveRingVariation::WaveRingVariation() {
 
-  //FBO
+  fboWidth = ofGetWidth();
+  fboHeight= ofGetHeight();
   ofFboSettings s;
-  s.width = ofGetWidth();
-  s.height = ofGetHeight();
+  s.width = fboWidth;
+  s.height = fboHeight;
   s.internalformat = GL_RGBA;
   //s.internalformat = GL_RGBA32F_ARB;
-  s.useDepth = true;
+  //s.useDepth = true;
   s.useStencil = true;
-  s.textureTarget = GL_TEXTURE_2D;
-  s.wrapModeHorizontal = GL_REPEAT;
-  s.wrapModeVertical = GL_REPEAT;
+  s.numSamples = 2;
+  //(s.textureTarget = GL_TEXTURE_2D;
+  //s.wrapModeHorizontal = GL_REPEAT;
+  //s.wrapModeVertical = GL_REPEAT;
   rgbaFbo.allocate(s);
-  DEBUG_MSG(s.internalformat);
 
   rgbaFbo.begin();
   ofClear(255,255,255, 0);
   rgbaFbo.end();
-
 }
 
 void WaveRingVariation::setPosition(ofPoint _position){
@@ -32,24 +32,22 @@ void WaveRingVariation::setPosition(ofPoint _position){
 }
 
 void WaveRingVariation::update() {
+
   for(int i=0; i<waverings.size(); i++){
     waverings[i].update();
   }
 
-  ofEnableAlphaBlending();
+  //ofEnableAlphaBlending();
   rgbaFbo.begin();
   drawFbo();
+  ofClearAlpha();
   rgbaFbo.end();
 }
 
 void WaveRingVariation::drawFbo(){
-  if( ofGetKeyPressed('c') ){
-    ofClear(255,255,255, 0);
-  }
-
   ofEnableBlendMode(OF_BLENDMODE_ADD);
   ofPushMatrix();
-  ofTranslate(position.x, position.y);
+  ofTranslate(fboWidth/2, fboHeight/2);
   for(int i=0; i<waverings.size(); i++){
     waverings[i].draw();
   }
@@ -58,22 +56,19 @@ void WaveRingVariation::drawFbo(){
   ofEnableBlendMode(OF_BLENDMODE_ALPHA);
   ofFill();
   ofSetColor(0,0,0, fadeAmnt);
-  ofDrawRectangle(0,0,ofGetWidth(),ofGetHeight());
-
-
+  ofDrawRectangle(0,0,fboWidth,fboHeight);
 }
 
 void WaveRingVariation::draw() {
-rgbaFbo.draw(0,0);
+  rgbaFbo.draw(0,0);
 }
 
-void WaveRingVariation::setShapeNum(int _shapes_num) {
-    shapes_num = _shapes_num;
-    for(int i=0; i<shapes_num; i++){
+void WaveRingVariation::setShapeNum(int _shapesNum) {
+    shapesNum = _shapesNum;
+    for(int i=0; i<shapesNum; i++){
       WaveRing wr = WaveRing(cycle);
       waverings.push_back(wr);
     }
-
 }
 
 void WaveRingVariation::setFadeAmount(int _fadeAmnt){
@@ -92,27 +87,27 @@ void WaveRingVariation::setRadius(float _radius) {
   }
 }
 
-void WaveRingVariation::setPosAmp(ofVec3f _pos_amp) {
+void WaveRingVariation::setPos(ofVec3f _pos) {
   for(int i=0; i<waverings.size(); i++){
-    waverings[i].setPosAmp(_pos_amp);
+    waverings[i].setPos(_pos);
   }
 }
 
-void WaveRingVariation::setRotAmp(ofVec3f _rot_amp) {
+void WaveRingVariation::setRot(ofVec3f _rot) {
   for(int i=0; i<waverings.size(); i++){
-    waverings[i].setRotAmp(_rot_amp);
+    waverings[i].setRot(_rot);
   }
 }
 
-void WaveRingVariation::setSpeedAmp(float _speed_amp) {
+void WaveRingVariation::setSpeed(float _speed) {
   for(int i=0; i<waverings.size(); i++){
-    waverings[i].setSpeedAmp(_speed_amp);
+    waverings[i].setSpeed(_speed);
   }
 }
 
-void WaveRingVariation::setColorMode(bool _col_mode) {
+void WaveRingVariation::setColorMode(bool _colMode) {
   for(int i=0; i<waverings.size(); i++){
-    waverings[i].setColorMode(_col_mode);
+    waverings[i].setColorMode(_colMode);
   }
 }
 
@@ -137,5 +132,23 @@ void WaveRingVariation::setWidth(float _width){
 void WaveRingVariation::setSegments(int _segments){
   for(int i=0; i<waverings.size(); i++){
     waverings[i].setSegments(_segments);
+  }
+}
+
+void void WaveRingVariation::setSaturation(int _saturation){
+  for(int i=0; i<waverings.size(); i++){
+    waverings[i].setSaturation(_saturation);
+  }
+}
+
+void void WaveRingVariation::setBrightness(int _brightness){
+  for(int i=0; i<waverings.size(); i++){
+    waverings[i].setBrightness(_brightness);
+  }
+}
+
+void void WaveRingVariation::setAlpha(int _alpha){
+  for(int i=0; i<waverings.size(); i++){
+    waverings[i].setAlpha(_alpha);
   }
 }

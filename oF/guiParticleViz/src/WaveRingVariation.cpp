@@ -6,7 +6,7 @@
 #include "WaveRingVariation.h"
 
 WaveRingVariation::WaveRingVariation() {
-    shapes_num = 1;
+    shapesNum = 1;
     fadeAmnt = 50;
     framesPerCycle = 50;
     cycle = make_shared<Cycle>(framesPerCycle);
@@ -41,11 +41,11 @@ WaveRingVariation::WaveRingVariation() {
 
 void WaveRingVariation::update() {
 
-  while (waverings.size() != shapes_num){
-      if (waverings.size() < shapes_num) {
+  while (waverings.size() != shapesNum){
+      if (waverings.size() < shapesNum) {
           WaveRing wr = WaveRing(cycle);
           waverings.push_back(wr);
-      } else if (waverings.size() > shapes_num) {
+      } else if (waverings.size() > shapesNum) {
           waverings.pop_back();
       }
   }
@@ -114,8 +114,8 @@ void WaveRingVariation::GIFstart() {
     cout << start;
 }
 
-void WaveRingVariation::setShapeNum(int _shapes_num) {
-    shapes_num = _shapes_num;
+void WaveRingVariation::setShapeNum(int _shapesNum) {
+    shapesNum = _shapesNum;
 }
 
 void WaveRingVariation::setFadeAmnt(int _fadeAmnt){
@@ -133,21 +133,21 @@ void WaveRingVariation::setRadius(float _radius) {
   }
 }
 
-void WaveRingVariation::setPosAmp(ofVec3f _pos_amp) {
+void WaveRingVariation::setPosAmp(ofVec3f _pos) {
   for(int i=0; i<waverings.size(); i++){
-    waverings[i].setPosAmp(_pos_amp);
+    waverings[i].setPosAmp(_pos);
   }
 }
 
-void WaveRingVariation::setRotAmp(ofVec3f _rot_amp) {
+void WaveRingVariation::setRotAmp(ofVec3f _rot) {
   for(int i=0; i<waverings.size(); i++){
-    waverings[i].setRotAmp(_rot_amp);
+    waverings[i].setRotAmp(_rot);
   }
 }
 
-void WaveRingVariation::setSpeedAmp(float _speed_amp) {
+void WaveRingVariation::setSpeedAmp(float _speed) {
   for(int i=0; i<waverings.size(); i++){
-    waverings[i].setSpeedAmp(_speed_amp);
+    waverings[i].setSpeedAmp(_speed);
   }
 }
 

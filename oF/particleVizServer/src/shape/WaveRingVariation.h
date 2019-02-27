@@ -10,35 +10,34 @@ public:
     WaveRingVariation();
     void update();
     void draw();
-    void setPosition(ofPoint _position);
 
-    void setShapeNum(int shapes_num);
-    void setFadeAmount(int fadeAmnt);
+    void setShapeNum(int _shapesNum);
+    void setFadeAmnt(int _fadeAmnt);
     //Variations
-    void setRadius(float radius);
-    void setPosAmp(ofVec3f pos_amp);
-    void setRotAmp(ofVec3f rot_amp);
-    void setSpeedAmp(float speed_amp);
-    void setColorMode(bool col_mode);
+    void setRadius(float _radius);
+    void setPos(ofVec3f _pos);
+    void setRot(ofVec3f _rot);
+    void setSpeed(float _speed);
+    void setColorMode(bool _colMode);
+    void setStauration(int _aturation);
+    void setBrightness(int _brightness);
+    void setAlpha(int _alpha);
     //shape
-    void setNoiseStep(float noiseStep);
-    void setNoiseAmount(float noiseAmount);
-    void setWidth(float width);
-    void setCycle(int framesPerCycle);
-    void setSegments(int segments);
+    void setNoiseStep(float _noiseStep);
+    void setNoiseAmount(float _noiseAmount);
+    void setWidth(float _width);
+    void setCycle(int _framesPerCycle);
+    void setSegments(int _segments);
 
     shared_ptr<Cycle> cycle;
 
 private:
-    vector<WaveRing> waverings;
-    ofPoint position;
-    float radius;
-    int shapes_num;
-    int framesPerCycle;
+  vector<WaveRing> waverings;
+  int shapesNum {1};
+  int framesPerCycle{50};
 
-    ofFbo rgbaFbo;
-    int fadeAmnt;
-    void drawFbo();
-
+  ofFbo rgbaFbo;
+  int fadeAmnt{50};
+  void drawFbo();
 };
 #endif

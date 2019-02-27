@@ -5,8 +5,8 @@
 
 class Boson: public Model {
   private:
-    void buildParameters();
-    void setColorMode();
+    static ofxXmlSettings settings;
+    static ofxXmlSettings setXMLsettings();
 
   public:
     Boson(shared_ptr<ParticleData>& _particleData);

@@ -5,8 +5,10 @@
 
 class Meson: public Model {
   private:
-    void buildParameters();
-    void setColorMode();
+    static ofxXmlSettings settings;
+    static ofxXmlSettings setXMLsettings();
+
+    void specificParameters();
 
   public:
     Meson(shared_ptr<ParticleData>& _particleData);

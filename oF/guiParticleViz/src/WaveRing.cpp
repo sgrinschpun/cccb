@@ -13,11 +13,11 @@ WaveRing::WaveRing(shared_ptr<Cycle>& cycle):cycle(cycle){
 
   speed = 0.001; //
   speed_noise = ofRandom(10);
-  speed_amp = ofRandom(10)/10000;
+  speed = ofRandom(10)/10000;
   pos_noise.set(ofRandom(10), ofRandom(10), ofRandom(10));
-  pos_amp.set(0, 0, 0);
+  pos.set(0, 0, 0);
   rot_noise.set(ofRandom(10), ofRandom(10), ofRandom(10));
-  rot_amp.set(0, 0, 0);
+  rot.set(0, 0, 0);
 
   col = ofRandom(255);
   col_speed = 1;
@@ -92,15 +92,15 @@ void WaveRing::update(){
   }
   updateWigglyCircleRing();
 
-  speed = ofNoise(speed_noise)*speed_amp;
+  speed = ofNoise(speed_noise)*speed;
 
-  pos.set((ofNoise(pos_noise.x)*2-1)*pos_amp.x,
-          (ofNoise(pos_noise.y)*2-1)*pos_amp.y,
-          (ofNoise(pos_noise.z)*2-1)*pos_amp.z);
+  pos.set((ofNoise(pos_noise.x)*2-1)*pos.x,
+          (ofNoise(pos_noise.y)*2-1)*pos.y,
+          (ofNoise(pos_noise.z)*2-1)*pos.z);
 
-  rotate.set((ofNoise(rot_noise.x)*2-1)*rot_amp.x,
-             (ofNoise(rot_noise.y)*2-1)*rot_amp.y,
-             (ofNoise(rot_noise.z)*2-1)*rot_amp.z);
+  rotate.set((ofNoise(rot_noise.x)*2-1)*rot.x,
+             (ofNoise(rot_noise.y)*2-1)*rot.y,
+             (ofNoise(rot_noise.z)*2-1)*rot.z);
 
   speed_noise += 0.01;
 
@@ -136,16 +136,16 @@ void WaveRing::setSegments(int _segments){
   segments = _segments;
 }
 
-void WaveRing::setPosAmp(ofVec3f _pos_amp) {
-    pos_amp = _pos_amp;
+void WaveRing::setPosAmp(ofVec3f _pos) {
+    pos = _pos;
 }
 
-void WaveRing::setRotAmp(ofVec3f _rot_amp) {
-    rot_amp = _rot_amp;
+void WaveRing::setRotAmp(ofVec3f _rot) {
+    rot = _rot;
 }
 
-void WaveRing::setSpeedAmp(float _speed_amp) {
-    speed_amp = _speed_amp;
+void WaveRing::setSpeedAmp(float _speed) {
+    speed = _speed;
 }
 
 void WaveRing::setColorMode(bool _col_mode) {

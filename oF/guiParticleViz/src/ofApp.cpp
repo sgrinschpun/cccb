@@ -10,7 +10,7 @@ void ofApp::setup(){
     ofSetVerticalSync(true);
 
     gui.setup();
-    gui.add(shapes_num.set("number of shapes", 1, 1, 100));
+    gui.add(shapesNum.set("number of shapes", 1, 1, 100));
     gui.add(radius.set("radius", ofGetHeight()/4, 1, ofGetHeight()/2));
     gui.add(pos.set("pos",
                     ofVec3f(0),
@@ -21,7 +21,7 @@ void ofApp::setup(){
                     ofVec3f(0),
                     ofVec3f(720, 720, 720)));
     gui.add(speed.set("speed", 0, 0, 0.1));
-    gui.add(color_mode.set("color mode", 0));
+    gui.add(colorMode.set("color mode", 0));
     gui.add(fadeAmnt.set("Fade Amount", 50, 0, 255));
 
     //WaveRing
@@ -47,12 +47,12 @@ void ofApp::update(){
     for (int i = 0; i < shapes.size(); i++) {
         shapes[i].update();
 
-        shapes[i].setShapeNum(shapes_num);
+        shapes[i].setShapeNum(shapesNum);
         shapes[i].setRadius(radius);
         shapes[i].setPosAmp(pos);
         shapes[i].setRotAmp(rot);
         shapes[i].setSpeedAmp(speed);
-        shapes[i].setColorMode(color_mode);
+        shapes[i].setColorMode(colorMode);
         shapes[i].setFadeAmnt(fadeAmnt);
         shapes[i].setNoiseStep(noiseStep);
         shapes[i].setNoiseAmount(noiseAmount);
@@ -112,7 +112,7 @@ void ofApp::buildXML(){
   ofxXmlSettings settings;
   settings.addTag("shape");
   settings.pushTag("shape");
-    settings.addValue("shapes_num", shapes_num);
+    settings.addValue("shapesNum", shapesNum);
     settings.addValue("radius", radius);
     settings.addValue("width", width);
     settings.addValue("segments", segments);
@@ -142,7 +142,7 @@ void ofApp::buildXML(){
   settings.addTag("color");
   settings.pushTag("color");
     settings.addValue("fadeAmnt", fadeAmnt);
-    settings.addValue("color_mode", color_mode);
+    settings.addValue("colorMode", colorMode);
     settings.addValue("saturation", saturation);
     settings.addValue("brightness", brightness);
     settings.addValue("alpha", alpha);
@@ -154,7 +154,7 @@ void ofApp::loadXML(){
   ofxXmlSettings settings;
   if(settings.loadFile("settings.xml")){
     settings.pushTag("shape");
-      shapes_num.set(settings.getValue("shapes_num", 0));
+      shapesNum.set(settings.getValue("shapesNum", 0));
       radius.set(settings.getValue("radius", 0));
       width.set(settings.getValue("width", 0));
       segments.set(settings.getValue("segments", 0));
@@ -183,7 +183,7 @@ void ofApp::loadXML(){
       settings.popTag();
     settings.pushTag("color");
     fadeAmnt.set(settings.getValue("fadeAmnt", 0));
-    color_mode.set(settings.getValue("color_mode", 0));
+    colorMode.set(settings.getValue("colorMode", 0));
     saturation.set(settings.getValue("saturation", 0));
     brightness.set(settings.getValue("brightness", 0));
     alpha.set(settings.getValue("alpha", 0));

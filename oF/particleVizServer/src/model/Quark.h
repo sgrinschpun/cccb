@@ -5,8 +5,8 @@
 
 class Quark: public Model {
   private:
-    void buildParameters();
-    void setColorMode();
+    static ofxXmlSettings settings;
+    static ofxXmlSettings setXMLsettings();
 
   public:
     Quark(shared_ptr<ParticleData>& _particleData);

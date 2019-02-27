@@ -3,28 +3,35 @@
 #include "ofMain.h"
 #include "WaveRingVariation.h"
 #include "ParticleData.h"
+#include "ofxXmlSettings.h"
+
 
 class Model {
+  private:
+
+  void buildParameters();
+  void setShape();
+  void specificParameters();
+
   public:
     shared_ptr<WaveRingVariation> shape;
     shared_ptr<ParticleData> data;
 
-    int shapes_num;
+    int shapesNum;
     float radius;
-    ofVec3f pos_amp;
-    ofVec3f rot_amp;
-    float speed_amp;
-    bool col_mode;
+    float width;
+    int segments;
+    float speed;
+    ofVec3f pos;
+    ofVec3f rot;
+    int framesPerCycle;
     float noiseStep;
     float noiseAmount;
-    float width;
-    int framesPerCycle;
-    int segments;
-
     int fadeAmnt;
-
-    void buildParameters();
-    void setShape();
+    bool colorMode;
+    int saturation;
+    int brightness;
+    int alpha;
 
     void draw();
     void update();

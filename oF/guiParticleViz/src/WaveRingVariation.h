@@ -10,15 +10,14 @@ public:
     WaveRingVariation();
     void update();
     void draw();
-    void setup();
 
-    void setShapeNum(int shapes_num);
+    void setShapeNum(int shapesNum);
     void setFadeAmnt(int fadeAmnt);
     //Variations
     void setRadius(float radius);
-    void setPosAmp(ofVec3f pos_amp);
-    void setRotAmp(ofVec3f rot_amp);
-    void setSpeedAmp(float speed_amp);
+    void setPosAmp(ofVec3f pos);
+    void setRotAmp(ofVec3f rot);
+    void setSpeedAmp(float speed);
     void setColorMode(bool col_mode);
     void setStauration(int saturation);
     void setBrightness(int brightness);
@@ -52,7 +51,7 @@ public:
 
 private:
     vector<WaveRing> waverings;
-    int shapes_num;
+    int shapesNum;
     int framesPerCycle;
 
     ofFbo rgbaFbo;
