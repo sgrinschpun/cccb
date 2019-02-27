@@ -5,8 +5,7 @@
 
 class Meson: public Model {
   private:
-    static ofxXmlSettings settings;
-    static ofxXmlSettings setXMLsettings();
+    void setXMLSettingsName();
 
     void specificParameters();
 

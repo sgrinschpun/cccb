@@ -5,47 +5,72 @@
 #endif
 #include "Model.h"
 
+map <string, ofxXmlSettings >  Model::xmlSettings = setXMLsettings();
+
+map <string, ofxXmlSettings >  Model::setXMLsettings(){
+  map <string, ofxXmlSettings > m;
+  m["quark"] = ofxXmlSettings("quark.xml");
+  m["neutrino"] = ofxXmlSettings("neutrino.xml");
+  m["antineutrino"] = ofxXmlSettings("antineutrino.xml");
+  m["meson"] = ofxXmlSettings("meson.xml");
+  m["baryon"] = ofxXmlSettings("baryon.xml");
+  m["gamma"] = ofxXmlSettings("gamma.xml");
+  m["W"] = ofxXmlSettings("W.xml");
+  m["Z0"] = ofxXmlSettings("Z0.xml");
+  m["h0(H_1)"] = ofxXmlSettings("higgs.xml");
+  m["electron"] = ofxXmlSettings("electron.xml");
+  m["muon"] = ofxXmlSettings("muon.xml");
+  m["tau"] = ofxXmlSettings("tau.xml");
+  m["positron"] = ofxXmlSettings("positron.xml");
+  m["antimuon"] = ofxXmlSettings("antimuon.xml");
+  m["antitau"] = ofxXmlSettings("antitau.xml");
+  return m;
+}
+
+void Model::setXMLSettingsName(){
+
+}
+
+
 Model::Model(shared_ptr<ParticleData>& _data): data(_data){
   buildParameters();
-  specificParameters()
+  specificParameters();
   setShape();
 }
 
 void Model::buildParameters(){
+  ofxXmlSettings settings = xmlSettings[xmlSettingsName];
+
   settings.pushTag("shape");
-    shapesNum.set(settings.getValue("shapesNum", 0));
-    radius.set(settings.getValue("radius", 0));
-    width.set(settings.getValue("width", 0));
-    segments.set(settings.getValue("segments", 0));
-    speed.set(settings.getValue("speed", 0.00));
+    shapesNum = settings.getValue("shapesNum", 0);
+    radius = settings.getValue("radius", 0);
+    width = settings.getValue("width", 0);
+    segments = settings.getValue("segments", 0);
+    speed = settings.getValue("speed", 0.00);
   settings.popTag();
   settings.pushTag("variations");
     settings.pushTag("pos");
-      ofVec3f position;
-      position.x = settings.getValue("x", 0);
-      position.y = settings.getValue("y", 0);
-      position.z = settings.getValue("z", 0);
-      pos.set(position);
+      pos.x = settings.getValue("x", 0);
+      pos.y = settings.getValue("y", 0);
+      pos.z = settings.getValue("z", 0);
     settings.popTag();
     settings.pushTag("rot");
-      ofVec3f rotation;
-      rotation.x = settings.getValue("x", 0);
-      rotation.y = settings.getValue("y", 0);
-      rotation.z = settings.getValue("z", 0);
-      rot.set(rotation);
+      rot.x = settings.getValue("x", 0);
+      rot.y = settings.getValue("y", 0);
+      rot.z = settings.getValue("z", 0);
     settings.popTag();
   settings.popTag();
   settings.pushTag("wiggle");
-    framesPerCycle.set(settings.getValue("framesPerCycle", 0.00));
-    noiseStep.set(settings.getValue("noiseStep", 0.00));
-    noiseAmount.set(settings.getValue("noiseAmount", 0.00));
+    framesPerCycle = settings.getValue("framesPerCycle", 0.00);
+    noiseStep = settings.getValue("noiseStep", 0.00);
+    noiseAmount = settings.getValue("noiseAmount", 0.00);
     settings.popTag();
   settings.pushTag("color");
-  fadeAmnt.set(settings.getValue("fadeAmnt", 0));
-  color_mode.set(settings.getValue("color_mode", 0));
-  saturation.set(settings.getValue("saturation", 0));
-  brightness.set(settings.getValue("brightness", 0));
-  alpha.set(settings.getValue("alpha", 0));
+  fadeAmnt = settings.getValue("fadeAmnt", 0);
+  colMode = settings.getValue("colMode", 0);
+  saturation = settings.getValue("saturation", 0);
+  brightness = settings.getValue("brightness", 0);
+  alpha = settings.getValue("alpha", 0);
   settings.popTag();
 }
 
@@ -67,7 +92,7 @@ void Model::setShape(){
     shape -> setRot(rot);
     shape -> setNoiseStep(noiseStep);
     shape -> setNoiseAmount(noiseAmount);
-    shape -> setFadeAmount(fadeAmnt);
+    shape -> setFadeAmnt(fadeAmnt);
     shape -> setColorMode(colMode);
     shape -> setSaturation(saturation);
     shape -> setBrightness(brightness);

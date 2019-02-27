@@ -1,11 +1,8 @@
 #include "Quark.h"
 
-ofxXmlSettings Quark::settings = setXMLsettings();
 
-ofxXmlSettings Quark::setXMLsettings(){
-  ofxXmlSettings set;
-  set.loadFile("settings.xml");
-  return set
+void Quark::setXMLSettingsName(){
+  xmlSettingsName = "quark";
 }
 
 Quark::Quark(shared_ptr<ParticleData>& _particleData):Model(_particleData){

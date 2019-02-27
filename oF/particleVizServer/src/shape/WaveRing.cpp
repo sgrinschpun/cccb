@@ -11,7 +11,7 @@ WaveRing::WaveRing(shared_ptr<Cycle>& cycle):cycle(cycle){
   //rotNoise.set(ofRandom(10), ofRandom(10), ofRandom(10));
   //rot.set(0, 0, 0);
 
-  setupCircleMeshRing();
+  setupCircleRing();
 
 }
 
@@ -36,7 +36,7 @@ void WaveRing::updateWigglyCircleRing(){
   ofPoint p;
   ofFloatColor thisColor;
 
-  if (col_mode) {
+  if (colMode) {
     thisColor = ofColor::fromHsb(col, 0, 15, 255);
   }else{
     thisColor = ofColor::fromHsb(col, saturation, brightness, alpha);

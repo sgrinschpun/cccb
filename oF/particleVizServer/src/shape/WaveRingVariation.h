@@ -11,6 +11,8 @@ public:
     void update();
     void draw();
 
+    void setPosition(ofPoint _position);
+
     void setShapeNum(int _shapesNum);
     void setFadeAmnt(int _fadeAmnt);
     //Variations
@@ -19,7 +21,7 @@ public:
     void setRot(ofVec3f _rot);
     void setSpeed(float _speed);
     void setColorMode(bool _colMode);
-    void setStauration(int _aturation);
+    void setSaturation(int _saturation);
     void setBrightness(int _brightness);
     void setAlpha(int _alpha);
     //shape
@@ -30,6 +32,9 @@ public:
     void setSegments(int _segments);
 
     shared_ptr<Cycle> cycle;
+
+    float fboWidth;
+    float fboHeight;
 
 private:
   vector<WaveRing> waverings;

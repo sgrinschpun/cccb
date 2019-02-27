@@ -5,8 +5,7 @@
 
 class Neutrino: public Model {
   private:
-    static ofxXmlSettings settings;
-    static ofxXmlSettings setXMLsettings();
+    void setXMLSettingsName();
 
   public:
     Neutrino(shared_ptr<ParticleData>& _particleData);

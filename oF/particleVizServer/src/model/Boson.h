@@ -5,8 +5,7 @@
 
 class Boson: public Model {
   private:
-    static ofxXmlSettings settings;
-    static ofxXmlSettings setXMLsettings();
+    void setXMLSettingsName();
 
   public:
     Boson(shared_ptr<ParticleData>& _particleData);

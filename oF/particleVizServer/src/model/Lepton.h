@@ -5,8 +5,7 @@
 
 class Lepton: public Model {
   private:
-    static ofxXmlSettings settings;
-    static ofxXmlSettings setXMLsettings();
+    void setXMLSettingsName();
 
   public:
     Lepton(shared_ptr<ParticleData>& _particleData);

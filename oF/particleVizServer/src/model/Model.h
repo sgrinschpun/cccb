@@ -8,14 +8,19 @@
 
 class Model {
   private:
+    static map <string, ofxXmlSettings > xmlSettings;
+    static map <string, ofxXmlSettings > setXMLsettings();
+    void setXMLSettingsName();
 
-  void buildParameters();
-  void setShape();
-  void specificParameters();
+    void buildParameters();
+    void setShape();
+    void specificParameters();
 
   public:
     shared_ptr<WaveRingVariation> shape;
     shared_ptr<ParticleData> data;
+
+    string xmlSettingsName;
 
     int shapesNum;
     float radius;
@@ -28,7 +33,7 @@ class Model {
     float noiseStep;
     float noiseAmount;
     int fadeAmnt;
-    bool colorMode;
+    bool colMode;
     int saturation;
     int brightness;
     int alpha;

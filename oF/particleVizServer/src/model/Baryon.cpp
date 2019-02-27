@@ -1,11 +1,7 @@
 #include "Baryon.h"
 
-ofxXmlSettings Baryon::settings = setXMLsettings();
-
-ofxXmlSettings Baryon::setXMLsettings(){
-  ofxXmlSettings set;
-  set.loadFile("settings.xml");
-  return set;
+void Baryon::setXMLSettingsName(){
+  xmlSettingsName = "baryon";
 }
 
 void Baryon::specificParameters(){

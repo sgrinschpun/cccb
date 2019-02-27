@@ -5,26 +5,13 @@
 #endif
 #include "Boson.h"
 
-ofxXmlSettings Boson::settings = setXMLsettings();
-
-ofxXmlSettings Boson::setXMLsettings(){
-  ofxXmlSettings set;
-  switch(data->getName()){
-    case "gamma":
-      set.loadFile("settings.xml");
-      break;
-    case "h0(H_1)":
-      set.loadFile("settings.xml");
-      break;
-    case "Z0":
-      set.loadFile("settings.xml");
-      break;
-    case "W+":
-    case "W-":
-      set.loadFile("settings.xml");
-      break;
-  }
-  return set
+void Boson::setXMLSettingsName(){
+  string name = data->getName();
+  if (name == "gamma"){xmlSettingsName = "gamma";}
+  else if (name == "h0(H_1)"){xmlSettingsName = "h0(H_1)";}
+  else if (name == "Z0"){xmlSettingsName = "Z0";}
+  else if (name == "W+"){xmlSettingsName = "W+";}
+  else if (name == "W-"){xmlSettingsName = "W-";}
 }
 
 Boson::Boson(shared_ptr<ParticleData>& _particleData):Model(_particleData){
