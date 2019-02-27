@@ -12,7 +12,7 @@ class Model {
     static map <string, ofxXmlSettings > setXMLsettings();
     void setXMLSettingsName();
 
-    void buildParameters();
+    void buildParameters(ofxXmlSettings& settings );
     void setShape();
     void specificParameters();
 

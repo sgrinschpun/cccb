@@ -9,21 +9,36 @@ map <string, ofxXmlSettings >  Model::xmlSettings = setXMLsettings();
 
 map <string, ofxXmlSettings >  Model::setXMLsettings(){
   map <string, ofxXmlSettings > m;
-  m["quark"] = ofxXmlSettings("quark.xml");
-  m["neutrino"] = ofxXmlSettings("neutrino.xml");
-  m["antineutrino"] = ofxXmlSettings("antineutrino.xml");
-  m["meson"] = ofxXmlSettings("meson.xml");
-  m["baryon"] = ofxXmlSettings("baryon.xml");
-  m["gamma"] = ofxXmlSettings("gamma.xml");
-  m["W"] = ofxXmlSettings("W.xml");
-  m["Z0"] = ofxXmlSettings("Z0.xml");
-  m["h0(H_1)"] = ofxXmlSettings("higgs.xml");
-  m["electron"] = ofxXmlSettings("electron.xml");
-  m["muon"] = ofxXmlSettings("muon.xml");
-  m["tau"] = ofxXmlSettings("tau.xml");
-  m["positron"] = ofxXmlSettings("positron.xml");
-  m["antimuon"] = ofxXmlSettings("antimuon.xml");
-  m["antitau"] = ofxXmlSettings("antitau.xml");
+  m["quark"] = ofxXmlSettings();
+  m["quark"].loadFile("quark.xml");
+  m["neutrino"] = ofxXmlSettings();
+  m["neutrino"].loadFile("neutrino.xml");
+  m["antineutrino"] = ofxXmlSettings();
+  m["antineutrino"].loadFile("antineutrino.xml");
+  m["meson"] = ofxXmlSettings();
+  m["meson"].loadFile("meson.xml");
+  m["baryon"] = ofxXmlSettings();
+  m["baryon"].loadFile("baryon.xml");
+  m["gamma"] = ofxXmlSettings();
+  m["gamma"].loadFile("gamma.xml");
+  m["W"] = ofxXmlSettings();
+  m["W"].loadFile("W.xml");
+  m["Z0"] = ofxXmlSettings();
+  m["Z0"].loadFile("Z0.xml");
+  m["h0(H_1)"] = ofxXmlSettings();
+  m["h0(H_1)"].loadFile("higgs.xml");
+  m["electron"] = ofxXmlSettings();
+  m["electron"].loadFile("electron.xml");
+  m["muon"] = ofxXmlSettings();
+  m["muon"].loadFile("muon.xml");
+  m["tau"] = ofxXmlSettings();
+  m["tau"].loadFile("tau.xml");
+  m["positron"] = ofxXmlSettings();
+  m["positron"].loadFile("positron.xml");
+  m["antimuon"] = ofxXmlSettings();
+  m["antimuon"].loadFile("antimuon.xml");
+  m["antitau"] = ofxXmlSettings();
+  m["antitau"].loadFile("antitau.xml");
   return m;
 }
 
@@ -33,13 +48,14 @@ void Model::setXMLSettingsName(){
 
 
 Model::Model(shared_ptr<ParticleData>& _data): data(_data){
-  buildParameters();
+  buildParameters(xmlSettings[xmlSettingsName]);
   specificParameters();
   setShape();
 }
 
-void Model::buildParameters(){
-  ofxXmlSettings settings = xmlSettings[xmlSettingsName];
+void Model::buildParameters(ofxXmlSettings& settings){
+  //cout << "name" << xmlSettingsName << endl;
+  //ofxXmlSettings settings = xmlSettings[xmlSettingsName];
 
   settings.pushTag("shape");
     shapesNum = settings.getValue("shapesNum", 0);
