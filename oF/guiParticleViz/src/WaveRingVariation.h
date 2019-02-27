@@ -18,7 +18,7 @@ public:
     void setPosAmp(ofVec3f pos);
     void setRotAmp(ofVec3f rot);
     void setSpeedAmp(float speed);
-    void setColorMode(bool col_mode);
+    void setColorMode(bool colMode);
     void setStauration(int saturation);
     void setBrightness(int brightness);
     void setAlpha(int alpha);

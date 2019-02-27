@@ -20,9 +20,7 @@ class WaveRing {
     float noiseCursor;
     //variation
     float radius;
-    //ofPoint pos;
     ofVec3f rotate;
-    float speed;
     float speed_noise;
     float speed;
     ofVec3f pos_noise;
@@ -31,7 +29,7 @@ class WaveRing {
     ofVec3f rot;
     int col;
     float col_speed;
-    bool col_mode;
+    bool colMode;
     int saturation;
     int brightness;
     int alpha;
@@ -56,7 +54,7 @@ class WaveRing {
     void setPosAmp(ofVec3f pos);
     void setRotAmp(ofVec3f rot);
     void setSpeedAmp(float speed);
-    void setColorMode(bool col_mode);
+    void setColorMode(bool colMode);
     void setStauration(int saturation);
     void setBrightness(int brightness);
     void setAlpha(int alpha);

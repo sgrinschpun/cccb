@@ -45,7 +45,7 @@ public:
     ofParameter<ofVec3f> rot;
     ofParameter<float> speed;
     //Color parameters
-    ofParameter<bool> colorMode;
+    ofParameter<bool> colMode;
     ofParameter<int> saturation;
     ofParameter<int> brightness;
     ofParameter<int> alpha;

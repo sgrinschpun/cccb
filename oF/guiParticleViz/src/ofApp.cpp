@@ -21,7 +21,7 @@ void ofApp::setup(){
                     ofVec3f(0),
                     ofVec3f(720, 720, 720)));
     gui.add(speed.set("speed", 0, 0, 0.1));
-    gui.add(colorMode.set("color mode", 0));
+    gui.add(colMode.set("color mode", 0));
     gui.add(fadeAmnt.set("Fade Amount", 50, 0, 255));
 
     //WaveRing
@@ -52,7 +52,7 @@ void ofApp::update(){
         shapes[i].setPosAmp(pos);
         shapes[i].setRotAmp(rot);
         shapes[i].setSpeedAmp(speed);
-        shapes[i].setColorMode(colorMode);
+        shapes[i].setColorMode(colMode);
         shapes[i].setFadeAmnt(fadeAmnt);
         shapes[i].setNoiseStep(noiseStep);
         shapes[i].setNoiseAmount(noiseAmount);
@@ -142,7 +142,7 @@ void ofApp::buildXML(){
   settings.addTag("color");
   settings.pushTag("color");
     settings.addValue("fadeAmnt", fadeAmnt);
-    settings.addValue("colorMode", colorMode);
+    settings.addValue("colMode", colMode);
     settings.addValue("saturation", saturation);
     settings.addValue("brightness", brightness);
     settings.addValue("alpha", alpha);
@@ -183,7 +183,7 @@ void ofApp::loadXML(){
       settings.popTag();
     settings.pushTag("color");
     fadeAmnt.set(settings.getValue("fadeAmnt", 0));
-    colorMode.set(settings.getValue("colorMode", 0));
+    colMode.set(settings.getValue("colMode", 0));
     saturation.set(settings.getValue("saturation", 0));
     brightness.set(settings.getValue("brightness", 0));
     alpha.set(settings.getValue("alpha", 0));

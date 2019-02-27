@@ -151,9 +151,9 @@ void WaveRingVariation::setSpeedAmp(float _speed) {
   }
 }
 
-void WaveRingVariation::setColorMode(bool _col_mode) {
+void WaveRingVariation::setColorMode(bool _colMode) {
   for(int i=0; i<waverings.size(); i++){
-    waverings[i].setColorMode(_col_mode);
+    waverings[i].setColorMode(_colMode);
   }
 }
 

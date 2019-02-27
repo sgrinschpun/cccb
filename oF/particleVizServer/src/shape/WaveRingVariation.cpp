@@ -135,19 +135,19 @@ void WaveRingVariation::setSegments(int _segments){
   }
 }
 
-void void WaveRingVariation::setSaturation(int _saturation){
+void WaveRingVariation::setSaturation(int _saturation){
   for(int i=0; i<waverings.size(); i++){
     waverings[i].setSaturation(_saturation);
   }
 }
 
-void void WaveRingVariation::setBrightness(int _brightness){
+void WaveRingVariation::setBrightness(int _brightness){
   for(int i=0; i<waverings.size(); i++){
     waverings[i].setBrightness(_brightness);
   }
 }
 
-void void WaveRingVariation::setAlpha(int _alpha){
+void WaveRingVariation::setAlpha(int _alpha){
   for(int i=0; i<waverings.size(); i++){
     waverings[i].setAlpha(_alpha);
   }

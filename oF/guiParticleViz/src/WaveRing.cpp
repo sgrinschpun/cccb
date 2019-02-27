@@ -21,7 +21,7 @@ WaveRing::WaveRing(shared_ptr<Cycle>& cycle):cycle(cycle){
 
   col = ofRandom(255);
   col_speed = 1;
-  col_mode = 0;
+  colMode = 0;
   saturation = 200;
   brightness= 255;
   alpha = 100;
@@ -53,7 +53,7 @@ void WaveRing::updateWigglyCircleRing(){
   ofPoint p;
   ofFloatColor thisColor;
 
-  if (col_mode) {
+  if (colMode) {
     thisColor = ofColor::fromHsb(col, 0, 15, 255);
   }else{
     thisColor = ofColor::fromHsb(col, saturation, brightness, alpha);
@@ -148,8 +148,8 @@ void WaveRing::setSpeedAmp(float _speed) {
     speed = _speed;
 }
 
-void WaveRing::setColorMode(bool _col_mode) {
-    col_mode = _col_mode;
+void WaveRing::setColorMode(bool _colMode) {
+    colMode = _colMode;
 }
 
 void WaveRing::setStauration(int _saturation) {
