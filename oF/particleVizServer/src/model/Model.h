@@ -8,11 +8,14 @@
 
 class Model {
   private:
-    static map <string, ofxXmlSettings > xmlSettings;
-    static map <string, ofxXmlSettings > setXMLsettings();
-    void setXMLSettingsName();
+    static map <string, string> xmlSettingsNames;
+    static map <string, string> setXMLSettingsNames();
 
-    void buildParameters(ofxXmlSettings& settings );
+    static map <string, shared_ptr<ofxXmlSettings> > xmlSettings;
+    static map <string, shared_ptr<ofxXmlSettings> > setXMLsettings();
+
+    void setXMLSettingsName();
+    void buildParameters();
     void setShape();
     void specificParameters();
 
