@@ -42,45 +42,57 @@ float Cycle:: getProgressRatio(){
 }
 
 float Cycle::getEaseQuad1(){ // slow-> fast
-  update();
-  float ease = 0;
-  if (progressRatio <= 0.5){ease = QuadEaseInRatio;}
-  else {ease = 1-QuadEaseOutRatio;}
+  float ease = 1;
+  if (framesPerCycle != 1){
+    update();
+    if (progressRatio <= 0.5){ease = QuadEaseInRatio;}
+    else {ease = 1-QuadEaseOutRatio;}
+  }
   return ease;
 }
 
 float Cycle::getEaseQuad2(){ //fast -> slow
-  update();
-  float ease = 0;
-  if (progressRatio <= 0.5){ease = QuadEaseOutRatio;}
-  else {ease = 1-QuadEaseInRatio;}
+  float ease = 1;
+  if (framesPerCycle != 1){
+    update();
+    if (progressRatio <= 0.5){ease = QuadEaseOutRatio;}
+    else {ease = 1-QuadEaseInRatio;}
+  }
   return ease;
 }
 
 float Cycle::getEaseQuart1(){ // slow-> fast
-  update();
-  float ease = 0;
-  if (progressRatio <= 0.5){ease = QuartEaseInRatio;}
-  else {ease = 1-QuartEaseOutRatio;}
+  float ease = 1;
+  if (framesPerCycle != 1){
+    update();
+    if (progressRatio <= 0.5){ease = QuartEaseInRatio;}
+    else {ease = 1-QuartEaseOutRatio;}
+  }
   return ease;
 }
 
 float Cycle::getEaseQuart2(){ //fast -> slow
-  update();
-  float ease = 0;
-  if (progressRatio <= 0.5){ease = QuartEaseOutRatio;}
-  else {ease = 1-QuartEaseInRatio;}
+  float ease = 1;
+  if (framesPerCycle != 1){
+    update();
+    if (progressRatio <= 0.5){ease = QuartEaseOutRatio;}
+    else {ease = 1-QuartEaseInRatio;}
+  }
   return ease;
 }
 
 
 bool Cycle::newLoop(){
-  update();
-  if (currentFrame == 0){
-      return true;
+  bool newLoop = false;
+  if (framesPerCycle != 1){
+    update();
+    if (currentFrame == 0){
+        newLoop = true;
+    }
   }
-  else{ return false;}
+  return newLoop;
 }
+
 
 int Cycle::getSeed(){
   return randomSeeds[currentFrame];

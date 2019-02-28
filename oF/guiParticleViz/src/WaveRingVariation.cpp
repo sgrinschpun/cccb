@@ -6,9 +6,6 @@
 #include "WaveRingVariation.h"
 
 WaveRingVariation::WaveRingVariation() {
-    shapesNum = 1;
-    fadeAmnt = 50;
-    framesPerCycle = 50;
     cycle = make_shared<Cycle>(framesPerCycle);
 
     //FBO

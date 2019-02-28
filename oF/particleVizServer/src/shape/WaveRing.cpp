@@ -1,18 +1,7 @@
 #include "WaveRing.h"
 
 WaveRing::WaveRing(shared_ptr<Cycle>& cycle):cycle(cycle){
-
-  //pos.set(0, 0, 0); //
-  //rotate.set(0, 0, 0); //
-  //speedNoise = ofRandom(10);
-  //speed = ofRandom(10)/10000;
-  //posNoise.set(ofRandom(10), ofRandom(10), ofRandom(10));
-  //pos.set(0, 0, 0);
-  //rotNoise.set(ofRandom(10), ofRandom(10), ofRandom(10));
-  //rot.set(0, 0, 0);
-
   setupCircleRing();
-
 }
 
 void WaveRing::setupCircleRing(){

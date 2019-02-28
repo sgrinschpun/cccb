@@ -2,31 +2,6 @@
 
 WaveRing::WaveRing(shared_ptr<Cycle>& cycle):cycle(cycle){
 
-  segments = 100;
-  radius =ofGetHeight()/4;
-  width = 2;
-  noiseStep = 0.0;
-  noiseAmount = 0.40;
-
-  pos.set(0, 0, 0); //
-  rotate.set(0, 0, 0); //
-
-  speed = 0.001; //
-  speed_noise = ofRandom(10);
-  speed = ofRandom(10)/10000;
-  pos_noise.set(ofRandom(10), ofRandom(10), ofRandom(10));
-  pos.set(0, 0, 0);
-  rot_noise.set(ofRandom(10), ofRandom(10), ofRandom(10));
-  rot.set(0, 0, 0);
-
-  col = ofRandom(255);
-  col_speed = 1;
-  colMode = 0;
-  saturation = 200;
-  brightness= 255;
-  alpha = 100;
-    //
-
   setupCircleRing();
 }
 
@@ -92,28 +67,28 @@ void WaveRing::update(){
   }
   updateWigglyCircleRing();
 
-  speed = ofNoise(speed_noise)*speed;
+  speed = ofNoise(speedNoise)*speed;
 
-  pos.set((ofNoise(pos_noise.x)*2-1)*pos.x,
-          (ofNoise(pos_noise.y)*2-1)*pos.y,
-          (ofNoise(pos_noise.z)*2-1)*pos.z);
+  pos.set((ofNoise(posNoise.x)*2-1)*pos.x,
+          (ofNoise(posNoise.y)*2-1)*pos.y,
+          (ofNoise(posNoise.z)*2-1)*pos.z);
 
-  rotate.set((ofNoise(rot_noise.x)*2-1)*rot.x,
-             (ofNoise(rot_noise.y)*2-1)*rot.y,
-             (ofNoise(rot_noise.z)*2-1)*rot.z);
+  rotate.set((ofNoise(rotNoise.x)*2-1)*rot.x,
+             (ofNoise(rotNoise.y)*2-1)*rot.y,
+             (ofNoise(rotNoise.z)*2-1)*rot.z);
 
-  speed_noise += 0.01;
+  speedNoise += 0.01;
 
-  pos_noise.x += speed;
-  pos_noise.y += speed;
-  pos_noise.z += speed;
+  posNoise.x += speed;
+  posNoise.y += speed;
+  posNoise.z += speed;
 
-  rot_noise.x += speed;
-  rot_noise.y += speed;
-  rot_noise.z += speed;
+  rotNoise.x += speed;
+  rotNoise.y += speed;
+  rotNoise.z += speed;
 
-  col += col_speed;
-  if(col >= 255 || col <= 0) col_speed *= -1;
+  col += colSpeed;
+  if(col >= 255 || col <= 0) colSpeed *= -1;
 }
 
 void WaveRing::setNoiseStep(float _noiseStep){

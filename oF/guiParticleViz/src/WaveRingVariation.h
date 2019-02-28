@@ -31,7 +31,7 @@ public:
 
     shared_ptr<Cycle> cycle;
 
-
+    //Gif
     shared_ptr<ofxGifEncoder> gifEncoder;
     ofPixels pixels;
     ofImage imgforgif;
@@ -45,18 +45,17 @@ public:
     void screenCapture();
     int imgcount {0};
     ofImage img;
+
     //bigfile
     float fboWidth;
     float fboHeight;
 
 private:
     vector<WaveRing> waverings;
-    int shapesNum;
-    int framesPerCycle;
+    int shapesNum {10};
+    int fadeAmnt {50};
+    int framesPerCycle {50};
 
     ofFbo rgbaFbo;
-    int fadeAmnt;
     void drawFbo();
-
-
 };
