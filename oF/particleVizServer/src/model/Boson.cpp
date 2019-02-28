@@ -14,6 +14,12 @@ void Boson::setXMLSettingsName(){
   else if (name == "W-"){xmlSettingsName = "W";}
 }
 
-Boson::Boson(shared_ptr<ParticleData>& _particleData):Model(_particleData){
+void Boson::specificParameters(){
+}
 
+Boson::Boson(shared_ptr<ParticleData>& _particleData):Model(_particleData){
+  setXMLSettingsName();
+  buildParameters();
+  setShape();
+  specificParameters();
 }

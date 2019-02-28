@@ -5,7 +5,8 @@
 
 class Quark: public Model {
   private:
-    void setXMLSettingsName();
+    void setXMLSettingsName() override;
+    void specificParameters() override;
 
   public:
     Quark(shared_ptr<ParticleData>& _particleData);

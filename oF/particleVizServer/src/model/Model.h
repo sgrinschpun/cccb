@@ -14,12 +14,12 @@ class Model {
     static map <string, shared_ptr<ofxXmlSettings> > xmlSettings;
     static map <string, shared_ptr<ofxXmlSettings> > setXMLsettings();
 
-    void setXMLSettingsName();
-    void buildParameters();
-    void setShape();
-    void specificParameters();
-
   public:
+    virtual void setXMLSettingsName() = 0;
+    void buildParameters();
+    virtual void specificParameters() = 0;
+    void setShape();
+
     shared_ptr<WaveRingVariation> shape;
     shared_ptr<ParticleData> data;
 

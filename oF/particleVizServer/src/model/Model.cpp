@@ -32,16 +32,16 @@ map <string, shared_ptr<ofxXmlSettings> > Model::setXMLsettings(){
 }
 
 Model::Model(shared_ptr<ParticleData>& _data): data(_data){
-  void setXMLSettingsName();
-  void buildParameters();
-  void setShape();
-  void specificParameters();
+  DEBUG_MSG("enter Model init");
+  //xmlSettingsName = "electron.xml";
+
 }
 
 void Model::buildParameters(){
+  DEBUG_MSG("start building parameters");
   map <string, shared_ptr<ofxXmlSettings> > ::iterator xmlSettingsIt = xmlSettings.find(xmlSettingsName);
   if (xmlSettingsIt != xmlSettings.end()) {
-
+    DEBUG_MSG("found name");
     shared_ptr<ofxXmlSettings>& settings = xmlSettingsIt->second;
 
     settings->pushTag("shape");
@@ -75,14 +75,11 @@ void Model::buildParameters(){
     brightness = settings->getValue("brightness", 0);
     alpha = settings->getValue("alpha", 0);
     settings->popTag();
+    DEBUG_MSG("finish building parameters");
   }
   else {
-
+    DEBUG_MSG("no settings for " + xmlSettingsName);
   }
-  cout << "no settings for " << xmlSettingsName << endl;
-}
-
-void Model::specificParameters(){
 
 }
 

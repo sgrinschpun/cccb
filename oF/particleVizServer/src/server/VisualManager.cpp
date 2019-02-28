@@ -1,9 +1,8 @@
-//
-//  VisualManager.cpp
-//  oscReceiveExample
-//
-//  Created by Oscar Martinez Carmona on 05/02/2019.
-//
+#ifdef DEBUG
+#define DEBUG_MSG(str) do { std::cout << str << std::endl; } while( false )
+#else
+#define DEBUG_MSG(str) do { } while ( false )
+#endif
 
 #include "VisualManager.hpp"
 #include "ParticleData.h"
@@ -34,8 +33,8 @@ void VisualManager::updateMap(PhenomenaCMD phenoCMD) {
         ofVec3f velocity;
         velocity.set(phenoCMD.getParams().vy,phenoCMD.getParams().vz,phenoCMD.getParams().vx);
         velocity.scale(phenoCMD.getParams().beta);
-        //velocity.set(ofRandom(-10.0, 10.0),ofRandom(-10.0, 10.0),0);
-        //position.set(ofGetWidth()/2, ofGetHeight()/2,0);
+        DEBUG_MSG("Particle Name " + phenoCMD.getParams().name);
+
         particleMap.insert(make_pair(phenoCMD.getParams().id, make_shared<Particle>(newParticleData,position, velocity)));
     }
 

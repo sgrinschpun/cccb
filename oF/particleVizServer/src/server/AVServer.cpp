@@ -17,7 +17,6 @@ void AVServer::refresh(){
      while(oscReceiver.hasWaitingMessages()){
          ofxOscMessage message;
          oscReceiver.getNextMessage(message);
-         cout << message.getAddress() << endl;
          if(message.getAddress() == "/particle/operation"){
              manageAV.update(oscHandler.releaseParticle(message));
          }

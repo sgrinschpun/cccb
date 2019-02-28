@@ -5,9 +5,8 @@
 
 class Baryon: public Model {
   private:
-    void setXMLSettingsName();
-
-    void specificParameters();
+    void setXMLSettingsName() override;
+    void specificParameters() override;
 
   public:
     Baryon(shared_ptr<ParticleData>& _particleData);
