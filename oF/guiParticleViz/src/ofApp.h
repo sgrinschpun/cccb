@@ -41,9 +41,9 @@ public:
     ofParameter<int> shapesNum;
     ofParameter<int> fadeAmnt;
     ofParameter<float> radius;
-    ofParameter<ofVec3f> pos;
-    ofParameter<ofVec3f> rot;
-    ofParameter<float> speed;
+    ofParameter<ofVec3f> posAmp;
+    ofParameter<ofVec3f> rotAmp;
+    ofParameter<float> speedAmp;
     //Color parameters
     ofParameter<bool> colMode;
     ofParameter<int> saturation;

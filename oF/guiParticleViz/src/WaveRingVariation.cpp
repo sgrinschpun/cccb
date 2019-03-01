@@ -130,21 +130,21 @@ void WaveRingVariation::setRadius(float _radius) {
   }
 }
 
-void WaveRingVariation::setPosAmp(ofVec3f _pos) {
+void WaveRingVariation::setPosAmp(ofVec3f _posAmp) {
   for(int i=0; i<waverings.size(); i++){
-    waverings[i].setPosAmp(_pos);
+    waverings[i].setPosAmp(_posAmp);
   }
 }
 
-void WaveRingVariation::setRotAmp(ofVec3f _rot) {
+void WaveRingVariation::setRotAmp(ofVec3f _rotAmp) {
   for(int i=0; i<waverings.size(); i++){
-    waverings[i].setRotAmp(_rot);
+    waverings[i].setRotAmp(_rotAmp);
   }
 }
 
-void WaveRingVariation::setSpeedAmp(float _speed) {
+void WaveRingVariation::setSpeedAmp(float _speedAmp) {
   for(int i=0; i<waverings.size(); i++){
-    waverings[i].setSpeedAmp(_speed);
+    waverings[i].setSpeedAmp(_speedAmp);
   }
 }
 

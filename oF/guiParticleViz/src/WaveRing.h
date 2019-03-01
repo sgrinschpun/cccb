@@ -17,13 +17,15 @@ class WaveRing {
     float noiseAmount{0.0};
     float noiseCursor {0.1};
     float radius {0};
-    ofVec3f rotate;
+    float speed {0.001};
+    float speedAmp {ofRandom(10)/10000};
     float speedNoise {ofRandom(10)};
-    float speed {ofRandom(10)/10000};
-    ofVec3f posNoise;
     ofVec3f pos;
-    ofVec3f rotNoise;
+    ofVec3f posAmp;
+    ofVec3f posNoise{(ofRandom(10), ofRandom(10), ofRandom(10))};
     ofVec3f rot;
+    ofVec3f rotAmp;
+    ofVec3f rotNoise{(ofRandom(10), ofRandom(10), ofRandom(10))};
     int col {0};
     float colSpeed {1};
     bool colMode {0};
@@ -48,9 +50,9 @@ class WaveRing {
     void setSegments(int _segments);
     //variation
     void setRadius(float radius);
-    void setPosAmp(ofVec3f pos);
-    void setRotAmp(ofVec3f rot);
-    void setSpeedAmp(float speed);
+    void setPosAmp(ofVec3f _posAmp);
+    void setRotAmp(ofVec3f _rotAmp);
+    void setSpeedAmp(float _speedAmp);
     void setColorMode(bool colMode);
     void setStauration(int saturation);
     void setBrightness(int brightness);
