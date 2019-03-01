@@ -57,6 +57,10 @@ void VisualManager::update(){
     }
 }
 
+void VisualManager::purge(){
+    particleMap.clear();
+}
+
 void VisualManager::draw(){
     for(auto pair:particleMap) {
         pair.second->draw();

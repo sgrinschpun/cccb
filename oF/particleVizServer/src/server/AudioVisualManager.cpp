@@ -13,6 +13,11 @@ void AudioVisualManager::update(PhenomenaCMD phenoCMD){
     vManager.updateMap(phenoCMD);
 }
 
+void AudioVisualManager::purge(){
+    vManager.purge();
+}
+
+
 void AudioVisualManager::draw(){
     vManager.update();
     vManager.draw();

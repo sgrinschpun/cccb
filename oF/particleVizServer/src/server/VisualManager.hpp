@@ -23,6 +23,7 @@ public:
   VisualManager();
   void updateMap(PhenomenaCMD phenoCMD);
   void update();
+  void purge();
   void draw();
 
 };

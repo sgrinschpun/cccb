@@ -18,7 +18,12 @@ void AVServer::update(){
          ofxOscMessage message;
          oscReceiver.getNextMessage(message);
          if(message.getAddress() == "/particle/operation"){
-             manageAV.update(oscHandler.releaseParticle(message));
+             if(message.getArgAsString(0) == "PURGE"){
+                 manageAV.purge();
+             }
+             else{
+                 manageAV.update(oscHandler.releaseParticle(message));
+             }
          }
          else if (message.getAddress() != "/particle/operation") {
              oscHandler.acumulativeParticleParse(message);
