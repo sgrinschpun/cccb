@@ -47,7 +47,8 @@ void WaveRingVariation::update() {
 void WaveRingVariation::drawFbo(){
   ofEnableBlendMode(OF_BLENDMODE_ADD);
   ofPushMatrix();
-  ofTranslate(fboWidth/2, fboHeight/2);
+  //ofTranslate(fboWidth/2, fboHeight/2);
+  ofTranslate(position.x, position.y);
   for(int i=0; i<waverings.size(); i++){
     waverings[i].draw();
   }
