@@ -7,24 +7,6 @@
 
 WaveRingVariation::WaveRingVariation() {
 
-  fboWidth = ofGetWidth();
-  fboHeight= ofGetHeight();
-  ofFboSettings s;
-  s.width = fboWidth;
-  s.height = fboHeight;
-  s.internalformat = GL_RGBA;
-  //s.internalformat = GL_RGBA32F_ARB;
-  //s.useDepth = true;
-  s.useStencil = true;
-  s.numSamples = 2;
-  //(s.textureTarget = GL_TEXTURE_2D;
-  //s.wrapModeHorizontal = GL_REPEAT;
-  //s.wrapModeVertical = GL_REPEAT;
-  rgbaFbo.allocate(s);
-
-  rgbaFbo.begin();
-  ofClear(255,255,255, 0);
-  rgbaFbo.end();
 }
 
 void WaveRingVariation::setPosition(ofPoint _position){
@@ -37,14 +19,9 @@ void WaveRingVariation::update() {
     waverings[i].update();
   }
 
-  //ofEnableAlphaBlending();
-  rgbaFbo.begin();
-  drawFbo();
-  ofClearAlpha();
-  rgbaFbo.end();
 }
 
-void WaveRingVariation::drawFbo(){
+void WaveRingVariation::draw() {
   ofEnableBlendMode(OF_BLENDMODE_ADD);
   ofPushMatrix();
   //ofTranslate(fboWidth/2, fboHeight/2);
@@ -57,11 +34,7 @@ void WaveRingVariation::drawFbo(){
   ofEnableBlendMode(OF_BLENDMODE_ALPHA);
   ofFill();
   ofSetColor(0,0,0, fadeAmnt);
-  ofDrawRectangle(0,0,fboWidth,fboHeight);
-}
-
-void WaveRingVariation::draw() {
-  rgbaFbo.draw(0,0);
+  ofDrawRectangle(0,0,ofGetWidth(),ofGetHeight());
 }
 
 void WaveRingVariation::setShapeNum(int _shapesNum) {

@@ -19,7 +19,8 @@ class AVServer{
 
 public:
     AVServer();
-    void begin(int port);
-    void update();
+    void setup(int port);
     void draw();
+    void update();
+
 };

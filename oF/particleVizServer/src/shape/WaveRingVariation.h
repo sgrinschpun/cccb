@@ -33,9 +33,6 @@ public:
 
     shared_ptr<Cycle> cycle;
 
-    float fboWidth;
-    float fboHeight;
-
 private:
   vector<WaveRing> waverings;
   ofPoint position;
@@ -43,8 +40,6 @@ private:
   int shapesNum {1};
   int framesPerCycle{50};
 
-  ofFbo rgbaFbo;
   int fadeAmnt{50};
-  void drawFbo();
 };
 #endif

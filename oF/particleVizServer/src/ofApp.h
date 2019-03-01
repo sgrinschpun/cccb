@@ -24,4 +24,7 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 
 		AVServer avServer;
+  	ofFbo rgbaFbo;
+
+		void setupFbo();
 };

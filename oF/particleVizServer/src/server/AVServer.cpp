@@ -9,7 +9,7 @@
 
 AVServer::AVServer(){}
 
-void AVServer::begin(int port){
+void AVServer::setup(int port){
     oscReceiver.setup(port);
 }
 
