@@ -75,7 +75,10 @@ void Model::buildParameters(){
     brightness = settings->getValue("brightness", 0);
     alpha = settings->getValue("alpha", 0);
     settings->popTag();
-    DEBUG_MSG("finish building parameters");
+    DEBUG_MSG("Parameters");
+    DEBUG_MSG("Speed: " + to_string(speed));
+    DEBUG_MSG("framesPerCycle: " + to_string(framesPerCycle));
+
   }
   else {
     DEBUG_MSG("no settings for " + xmlSettingsName);

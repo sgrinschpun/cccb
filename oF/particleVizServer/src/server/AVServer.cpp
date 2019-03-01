@@ -13,7 +13,7 @@ void AVServer::begin(int port){
     oscReceiver.setup(port);
 }
 
-void AVServer::refresh(){
+void AVServer::update(){
      while(oscReceiver.hasWaitingMessages()){
          ofxOscMessage message;
          oscReceiver.getNextMessage(message);
@@ -28,6 +28,6 @@ void AVServer::refresh(){
          }
      }
 }
-void AVServer::display(){
-    manageAV.visualize();
+void AVServer::draw(){
+    manageAV.draw();
 }

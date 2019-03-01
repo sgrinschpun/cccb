@@ -7,8 +7,6 @@
 class WaveRing {
 
   private:
-
-    //shape
     ofxFatLine fatLine;
     vector<ofDefaultVec3> fatLinePoints;
     vector<ofFloatColor> fatLineColors;
@@ -19,8 +17,6 @@ class WaveRing {
     float noiseAmount{0.0};
     float noiseCursor {0.1};
     float radius {0};
-    //variation
-    //ofPoint pos;
     ofVec3f rotate;
     float speedNoise {ofRandom(10)};
     float speed {ofRandom(10)/10000};

@@ -7,18 +7,18 @@ void ofApp::setup(){
   ofSetFrameRate(60);
   ofSetVerticalSync(true);
   ofSetCircleResolution(256);
-          
+
   ofLog() << "listening for osc messages on port " << PORT;
   avServer.begin(PORT);
 }
 //--------------------------------------------------------------
 void ofApp::update(){
-    avServer.refresh();
+    avServer.update();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    avServer.display();
+    avServer.draw();
 }
 
 //--------------------------------------------------------------

@@ -13,7 +13,7 @@ void AudioVisualManager::update(PhenomenaCMD phenoCMD){
     vManager.updateMap(phenoCMD);
 }
 
-void AudioVisualManager::visualize(){
-    vManager.refreshMap();
-    vManager.visualizeMap();
+void AudioVisualManager::draw(){
+    vManager.update();
+    vManager.draw();
 }

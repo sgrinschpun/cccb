@@ -16,11 +16,10 @@ class AVServer{
     ofxOscReceiver oscReceiver;
     OSCHandler oscHandler;
     AudioVisualManager manageAV;
-    
+
 public:
     AVServer();
     void begin(int port);
-    void refresh();
-    void display();
+    void update();
+    void draw();
 };
-

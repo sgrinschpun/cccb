@@ -51,13 +51,13 @@ void VisualManager::updateMap(PhenomenaCMD phenoCMD) {
     cout << "VisualManager Hashmap size is: " << particleMap.size() << endl;
 }
 
-void VisualManager::refreshMap(){
+void VisualManager::update(){
     for(auto pair:particleMap) {
         pair.second->update();
     }
 }
 
-void VisualManager::visualizeMap(){
+void VisualManager::draw(){
     for(auto pair:particleMap) {
         pair.second->draw();
     }

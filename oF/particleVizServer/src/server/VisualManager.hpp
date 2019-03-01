@@ -22,7 +22,7 @@ class VisualManager{
 public:
   VisualManager();
   void updateMap(PhenomenaCMD phenoCMD);
-  void refreshMap();
-  void visualizeMap();
+  void update();
+  void draw();
 
 };

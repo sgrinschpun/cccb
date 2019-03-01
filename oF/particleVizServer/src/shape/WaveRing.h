@@ -17,7 +17,6 @@ class WaveRing {
     float noiseAmount{0.0};
     float noiseCursor {0.1};
     float radius {0};
-    //ofPoint pos;
     ofVec3f rotate;
     float speedNoise {ofRandom(10)};
     float speed {ofRandom(10)/10000};

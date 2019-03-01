@@ -1,3 +1,8 @@
+#ifdef DEBUG
+#define DEBUG_MSG(str) do { std::cout << str << std::endl; } while( false )
+#else
+#define DEBUG_MSG(str) do { } while ( false )
+#endif
 #include "WaveRing.h"
 
 WaveRing::WaveRing(shared_ptr<Cycle>& cycle):cycle(cycle){
@@ -56,6 +61,7 @@ void WaveRing::draw(){
 }
 
 void WaveRing::update(){
+  DEBUG_MSG(to_string(speed));
   if (cycle -> newLoop()==true){
      noiseCursor+= 0.1;
   }
