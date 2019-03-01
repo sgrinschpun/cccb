@@ -61,4 +61,5 @@ void VisualManager::draw(){
     for(auto pair:particleMap) {
         pair.second->draw();
     }
+
 }

@@ -22,6 +22,8 @@ void WaveRingVariation::update() {
 }
 
 void WaveRingVariation::draw() {
+
+
   ofEnableBlendMode(OF_BLENDMODE_ADD);
   ofPushMatrix();
   //ofTranslate(fboWidth/2, fboHeight/2);
@@ -35,6 +37,9 @@ void WaveRingVariation::draw() {
   ofFill();
   ofSetColor(0,0,0, fadeAmnt);
   ofDrawRectangle(0,0,ofGetWidth(),ofGetHeight());
+
+
+
 }
 
 void WaveRingVariation::setShapeNum(int _shapesNum) {

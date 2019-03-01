@@ -6,7 +6,6 @@
 #include "WaveRing.h"
 
 WaveRing::WaveRing(shared_ptr<Cycle>& cycle):cycle(cycle){
-  DEBUG_MSG(to_string(speed));
   setupCircleRing();
 }
 
@@ -72,8 +71,7 @@ void WaveRing::update(){
   }
   updateWigglyCircleRing();
 
-  float thisNoise =ofNoise(speedNoise);
-  speed = thisNoise*speedAmp;
+  speed = ofNoise(speedNoise)*speedAmp;
 
   pos.set((ofNoise(posNoise.x)*2-1)*posAmp.x,
           (ofNoise(posNoise.y)*2-1)*posAmp.y,
