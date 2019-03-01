@@ -32,35 +32,30 @@ map <string, shared_ptr<ofxXmlSettings> > Model::setXMLsettings(){
 }
 
 Model::Model(shared_ptr<ParticleData>& _data): data(_data){
-  DEBUG_MSG("enter Model init");
-  //xmlSettingsName = "electron.xml";
 
 }
 
 void Model::buildParameters(){
-  DEBUG_MSG("start building parameters");
   map <string, shared_ptr<ofxXmlSettings> > ::iterator xmlSettingsIt = xmlSettings.find(xmlSettingsName);
   if (xmlSettingsIt != xmlSettings.end()) {
-    DEBUG_MSG("found name");
     shared_ptr<ofxXmlSettings>& settings = xmlSettingsIt->second;
-
     settings->pushTag("shape");
       shapesNum = settings->getValue("shapesNum", 0);
       radius = settings->getValue("radius", 0);
       width = settings->getValue("width", 0);
       segments = settings->getValue("segments", 0);
-      speed = settings->getValue("speed", 0.00);
+      speedAmp = settings->getValue("speedAmp", 0.00);
     settings->popTag();
     settings->pushTag("variations");
-      settings->pushTag("pos");
-        pos.x = settings->getValue("x", 0);
-        pos.y = settings->getValue("y", 0);
-        pos.z = settings->getValue("z", 0);
+      settings->pushTag("posAmp");
+        posAmp.x = settings->getValue("x", 0);
+        posAmp.y = settings->getValue("y", 0);
+        posAmp.z = settings->getValue("z", 0);
       settings->popTag();
-      settings->pushTag("rot");
-        rot.x = settings->getValue("x", 0);
-        rot.y = settings->getValue("y", 0);
-        rot.z = settings->getValue("z", 0);
+      settings->pushTag("rotAmp");
+        rotAmp.x = settings->getValue("x", 0);
+        rotAmp.y = settings->getValue("y", 0);
+        rotAmp.z = settings->getValue("z", 0);
       settings->popTag();
     settings->popTag();
     settings->pushTag("wiggle");
@@ -76,8 +71,10 @@ void Model::buildParameters(){
     alpha = settings->getValue("alpha", 0);
     settings->popTag();
     DEBUG_MSG("Parameters");
-    DEBUG_MSG("Speed: " + to_string(speed));
+    DEBUG_MSG("shapesNum: " + to_string(shapesNum));
+    DEBUG_MSG("SpeedAmp: " + to_string(speedAmp));
     DEBUG_MSG("framesPerCycle: " + to_string(framesPerCycle));
+    DEBUG_MSG("fadeAmnt: " + to_string(fadeAmnt));
 
   }
   else {
@@ -95,9 +92,9 @@ void Model::setShape(){
     shape -> setRadius(radius);
     shape -> setWidth(width);
     shape -> setSegments(segments);
-    shape -> setSpeed(speed);
-    shape -> setPos(pos);
-    shape -> setRot(rot);
+    shape -> setSpeedAmp(speedAmp);
+    shape -> setPosAmp(posAmp);
+    shape -> setRotAmp(rotAmp);
     shape -> setNoiseStep(noiseStep);
     shape -> setNoiseAmount(noiseAmount);
     shape -> setFadeAmnt(fadeAmnt);

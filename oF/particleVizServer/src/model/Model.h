@@ -29,9 +29,9 @@ class Model {
     float radius;
     float width;
     int segments;
-    float speed;
-    ofVec3f pos;
-    ofVec3f rot;
+    float speedAmp;
+    ofVec3f posAmp;
+    ofVec3f rotAmp;
     int framesPerCycle;
     float noiseStep;
     float noiseAmount;

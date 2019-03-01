@@ -1,7 +1,12 @@
+#ifdef DEBUG
+#define DEBUG_MSG(str) do { std::cout << str << std::endl; } while( false )
+#else
+#define DEBUG_MSG(str) do { } while ( false )
+#endif
 #include "WaveRing.h"
 
 WaveRing::WaveRing(shared_ptr<Cycle>& cycle):cycle(cycle){
-
+  DEBUG_MSG(to_string(speed));
   setupCircleRing();
 }
 
@@ -66,7 +71,7 @@ void WaveRing::update(){
      noiseCursor+= 0.1;
   }
   updateWigglyCircleRing();
-
+  DEBUG_MSG(to_string(speed));
   speed = ofNoise(speedNoise)*speed;
 
   pos.set((ofNoise(posNoise.x)*2-1)*pos.x,

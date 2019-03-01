@@ -17,9 +17,9 @@ public:
     void setFadeAmnt(int _fadeAmnt);
     //Variations
     void setRadius(float _radius);
-    void setPos(ofVec3f _pos);
-    void setRot(ofVec3f _rot);
-    void setSpeed(float _speed);
+    void setPosAmp(ofVec3f _posAmp);
+    void setRotAmp(ofVec3f _rotAmp);
+    void setSpeedAmp(float _speedAmp);
     void setColorMode(bool _colMode);
     void setSaturation(int _saturation);
     void setBrightness(int _brightness);

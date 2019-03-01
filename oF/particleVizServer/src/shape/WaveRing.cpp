@@ -53,29 +53,29 @@ void WaveRing::draw(){
   ofEnableBlendMode(OF_BLENDMODE_ADD);
   ofPushMatrix();
     ofTranslate(pos);
-    ofRotateX(rotate.x);
-    ofRotateY(rotate.y);
-    ofRotateZ(rotate.z);
+    ofRotateX(rot.x);
+    ofRotateY(rot.y);
+    ofRotateZ(rot.z);
     fatLine.draw();
   ofPopMatrix();
 }
 
 void WaveRing::update(){
-  DEBUG_MSG(to_string(speed));
   if (cycle -> newLoop()==true){
      noiseCursor+= 0.1;
   }
   updateWigglyCircleRing();
 
-  speed = ofNoise(speedNoise)*speed;
+  float thisNoise =ofNoise(speedNoise);
+  speed = thisNoise*speedAmp;
 
-  pos.set((ofNoise(posNoise.x)*2-1)*pos.x,
-          (ofNoise(posNoise.y)*2-1)*pos.y,
-          (ofNoise(posNoise.z)*2-1)*pos.z);
+  pos.set((ofNoise(posNoise.x)*2-1)*posAmp.x,
+          (ofNoise(posNoise.y)*2-1)*posAmp.y,
+          (ofNoise(posNoise.z)*2-1)*posAmp.z);
 
-  rotate.set((ofNoise(rotNoise.x)*2-1)*rot.x,
-             (ofNoise(rotNoise.y)*2-1)*rot.y,
-             (ofNoise(rotNoise.z)*2-1)*rot.z);
+  rot.set((ofNoise(rotNoise.x)*2-1)*rotAmp.x,
+          (ofNoise(rotNoise.y)*2-1)*rotAmp.y,
+          (ofNoise(rotNoise.z)*2-1)*rotAmp.z);
 
   speedNoise += 0.01;
 
@@ -111,16 +111,16 @@ void WaveRing::setSegments(int _segments){
   segments = _segments;
 }
 
-void WaveRing::setPos(ofVec3f _pos) {
-    pos = _pos;
+void WaveRing::setPosAmp(ofVec3f _posAmp) {
+    posAmp = _posAmp;
 }
 
-void WaveRing::setRot(ofVec3f _rot) {
-    rot = _rot;
+void WaveRing::setRotAmp(ofVec3f _rotAmp) {
+    rotAmp = _rotAmp;
 }
 
-void WaveRing::setSpeed(float _speed) {
-    speed = _speed;
+void WaveRing::setSpeedAmp(float _speedAmp) {
+    speedAmp = _speedAmp;
 }
 
 void WaveRing::setColorMode(bool _colMode) {
