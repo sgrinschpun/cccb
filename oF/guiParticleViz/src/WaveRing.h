@@ -7,34 +7,31 @@
 class WaveRing {
 
   private:
-
-    //shape
     ofxFatLine fatLine;
     vector<ofDefaultVec3> fatLinePoints;
     vector<ofFloatColor> fatLineColors;
     vector<double> fatLineWidths;
-    int segments;
-    float width;
-    float noiseStep;
-    float noiseAmount;
-    float noiseCursor;
-    //variation
-    float radius;
-    ofPoint pos;
-    ofVec3f rotate;
-    float speed;
-    float speed_noise;
-    float speed_amp;
-    ofVec3f pos_noise;
-    ofVec3f pos_amp;
-    ofVec3f rot_noise;
-    ofVec3f rot_amp;
-    int col;
-    float col_speed;
-    bool col_mode;
-    int saturation;
-    int brightness;
-    int alpha;
+    int segments {100};
+    float width {0};
+    float noiseStep {0.0};
+    float noiseAmount{0.0};
+    float noiseCursor {0.1};
+    float radius {0};
+    float speed {0.001};
+    float speedAmp {ofRandom(10)/10000};
+    float speedNoise {ofRandom(10)};
+    ofVec3f pos;
+    ofVec3f posAmp;
+    ofVec3f posNoise{(ofRandom(10), ofRandom(10), ofRandom(10))};
+    ofVec3f rot;
+    ofVec3f rotAmp;
+    ofVec3f rotNoise{(ofRandom(10), ofRandom(10), ofRandom(10))};
+    int col {0};
+    float colSpeed {1};
+    bool colMode {0};
+    int saturation {255};
+    int brightness {255};
+    int alpha {255};
 
     void setupCircleRing();
     void updateWigglyCircleRing();
@@ -53,10 +50,10 @@ class WaveRing {
     void setSegments(int _segments);
     //variation
     void setRadius(float radius);
-    void setPosAmp(ofVec3f pos_amp);
-    void setRotAmp(ofVec3f rot_amp);
-    void setSpeedAmp(float speed_amp);
-    void setColorMode(bool col_mode);
+    void setPosAmp(ofVec3f _posAmp);
+    void setRotAmp(ofVec3f _rotAmp);
+    void setSpeedAmp(float _speedAmp);
+    void setColorMode(bool colMode);
     void setStauration(int saturation);
     void setBrightness(int brightness);
     void setAlpha(int alpha);

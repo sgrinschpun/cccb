@@ -20,7 +20,7 @@ if __name__ == '__main__':
 
     phenomena = Phenomena()
     begin_time = time.time()
-    for i in range(2):
-        print(phenomena.addParticle("W+"))
+    for i in range(1):
+        print(phenomena.addParticle("e-"))
         # time.sleep()
     print("Total time: {0}".format(time.time() - begin_time))

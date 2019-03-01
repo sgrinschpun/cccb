@@ -10,18 +10,18 @@ void ofApp::setup(){
     ofSetVerticalSync(true);
 
     gui.setup();
-    gui.add(shapes_num.set("number of shapes", 1, 1, 100));
+    gui.add(shapesNum.set("number of shapes", 1, 1, 100));
     gui.add(radius.set("radius", ofGetHeight()/4, 1, ofGetHeight()/2));
-    gui.add(pos.set("pos",
+    gui.add(posAmp.set("posAmp",
                     ofVec3f(0),
                     ofVec3f(0),
                     ofVec3f(720, 720, 720)));
-    gui.add(rot.set("rot",
+    gui.add(rotAmp.set("rotAmp",
                     ofVec3f(0),
                     ofVec3f(0),
                     ofVec3f(720, 720, 720)));
-    gui.add(speed.set("speed", 0, 0, 0.1));
-    gui.add(color_mode.set("color mode", 0));
+    gui.add(speedAmp.set("speedAmp", 0, 0, 0.1));
+    gui.add(colMode.set("color mode", 0));
     gui.add(fadeAmnt.set("Fade Amount", 50, 0, 255));
 
     //WaveRing
@@ -47,12 +47,12 @@ void ofApp::update(){
     for (int i = 0; i < shapes.size(); i++) {
         shapes[i].update();
 
-        shapes[i].setShapeNum(shapes_num);
+        shapes[i].setShapeNum(shapesNum);
         shapes[i].setRadius(radius);
-        shapes[i].setPosAmp(pos);
-        shapes[i].setRotAmp(rot);
-        shapes[i].setSpeedAmp(speed);
-        shapes[i].setColorMode(color_mode);
+        shapes[i].setPosAmp(posAmp);
+        shapes[i].setRotAmp(rotAmp);
+        shapes[i].setSpeedAmp(speedAmp);
+        shapes[i].setColorMode(colMode);
         shapes[i].setFadeAmnt(fadeAmnt);
         shapes[i].setNoiseStep(noiseStep);
         shapes[i].setNoiseAmount(noiseAmount);
@@ -89,6 +89,10 @@ void ofApp::keyPressed(int key){
         guidraw = false;
     }
 
+    if (key == 'h') {
+        guidraw = true;
+    }
+
     if (key == 'f') {
       for (int i = 0; i < shapes.size(); i++) {
           shapes[i].GIFstart();
@@ -108,25 +112,25 @@ void ofApp::buildXML(){
   ofxXmlSettings settings;
   settings.addTag("shape");
   settings.pushTag("shape");
-    settings.addValue("shapes_num", shapes_num);
+    settings.addValue("shapesNum", shapesNum);
     settings.addValue("radius", radius);
     settings.addValue("width", width);
     settings.addValue("segments", segments);
-    settings.addValue("speed", speed);
+    settings.addValue("speedAmp", speedAmp);
   settings.popTag();
   settings.addTag("variations");
   settings.pushTag("variations");
-    settings.addTag("pos");
-    settings.pushTag("pos");
-      settings.addValue("x", pos->x);
-      settings.addValue("y", pos->y);
-      settings.addValue("z", pos->z);
+    settings.addTag("posAmp");
+    settings.pushTag("posAmp");
+      settings.addValue("x", posAmp->x);
+      settings.addValue("y", posAmp->y);
+      settings.addValue("z", posAmp->z);
     settings.popTag();
-    settings.addTag("rot");
-    settings.pushTag("rot");
-      settings.addValue("x", rot->x);
-      settings.addValue("y", rot->y);
-      settings.addValue("z", rot->z);
+    settings.addTag("rotAmp");
+    settings.pushTag("rotAmp");
+      settings.addValue("x", rotAmp->x);
+      settings.addValue("y", rotAmp->y);
+      settings.addValue("z", rotAmp->z);
     settings.popTag();
   settings.popTag();
   settings.addTag("wiggle");
@@ -138,7 +142,7 @@ void ofApp::buildXML(){
   settings.addTag("color");
   settings.pushTag("color");
     settings.addValue("fadeAmnt", fadeAmnt);
-    settings.addValue("color_mode", color_mode);
+    settings.addValue("colMode", colMode);
     settings.addValue("saturation", saturation);
     settings.addValue("brightness", brightness);
     settings.addValue("alpha", alpha);
@@ -150,36 +154,36 @@ void ofApp::loadXML(){
   ofxXmlSettings settings;
   if(settings.loadFile("settings.xml")){
     settings.pushTag("shape");
-      shapes_num.set(settings.getValue("shapes_num", 0));
+      shapesNum.set(settings.getValue("shapesNum", 0));
       radius.set(settings.getValue("radius", 0));
       width.set(settings.getValue("width", 0));
       segments.set(settings.getValue("segments", 0));
-      speed.set(settings.getValue("speed", 0.00));
+      speedAmp.set(settings.getValue("speedAmp", 0.00));
     settings.popTag();
     settings.pushTag("variations");
-      settings.pushTag("pos");
+      settings.pushTag("posAmp");
         ofVec3f position;
         position.x = settings.getValue("x", 0);
         position.y = settings.getValue("y", 0);
         position.z = settings.getValue("z", 0);
-        pos.set(position);
+        posAmp.set(position);
       settings.popTag();
-      settings.pushTag("rot");
+      settings.pushTag("rotAmp");
         ofVec3f rotation;
         rotation.x = settings.getValue("x", 0);
         rotation.y = settings.getValue("y", 0);
         rotation.z = settings.getValue("z", 0);
-        rot.set(rotation);
+        rotAmp.set(rotation);
       settings.popTag();
     settings.popTag();
     settings.pushTag("wiggle");
-      framesPerCycle.set(settings.getValue("framesPerCycle", 0));
-      noiseStep.set(settings.getValue("noiseStep", 0));
-      noiseAmount.set(settings.getValue("setNoiseAmount", 0));
+      framesPerCycle.set(settings.getValue("framesPerCycle", 0.00));
+      noiseStep.set(settings.getValue("noiseStep", 0.00));
+      noiseAmount.set(settings.getValue("noiseAmount", 0.00));
       settings.popTag();
     settings.pushTag("color");
     fadeAmnt.set(settings.getValue("fadeAmnt", 0));
-    color_mode.set(settings.getValue("color_mode", 0));
+    colMode.set(settings.getValue("colMode", 0));
     saturation.set(settings.getValue("saturation", 0));
     brightness.set(settings.getValue("brightness", 0));
     alpha.set(settings.getValue("alpha", 0));

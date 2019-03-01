@@ -16,5 +16,5 @@ class AudioVisualManager{
 public:
     AudioVisualManager();
     void update(PhenomenaCMD phenoCMD);
-    void visualize();
+    void draw();
 };

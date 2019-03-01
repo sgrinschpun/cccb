@@ -6,9 +6,6 @@
 #include "WaveRingVariation.h"
 
 WaveRingVariation::WaveRingVariation() {
-    shapes_num = 1;
-    fadeAmnt = 50;
-    framesPerCycle = 50;
     cycle = make_shared<Cycle>(framesPerCycle);
 
     //FBO
@@ -41,11 +38,11 @@ WaveRingVariation::WaveRingVariation() {
 
 void WaveRingVariation::update() {
 
-  while (waverings.size() != shapes_num){
-      if (waverings.size() < shapes_num) {
+  while (waverings.size() != shapesNum){
+      if (waverings.size() < shapesNum) {
           WaveRing wr = WaveRing(cycle);
           waverings.push_back(wr);
-      } else if (waverings.size() > shapes_num) {
+      } else if (waverings.size() > shapesNum) {
           waverings.pop_back();
       }
   }
@@ -114,8 +111,8 @@ void WaveRingVariation::GIFstart() {
     cout << start;
 }
 
-void WaveRingVariation::setShapeNum(int _shapes_num) {
-    shapes_num = _shapes_num;
+void WaveRingVariation::setShapeNum(int _shapesNum) {
+    shapesNum = _shapesNum;
 }
 
 void WaveRingVariation::setFadeAmnt(int _fadeAmnt){
@@ -133,27 +130,27 @@ void WaveRingVariation::setRadius(float _radius) {
   }
 }
 
-void WaveRingVariation::setPosAmp(ofVec3f _pos_amp) {
+void WaveRingVariation::setPosAmp(ofVec3f _posAmp) {
   for(int i=0; i<waverings.size(); i++){
-    waverings[i].setPosAmp(_pos_amp);
+    waverings[i].setPosAmp(_posAmp);
   }
 }
 
-void WaveRingVariation::setRotAmp(ofVec3f _rot_amp) {
+void WaveRingVariation::setRotAmp(ofVec3f _rotAmp) {
   for(int i=0; i<waverings.size(); i++){
-    waverings[i].setRotAmp(_rot_amp);
+    waverings[i].setRotAmp(_rotAmp);
   }
 }
 
-void WaveRingVariation::setSpeedAmp(float _speed_amp) {
+void WaveRingVariation::setSpeedAmp(float _speedAmp) {
   for(int i=0; i<waverings.size(); i++){
-    waverings[i].setSpeedAmp(_speed_amp);
+    waverings[i].setSpeedAmp(_speedAmp);
   }
 }
 
-void WaveRingVariation::setColorMode(bool _col_mode) {
+void WaveRingVariation::setColorMode(bool _colMode) {
   for(int i=0; i<waverings.size(); i++){
-    waverings[i].setColorMode(_col_mode);
+    waverings[i].setColorMode(_colMode);
   }
 }
 
