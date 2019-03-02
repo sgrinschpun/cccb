@@ -12,6 +12,8 @@ edit .bash_profile
 OF_ROOT=~/Documents/of_v0.10.1_osx_release
 ```
 
+ports 12345 - viz
+1680 python server
 
 processes:
 ```

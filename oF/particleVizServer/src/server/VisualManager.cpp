@@ -32,7 +32,7 @@ void VisualManager::updateMap(PhenomenaCMD phenoCMD) {
 
         ofVec3f velocity;
         velocity.set(phenoCMD.getParams().vy,phenoCMD.getParams().vz,phenoCMD.getParams().vx);
-        velocity.scale(phenoCMD.getParams().beta);
+        velocity.scale(3*phenoCMD.getParams().beta);
         DEBUG_MSG("Particle Name " + phenoCMD.getParams().name);
 
         particleMap.insert(make_pair(phenoCMD.getParams().id, make_shared<Particle>(newParticleData,position, velocity)));
