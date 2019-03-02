@@ -58,6 +58,9 @@ class WaveRing {
     void setAlpha(int _alpha);
 
     WaveRing(shared_ptr<Cycle>& cycle);
+    ~WaveRing(){
+      cycle.reset();;
+    }
 
 };
 #endif

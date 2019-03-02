@@ -10,6 +10,7 @@ class Meson: public Model {
 
   public:
     Meson(shared_ptr<ParticleData>& _particleData);
+    ~Meson(){}
 
 };
 #endif

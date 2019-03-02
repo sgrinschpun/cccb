@@ -8,6 +8,12 @@ class WaveRingVariation {
 
 public:
     WaveRingVariation();
+
+    ~WaveRingVariation(){
+      cycle.reset();
+      rgbaFbo.clear();
+    }
+
     void update();
     void draw();
 
@@ -39,7 +45,12 @@ private:
   float radius;
   int shapesNum {1};
   int framesPerCycle{50};
-
   int fadeAmnt{50};
+
+  float fboWidth;
+  float fboHeight;
+  ofFbo rgbaFbo;
+  void setupFbo();
+  void drawFbo();
 };
 #endif

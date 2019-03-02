@@ -10,6 +10,7 @@ class Quark: public Model {
 
   public:
     Quark(shared_ptr<ParticleData>& _particleData);
+    ~Quark(){}
 
 };
 #endif

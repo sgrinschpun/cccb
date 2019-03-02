@@ -6,7 +6,24 @@
 #include "WaveRingVariation.h"
 
 WaveRingVariation::WaveRingVariation() {
+  setupFbo();
+}
 
+void WaveRingVariation::setupFbo() {
+  fboWidth=ofGetWidth();
+  fboHeight=ofGetHeight();
+
+  ofFboSettings s;
+  s.width = fboWidth;
+  s.height = fboHeight;
+  s.internalformat = GL_RGBA;
+  //s.useStencil = true;
+  //s.numSamples = 2;
+  rgbaFbo.allocate(s);
+
+  rgbaFbo.begin();
+  ofClear(0,0,0,0);
+  rgbaFbo.end();
 }
 
 void WaveRingVariation::setPosition(ofPoint _position){
@@ -19,14 +36,18 @@ void WaveRingVariation::update() {
     waverings[i].update();
   }
 
+  rgbaFbo.begin();
+  ofEnableAlphaBlending();
+  drawFbo();
+  //ofClearAlpha();
+  ofDisableAlphaBlending();
+  rgbaFbo.end();
+
 }
 
-void WaveRingVariation::draw() {
-
-
+void WaveRingVariation::drawFbo() {
   ofEnableBlendMode(OF_BLENDMODE_ADD);
   ofPushMatrix();
-  //ofTranslate(fboWidth/2, fboHeight/2);
   ofTranslate(position.x, position.y);
   for(int i=0; i<waverings.size(); i++){
     waverings[i].draw();
@@ -37,9 +58,14 @@ void WaveRingVariation::draw() {
   ofFill();
   ofSetColor(0,0,0, fadeAmnt);
   ofDrawRectangle(0,0,ofGetWidth(),ofGetHeight());
+}
 
-
-
+void WaveRingVariation::draw() {
+  glEnable(GL_BLEND);
+  glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+  rgbaFbo.draw(0,0);
+  ofPopMatrix();
+  glDisable(GL_BLEND);
 }
 
 void WaveRingVariation::setShapeNum(int _shapesNum) {
