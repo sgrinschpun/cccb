@@ -10,12 +10,12 @@ Particle::Particle(shared_ptr<ParticleData>& _data): data(_data){
   position.set(ofGetWidth()/2, ofGetHeight()/2,0);
   ofVec3f velocity;
   velocity.set(0,0,0);
-  kinematics = make_shared<Kinematics>(position, velocity);
+  kinematics = make_unique<Kinematics>(position, velocity);
   buildModel();
 }
 
 Particle::Particle(shared_ptr<ParticleData>& _data, ofPoint _position, ofVec3f _velocity): data(_data){
-  kinematics = make_shared<Kinematics>(_position, _velocity);
+  kinematics = make_unique<Kinematics>(_position, _velocity);
   buildModel();
 }
 
@@ -27,15 +27,15 @@ void Particle::buildModel(){
 
     if (type == "lepton"){
       auto it = find(begin(neutrinos), end(neutrinos), name);
-      if (it != end(neutrinos)) {model = make_shared<Neutrino>(data);}
-      else {model = make_shared<Lepton>(data);}
+      if (it != end(neutrinos)) {model = make_unique<Neutrino>(data);}
+      else {model = make_unique<Lepton>(data);}
     }
     else if (type == "boson") {
-      model = make_shared<Boson>(data);
+      model = make_unique<Boson>(data);
     }
-    else if (type == "meson") {model = make_shared<Meson>(data);}
-    else if (type == "baryon"){model = make_shared<Baryon>(data);}
-    else if (type == "quark") {model = make_shared<Quark>(data);}
+    else if (type == "meson") {model = make_unique<Meson>(data);}
+    else if (type == "baryon"){model = make_unique<Baryon>(data);}
+    else if (type == "quark") {model = make_unique<Quark>(data);}
   }
 
 
