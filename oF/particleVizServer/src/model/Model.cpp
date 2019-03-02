@@ -22,11 +22,11 @@ map <string, string> Model::setXMLSettingsNames(){
   return m;
 }
 
-map <string, shared_ptr<ofxXmlSettings> > Model::xmlSettings = setXMLsettings();
-map <string, shared_ptr<ofxXmlSettings> > Model::setXMLsettings(){
-  map <string, shared_ptr<ofxXmlSettings> > m;
+map <string, unique_ptr<ofxXmlSettings> > Model::xmlSettings = setXMLsettings();
+map <string, unique_ptr<ofxXmlSettings> > Model::setXMLsettings(){
+  map <string, unique_ptr<ofxXmlSettings> > m;
   for (map <string, string> ::iterator xmlSettingsNamesIt = xmlSettingsNames.begin(); xmlSettingsNamesIt != xmlSettingsNames.end(); xmlSettingsNamesIt++){
-    m.insert(make_pair(xmlSettingsNamesIt->first, make_shared<ofxXmlSettings>(xmlSettingsNamesIt->second)));
+    m.insert(make_pair(xmlSettingsNamesIt->first, make_unique<ofxXmlSettings>(xmlSettingsNamesIt->second)));
   }
   return m;
 }
@@ -36,9 +36,9 @@ Model::Model(shared_ptr<ParticleData>& _data): data(_data){
 }
 
 void Model::buildParameters(){
-  map <string, shared_ptr<ofxXmlSettings> > ::iterator xmlSettingsIt = xmlSettings.find(xmlSettingsName);
+  map <string, unique_ptr<ofxXmlSettings> > ::iterator xmlSettingsIt = xmlSettings.find(xmlSettingsName);
   if (xmlSettingsIt != xmlSettings.end()) {
-    shared_ptr<ofxXmlSettings>& settings = xmlSettingsIt->second;
+    unique_ptr<ofxXmlSettings>& settings = xmlSettingsIt->second;
     settings->pushTag("shape");
       shapesNum = settings->getValue("shapesNum", 0);
       radius = settings->getValue("radius", 0);
@@ -85,7 +85,7 @@ void Model::buildParameters(){
 
 
 void Model::setShape(){
-    shape = make_shared<WaveRingVariation>();
+    shape = make_unique<WaveRingVariation>();
 
     shape -> setCycle(framesPerCycle);
     shape -> setShapeNum(shapesNum);

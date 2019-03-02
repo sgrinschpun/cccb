@@ -14,8 +14,8 @@
 class Particle {
   private:
   shared_ptr<ParticleData> data;
-  shared_ptr<Model> model;
-  shared_ptr<Kinematics> kinematics;
+  unique_ptr<Model> model;
+  unique_ptr<Kinematics> kinematics;
 
   void buildModel();
 
