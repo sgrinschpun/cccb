@@ -4,9 +4,9 @@
 void ofApp::setup(){
   ofSetWindowTitle("Univers Quàntic @ cccB");
   ofBackground(0);
-  ofSetFrameRate(60);
+  ofSetFrameRate(30);
   ofSetVerticalSync(true);
-  ofSetCircleResolution(256);
+    ofSetCircleResolution(100);
 
   ofLog() << "listening for osc messages on port " << PORT;
   avServer.setup(PORT);

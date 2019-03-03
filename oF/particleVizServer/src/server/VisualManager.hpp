@@ -30,15 +30,4 @@ public:
   float fboHeight;
   void setupFbo();
   void drawFbo();
-
-  vector<ofPixels> pixs;
-  ofPixels pixels;
-  void setupPixs();
-  ofImage img;
-
-
-
-  //fbo.readPixels(pix[loopCount].getPixelsRef());
-  //image.setFromPixels(pix[loopCount].getPixelsRef());
-
 };

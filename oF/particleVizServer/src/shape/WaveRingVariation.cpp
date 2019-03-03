@@ -30,11 +30,6 @@ void WaveRingVariation::draw() {
     waverings[i]->draw();
   }
   ofPopMatrix();
-
-  ofEnableBlendMode(OF_BLENDMODE_ALPHA);
-  ofFill();
-  ofSetColor(0,0,0, fadeAmnt);
-  ofDrawRectangle(0,0,ofGetWidth(),ofGetHeight());
 }
 
 void WaveRingVariation::setShapeNum(int _shapesNum) {

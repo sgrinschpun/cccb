@@ -70,35 +70,33 @@ void VisualManager::setupFbo(){
   ofClear(0,0,0,0);
   rgbaFbo.end();
 
-  pixels.allocate(fboWidth,fboHeight,OF_IMAGE_COLOR_ALPHA);
-  img.allocate(fboWidth,fboHeight,OF_IMAGE_COLOR_ALPHA);
+}
 
+void VisualManager::drawFbo(){
+  rgbaFbo.begin();
+    ofEnableAlphaBlending();
+    for(auto pair:particleMap) {
+      pair.second->draw();
+    }
+    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+    ofFill();
+    ofSetColor(0,0,0, 30);
+    ofDrawRectangle(0,0,ofGetWidth(),ofGetHeight());
+    ofDisableAlphaBlending();
+  rgbaFbo.end();
 }
 
 void VisualManager::update(){
     for(auto pair:particleMap) {
       pair.second->update();
     }
+    drawFbo();
 }
 
 void VisualManager::draw(){
-  for(auto pair:particleMap) {
-    rgbaFbo.begin();
-    ofEnableAlphaBlending();
-    pair.second->draw();
-    ofDisableAlphaBlending();
-    rgbaFbo.end();
-
-    rgbaFbo.readToPixels(pixels);
-    img.setFromPixels(pixels.getData(),fboWidth,fboHeight,OF_IMAGE_COLOR_ALPHA);
-    pixels.clear();
-
-  }
-  img.update();
   glEnable(GL_BLEND);
   glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-  img.draw(0,0);
-  img.clear();
+  rgbaFbo.draw(0,0);
   glDisable(GL_BLEND);
 
 }
