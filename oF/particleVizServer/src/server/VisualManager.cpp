@@ -80,7 +80,7 @@ void VisualManager::drawFbo(){
     }
     ofEnableBlendMode(OF_BLENDMODE_ALPHA);
     ofFill();
-    ofSetColor(0,0,0, 30);
+    ofSetColor(0,0,0, 10);
     ofDrawRectangle(0,0,ofGetWidth(),ofGetHeight());
     ofDisableAlphaBlending();
   rgbaFbo.end();
