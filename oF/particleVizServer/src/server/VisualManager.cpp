@@ -98,7 +98,7 @@ void VisualManager::draw(){
   glEnable(GL_BLEND);
   glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
   img.draw(0,0);
-  //img.clear();
+  img.clear();
   glDisable(GL_BLEND);
 
 }
