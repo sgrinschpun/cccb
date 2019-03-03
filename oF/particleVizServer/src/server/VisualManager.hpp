@@ -25,4 +25,19 @@ public:
   void update();
   void draw();
 
+  ofFbo rgbaFbo;
+  float fboWidth;
+  float fboHeight;
+  void setupFbo();
+  void drawFbo();
+
+  vector<ofPixels> pixs;
+  void setupPixs();
+  ofImage img;
+
+
+
+  //fbo.readPixels(pix[loopCount].getPixelsRef());
+  //image.setFromPixels(pix[loopCount].getPixelsRef());
+
 };

@@ -11,7 +11,6 @@ public:
 
     ~WaveRingVariation(){
       cycle.reset();
-      rgbaFbo.clear();
     }
 
     void update();
@@ -40,17 +39,12 @@ public:
     shared_ptr<Cycle> cycle;
 
 private:
-  vector<WaveRing> waverings;
+  vector<unique_ptr<WaveRing>> waverings;
   ofPoint position;
   float radius;
   int shapesNum {1};
   int framesPerCycle{50};
   int fadeAmnt{50};
 
-  float fboWidth;
-  float fboHeight;
-  ofFbo rgbaFbo;
-  void setupFbo();
-  void drawFbo();
 };
 #endif

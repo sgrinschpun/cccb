@@ -10,8 +10,9 @@ void ofApp::setup(){
 
   ofLog() << "listening for osc messages on port " << PORT;
   avServer.setup(PORT);
-
 }
+
+
 
 
 //--------------------------------------------------------------

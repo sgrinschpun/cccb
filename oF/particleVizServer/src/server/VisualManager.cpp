@@ -6,7 +6,10 @@
 
 #include "VisualManager.hpp"
 #include "ParticleData.h"
-VisualManager::VisualManager(){}
+
+VisualManager::VisualManager(){
+  setupFbo();
+}
 
 void VisualManager::updateMap(PhenomenaCMD phenoCMD) {
     if (phenoCMD.getCMD() == "ADD"){
@@ -51,15 +54,78 @@ void VisualManager::updateMap(PhenomenaCMD phenoCMD) {
     cout << "VisualManager Hashmap size is: " << particleMap.size() << endl;
 }
 
+void VisualManager::setupFbo(){
+  fboWidth=ofGetWidth();
+  fboHeight=ofGetHeight();
+
+  ofFboSettings s;
+  s.width = fboWidth;
+  s.height = fboHeight;
+  s.internalformat = GL_RGBA;
+  //s.useStencil = true;
+  //s.numSamples = 2;
+  rgbaFbo.allocate(s);
+
+  rgbaFbo.begin();
+  ofClear(0,0,0,0);
+  rgbaFbo.end();
+}
+
+void VisualManager::setupPixs(){
+
+  while (pixs.size() != particleMap.size()){
+      if (pixs.size() < particleMap.size()) {
+          pixs.push_back(ofPixels());
+      } else if (pixs.size() > particleMap.size()) {
+          pixs.pop_back();
+      }
+  }
+
+  for(int i=0; i<pixs.size(); i++){
+    if(!pixs[i].isAllocated()){
+      pixs[i].allocate(fboWidth,fboHeight,OF_IMAGE_COLOR_ALPHA);
+    }
+  }
+}
+
 void VisualManager::update(){
+    setupPixs();
+
+    DEBUG_MSG("Map Size: "+ to_string(particleMap.size()));
+    DEBUG_MSG("Pixs Size: "+ to_string(pixs.size()));
+
+    int loopCount = 0;
     for(auto pair:particleMap) {
-        pair.second->update();
+      //update the particle
+      pair.second->update();
+
+      //draw particle in fbo
+      rgbaFbo.begin();
+      ofEnableAlphaBlending();
+      pair.second->draw();
+      ofDisableAlphaBlending();
+      rgbaFbo.end();
+
+      rgbaFbo.readToPixels(pixs[loopCount]);
+
+      loopCount ++;
     }
 }
 
 void VisualManager::draw(){
-    for(auto pair:particleMap) {
-        pair.second->draw();
+
+    for(int i=0; i<pixs.size(); i++){
+      img.setFromPixels(pixs[i].getData(),fboWidth,fboHeight,OF_IMAGE_COLOR_ALPHA);
+      pixs[i].clear();
+      img.update();
     }
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+    img.draw(0,0);
+    glDisable(GL_BLEND);
+    img.clear();
+
+    //rgbaFbo.clear();
 
 }
