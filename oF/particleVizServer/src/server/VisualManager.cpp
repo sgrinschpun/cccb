@@ -44,7 +44,7 @@ void VisualManager::updateMap(PhenomenaCMD phenoCMD) {
 
         ofVec3f velocity;
         velocity.set(phenoCMD.getParams().vy,phenoCMD.getParams().vz,phenoCMD.getParams().vx);
-        velocity.scale(3*phenoCMD.getParams().beta);
+        velocity.scale(2*phenoCMD.getParams().beta);
         DEBUG_MSG("Particle Name " + phenoCMD.getParams().name);
 
         particleMap.insert(make_pair(phenoCMD.getParams().id, make_shared<Particle>(newParticleData,position, velocity)));
@@ -71,8 +71,10 @@ void VisualManager::setupFbo(){
   s.width = fboWidth;
   s.height = fboHeight;
   s.internalformat = GL_RGBA32F_ARB; //GL_RGBA;
-  //s.useStencil = true;
-  //s.numSamples = 2;
+  s.wrapModeHorizontal = GL_REPEAT; //
+  s.wrapModeVertical = GL_REPEAT;
+  s.useStencil = true;
+  s.numSamples = 2;
   rgbaFbo.allocate(s);
 
   rgbaFbo.begin();
@@ -95,7 +97,6 @@ void VisualManager::drawFbo(){
     ofFill();
     ofSetColor(0,0,0, 10);
     ofDrawRectangle(0,0,ofGetWidth(),ofGetHeight());
-    ofSetColor(200,100,255);
     ofDisableAlphaBlending();
 
   rgbaFbo.end();
