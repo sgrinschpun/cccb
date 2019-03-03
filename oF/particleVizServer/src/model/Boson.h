@@ -10,6 +10,7 @@ class Boson: public Model {
 
   public:
     Boson(shared_ptr<ParticleData>& _particleData);
+    ~Boson(){}
 
 };
 #endif

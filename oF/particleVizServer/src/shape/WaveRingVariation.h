@@ -8,10 +8,13 @@ class WaveRingVariation {
 
 public:
     WaveRingVariation();
+
+    ~WaveRingVariation(){
+      cycle.reset();
+    }
+
     void update();
     void draw();
-
-    void setPosition(ofPoint _position);
 
     void setShapeNum(int _shapesNum);
     void setFadeAmnt(int _fadeAmnt);
@@ -33,18 +36,12 @@ public:
 
     shared_ptr<Cycle> cycle;
 
-    float fboWidth;
-    float fboHeight;
-
 private:
-  vector<WaveRing> waverings;
-  ofPoint position;
+  vector<unique_ptr<WaveRing>> waverings;
   float radius;
   int shapesNum {1};
   int framesPerCycle{50};
-
-  ofFbo rgbaFbo;
   int fadeAmnt{50};
-  void drawFbo();
+
 };
 #endif

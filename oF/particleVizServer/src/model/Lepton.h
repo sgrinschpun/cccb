@@ -16,6 +16,7 @@ class Lepton: public Model {
 
   public:
     Lepton(shared_ptr<ParticleData>& _particleData);
+    ~Lepton(){}
 
 
 

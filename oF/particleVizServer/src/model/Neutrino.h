@@ -10,6 +10,7 @@ class Neutrino: public Model {
 
   public:
     Neutrino(shared_ptr<ParticleData>& _particleData);
+    ~Neutrino(){}
 
 };
 #endif

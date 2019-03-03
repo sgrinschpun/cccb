@@ -11,6 +11,7 @@ AudioVisualManager::AudioVisualManager(){}
 
 void AudioVisualManager::update(PhenomenaCMD phenoCMD){
     vManager.updateMap(phenoCMD);
+
 }
 
 void AudioVisualManager::draw(){

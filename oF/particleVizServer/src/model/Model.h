@@ -11,8 +11,8 @@ class Model {
     static map <string, string> xmlSettingsNames;
     static map <string, string> setXMLSettingsNames();
 
-    static map <string, shared_ptr<ofxXmlSettings> > xmlSettings;
-    static map <string, shared_ptr<ofxXmlSettings> > setXMLsettings();
+    static map <string, unique_ptr<ofxXmlSettings> > xmlSettings;
+    static map <string, unique_ptr<ofxXmlSettings> > setXMLsettings();
 
   public:
     virtual void setXMLSettingsName() = 0;
@@ -20,7 +20,7 @@ class Model {
     virtual void specificParameters() = 0;
     void setShape();
 
-    shared_ptr<WaveRingVariation> shape;
+    unique_ptr<WaveRingVariation> shape;
     shared_ptr<ParticleData> data;
 
     string xmlSettingsName;
@@ -44,9 +44,11 @@ class Model {
     void draw();
     void update();
 
-    void setPosition(ofPoint _position);
-
     Model(shared_ptr<ParticleData>& _particleData);
+    virtual ~Model(){
+      shape.reset();
+      data.reset();
+    }
 
 };
 #endif
