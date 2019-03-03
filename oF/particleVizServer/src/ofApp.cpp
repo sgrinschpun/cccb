@@ -4,43 +4,26 @@
 void ofApp::setup(){
   ofSetWindowTitle("Univers Quàntic @ cccB");
   ofBackground(0);
-  ofSetFrameRate(60);
+  ofSetFrameRate(30);
   ofSetVerticalSync(true);
-  ofSetCircleResolution(256);
+    ofSetCircleResolution(100);
 
   ofLog() << "listening for osc messages on port " << PORT;
   avServer.setup(PORT);
-
-  setupFbo();
 }
 
-void ofApp::setupFbo(){
-  ofFboSettings s;
-  s.width = ofGetWidth();
-  s.height = ofGetHeight();
-  s.internalformat = GL_RGBA;
-  s.useStencil = true;
-  s.numSamples = 2;
-  rgbaFbo.allocate(s);
 
-  rgbaFbo.begin();
-  ofClear(255,255,255, 0);
-  rgbaFbo.end();
-}
+
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    avServer.update();
+  avServer.update();
 
-    rgbaFbo.begin();
-    avServer.draw();
-    ofClearAlpha();
-    rgbaFbo.end();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-  rgbaFbo.draw(0,0);
+  avServer.draw();
 }
 
 //--------------------------------------------------------------

@@ -25,4 +25,9 @@ public:
   void update();
   void draw();
 
+  ofFbo rgbaFbo;
+  float fboWidth;
+  float fboHeight;
+  void setupFbo();
+  void drawFbo();
 };

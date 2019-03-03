@@ -47,6 +47,10 @@ class Model {
     void setPosition(ofPoint _position);
 
     Model(shared_ptr<ParticleData>& _particleData);
+    virtual ~Model(){
+      shape.reset();
+      data.reset();
+    }
 
 };
 #endif

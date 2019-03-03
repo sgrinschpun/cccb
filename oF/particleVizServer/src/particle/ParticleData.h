@@ -22,7 +22,6 @@ class ParticleData {
     float getEnergy();
 
     ParticleData(int _id, int _parent, string _name, float _mass, float _charge, string _type, float _energy);
-
     ~ParticleData() {}
 
 };

@@ -10,6 +10,7 @@ class Baryon: public Model {
 
   public:
     Baryon(shared_ptr<ParticleData>& _particleData);
+    ~Baryon(){}
 
 };
 #endif

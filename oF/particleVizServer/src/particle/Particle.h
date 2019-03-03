@@ -25,9 +25,13 @@ class Particle {
 
   ofPoint getPosition();
 
-  //constructor
   Particle(shared_ptr<ParticleData>& _data);
   Particle(shared_ptr<ParticleData>& _data, ofPoint _position, ofVec3f _velocity);
+  ~Particle() {
+    kinematics.reset();
+    model.reset();
+    data.reset();
+  }
 
 };
 #endif
