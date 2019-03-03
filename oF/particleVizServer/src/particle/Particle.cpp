@@ -5,6 +5,7 @@
 #endif
 #include "Particle.h"
 
+
 Particle::Particle(shared_ptr<ParticleData>& _data): data(_data){
   ofPoint position;
   position.set(ofGetWidth()/2, ofGetHeight()/2,0);
@@ -38,18 +39,21 @@ void Particle::buildModel(){
     else if (type == "quark") {model = make_unique<Quark>(data);}
   }
 
-
-
 void Particle::draw(){
+
   model->draw();
+
 }
 
 void Particle::update(){
   kinematics->update();
-  model->setPosition(kinematics->getPosition());
   model->update();
 }
 
 ofPoint Particle::getPosition(){
   return kinematics->getPosition();
+}
+
+string Particle::getName(){
+  return data->getName();
 }

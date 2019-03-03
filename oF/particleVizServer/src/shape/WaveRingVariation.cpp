@@ -9,11 +9,6 @@ WaveRingVariation::WaveRingVariation() {
 
 }
 
-
-void WaveRingVariation::setPosition(ofPoint _position){
-  position = _position;
-}
-
 void WaveRingVariation::update() {
 
   for(int i=0; i<waverings.size(); i++){
@@ -24,12 +19,9 @@ void WaveRingVariation::update() {
 
 void WaveRingVariation::draw() {
   ofEnableBlendMode(OF_BLENDMODE_ADD);
-  ofPushMatrix();
-  ofTranslate(position.x, position.y);
   for(int i=0; i<waverings.size(); i++){
     waverings[i]->draw();
   }
-  ofPopMatrix();
 }
 
 void WaveRingVariation::setShapeNum(int _shapesNum) {

@@ -9,6 +9,15 @@
 
 VisualManager::VisualManager(){
   setupFbo();
+  setupFont();
+}
+
+ofTrueTypeFont VisualManager::myFont;
+
+void VisualManager::setupFont(){
+  if (!myFont.isLoaded()){
+    myFont.load("Lato-Regular.ttf",15);
+  }
 }
 
 void VisualManager::updateMap(PhenomenaCMD phenoCMD) {
@@ -61,7 +70,7 @@ void VisualManager::setupFbo(){
   ofFboSettings s;
   s.width = fboWidth;
   s.height = fboHeight;
-  s.internalformat = GL_RGBA;
+  s.internalformat = GL_RGBA32F_ARB; //GL_RGBA;
   //s.useStencil = true;
   //s.numSamples = 2;
   rgbaFbo.allocate(s);
@@ -76,13 +85,19 @@ void VisualManager::drawFbo(){
   rgbaFbo.begin();
     ofEnableAlphaBlending();
     for(auto pair:particleMap) {
+      ofPoint position = pair.second->getPosition();
+      ofPushMatrix();
+      ofTranslate(position.x, position.y);
       pair.second->draw();
+      ofPopMatrix();
     }
     ofEnableBlendMode(OF_BLENDMODE_ALPHA);
     ofFill();
     ofSetColor(0,0,0, 10);
     ofDrawRectangle(0,0,ofGetWidth(),ofGetHeight());
+    ofSetColor(200,100,255);
     ofDisableAlphaBlending();
+
   rgbaFbo.end();
 }
 
