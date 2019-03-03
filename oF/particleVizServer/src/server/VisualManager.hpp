@@ -32,6 +32,7 @@ public:
   void drawFbo();
 
   vector<ofPixels> pixs;
+  ofPixels pixels;
   void setupPixs();
   ofImage img;
 
