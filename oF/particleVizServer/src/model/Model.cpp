@@ -111,7 +111,3 @@ void Model::draw(){
 void Model::update(){
     shape->update();
 }
-
-void Model::setPosition(ofPoint _position){
-  shape->setPosition(_position);
-}

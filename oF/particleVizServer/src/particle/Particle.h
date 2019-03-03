@@ -16,14 +16,15 @@ class Particle {
   shared_ptr<ParticleData> data;
   unique_ptr<Model> model;
   unique_ptr<Kinematics> kinematics;
-
   void buildModel();
 
   public:
+
   void update();
   void draw();
 
   ofPoint getPosition();
+  string getName();
 
   Particle(shared_ptr<ParticleData>& _data);
   Particle(shared_ptr<ParticleData>& _data, ofPoint _position, ofVec3f _velocity);
