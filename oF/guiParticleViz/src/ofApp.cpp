@@ -39,7 +39,86 @@ void ofApp::setup(){
     WaveRingVariation wrv;
     shapes.push_back(wrv);
 
+    setupFbo();
+
+    gifEncoder = make_shared<ofxGifEncoder>();
+    gifEncoder -> setup(ofGetWidth(), ofGetHeight(), 0.25f, 256);
+    //gifEncoder -> setDitherMode(OFX_GIF_DITHER_BAYER4x4);
+
+    middle.set(fboWidth/2,fboHeight/2);
+
 }
+
+void ofApp::setupFbo(){
+  fboWidth=ofGetWidth();
+  fboHeight=ofGetHeight();
+
+  ofFboSettings s;
+  s.width = fboWidth;
+  s.height = fboHeight;
+  s.internalformat = GL_RGBA32F_ARB; //GL_RGBA;
+  s.wrapModeHorizontal = GL_REPEAT; //
+  s.wrapModeVertical = GL_REPEAT;
+  s.useStencil = true;
+  s.numSamples = 2;
+  rgbaFbo.allocate(s);
+
+  rgbaFbo.begin();
+  ofClear(0,0,0,0);
+  ofClearAlpha();
+  rgbaFbo.end();
+
+}
+
+void ofApp::drawFboMove(){
+  rgbaFbo.begin();
+    ofEnableAlphaBlending();
+    for (int i = 0; i < shapes.size(); i++) {
+      ofPoint position = shapes[i].getPosition();
+      ofPushMatrix();
+      ofTranslate(position.x, position.y);
+      shapes[i].draw();
+      ofPopMatrix();
+    }
+    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+    ofFill();
+    ofSetColor(0,0,0, 10);
+    ofDrawRectangle(0,0,ofGetWidth(),ofGetHeight());
+    ofDisableAlphaBlending();
+
+    ofClearAlpha();
+  rgbaFbo.end();
+}
+
+void ofApp::drawFboStatic(){
+  rgbaFbo.begin();
+    ofEnableAlphaBlending();
+    ofPushMatrix();
+    ofTranslate(middle.x, middle.y);
+    for (int i = 0; i < shapes.size(); i++) {
+      shapes[i].draw();
+    }
+    ofPopMatrix();
+    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+    ofFill();
+    ofSetColor(0,0,0, 10);
+    ofDrawRectangle(0,0,ofGetWidth(),ofGetHeight());
+    ofDisableAlphaBlending();
+    ofClearAlpha();
+  rgbaFbo.end();
+}
+
+void ofApp::drawFbo(){
+  if (move){
+    drawFboMove();
+  }
+  else {
+    drawFboStatic();
+  }
+
+}
+
+
 
 //--------------------------------------------------------------
 void ofApp::update(){
@@ -64,25 +143,61 @@ void ofApp::update(){
         shapes[i].setBrightness(brightness);
         shapes[i].setAlpha(alpha);
     }
+
+    drawFbo();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    for (int i = 0; i < shapes.size(); i++) {
-        shapes[i].draw();
-    }
+  glEnable(GL_BLEND);
+  glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+  rgbaFbo.draw(0,0);
+  glDisable(GL_BLEND);
 
-    if(guidraw) {
-        gui.draw();
-    }
+  if (start==true){
+    getGIF();
+  }
+
+  if(guidraw) {
+      gui.draw();
+  }
+
+}
+
+
+void ofApp::screenCapture() {
+  ofPixels pixels;
+  rgbaFbo.readToPixels(pixels);
+  img.setFromPixels(pixels);
+  img.save("pic" + ofToString(imgcount) + ".png", OF_IMAGE_QUALITY_BEST);
+  imgcount++;
+}
+
+void ofApp::getGIF() {
+
+  if(framesCurr < framesTotal) {
+      rgbaFbo.readToPixels(pixels);
+      imgforgif.setFromPixels(pixels);
+      gifEncoder -> addFrame(imgforgif, 0.033f);
+  }
+
+  if(framesCurr == framesTotal) {
+      gifEncoder -> save("test.gif");
+      imgforgif.clear();
+      start = false;
+  }
+  framesCurr++;
+}
+
+void ofApp::GIFstart() {
+    start = true;
+    cout << start;
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-    if(key == 's'){
-      for (int i = 0; i < shapes.size(); i++) {
-          shapes[i].screenCapture();
-      }
+    if(key == 'c'){
+      screenCapture();
     }
 
     if (key == 'g') {
@@ -94,17 +209,23 @@ void ofApp::keyPressed(int key){
     }
 
     if (key == 'f') {
-      for (int i = 0; i < shapes.size(); i++) {
-          shapes[i].GIFstart();
-      }
+      GIFstart();
     }
 
     if (key == 'x') {
-        buildXML();
+      buildXML();
     }
 
     if (key == 'l') {
-        loadXML();
+      loadXML();
+    }
+
+    if (key == 'm') {
+      move = true;
+    }
+
+    if (key == 's') {
+      move = false;
     }
 }
 

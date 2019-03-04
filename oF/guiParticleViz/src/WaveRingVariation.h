@@ -3,6 +3,7 @@
 #include "WaveRing.h"
 #include "Cycle.h"
 #include "ofxGifEncoder.h"
+#include "Kinematics.h"
 
 class WaveRingVariation {
 
@@ -30,32 +31,12 @@ public:
     void setSegments(int segments);
 
     shared_ptr<Cycle> cycle;
-
-    //Gif
-    shared_ptr<ofxGifEncoder> gifEncoder;
-    ofPixels pixels;
-    ofImage imgforgif;
-    int framesTotal {60};
-    int framesCurr {0};
-    bool start {false};
-    void getGIF();
-    void GIFstart();
-
-    //screenCapture
-    void screenCapture();
-    int imgcount {0};
-    ofImage img;
-
-    //bigfile
-    float fboWidth;
-    float fboHeight;
+    shared_ptr<Kinematics> kinematics;
+    ofPoint getPosition();
 
 private:
     vector<WaveRing> waverings;
     int shapesNum {10};
     int fadeAmnt {50};
     int framesPerCycle {50};
-
-    ofFbo rgbaFbo;
-    void drawFbo();
 };
