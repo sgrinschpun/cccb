@@ -34,7 +34,7 @@ float Kinematics::getDistance(){
 }
 
 void Kinematics::update(){
-  checkEdges();
+  //checkEdges();
   velocity+=acceleration;
   velocity.limit(topSpeed);
   position+=velocity;

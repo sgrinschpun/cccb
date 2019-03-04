@@ -6,7 +6,16 @@
 #include "WaveRing.h"
 
 WaveRing::WaveRing(shared_ptr<Cycle>& cycle):cycle(cycle){
-  DEBUG_MSG(to_string(speed));
+  speedNoise = ofRandom(10);
+  speedAmp = ofRandom(10)/10000;
+  pos.set(0, 0, 0);
+  posNoise.set(ofRandom(10), ofRandom(10), ofRandom(10));
+  posAmp.set(0, 0, 0);
+  rot.set(0, 0, 0);
+  rotNoise.set(ofRandom(10), ofRandom(10), ofRandom(10));
+  rotAmp.set(0, 0, 0);
+  col = ofRandom(255);
+
   setupCircleRing();
 }
 
@@ -72,8 +81,7 @@ void WaveRing::update(){
   }
   updateWigglyCircleRing();
 
-  float thisNoise =ofNoise(speedNoise);
-  speed = thisNoise*speedAmp;
+  speed = ofNoise(speedNoise)*speedAmp;
 
   pos.set((ofNoise(posNoise.x)*2-1)*posAmp.x,
           (ofNoise(posNoise.y)*2-1)*posAmp.y,

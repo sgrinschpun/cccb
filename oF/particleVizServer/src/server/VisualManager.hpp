@@ -26,4 +26,12 @@ public:
   void purge();
   void draw();
 
+  static ofTrueTypeFont myFont;
+  void setupFont();
+
+  ofFbo rgbaFbo;
+  float fboWidth;
+  float fboHeight;
+  void setupFbo();
+  void drawFbo();
 };
