@@ -52,5 +52,32 @@ public:
 
     vector<WaveRingVariation> shapes;
 
+    //Fbo
+    ofFbo rgbaFbo;
+    void setupFbo();
+    void drawFbo();
+    float fboWidth;
+    float fboHeight;
+
+    //moviment?
+    bool move {false};
+    ofPoint middle;
+    void drawFboMove();
+    void drawFboStatic();
+
+    //Gif
+    shared_ptr<ofxGifEncoder> gifEncoder;
+    ofPixels pixels;
+    ofImage imgforgif;
+    int framesTotal {60};
+    int framesCurr {0};
+    bool start {false};
+    void getGIF();
+    void GIFstart();
+
+    //screenCapture
+    void screenCapture();
+    int imgcount {0};
+    ofImage img;
 
 };
