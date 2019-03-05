@@ -2,11 +2,11 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    ofSetWindowTitle("guiParticleViz");
+    ofSetWindowTitle("guiParticleVizMesh");
     ofBackground(0);
     ofSetFrameRate(60);
     //ofSetBackgroundAuto(false);
-    ofSetCircleResolution(256);
+    ofSetCircleResolution(100);
     ofSetVerticalSync(true);
 
     gui.setup();
