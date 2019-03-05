@@ -1,7 +1,6 @@
 #ifndef _WaveRing //
 #define _WaveRing //
 #include "ofMain.h"
-#include "ofxFatLine.h"
 #include "Cycle.h"
 
 class WaveRing {
