@@ -6,7 +6,6 @@
 class WaveRing {
 
   private:
-
     ofMesh wigglyMeshRing;
 
     int segments {100};
@@ -15,7 +14,6 @@ class WaveRing {
     float noiseAmount{0.0};
     float noiseCursor {0.1};
     float radius {0};
-    ofVec3f rotate;
     float speed {0.001};
     float speedAmp;
     float speedNoise;
@@ -41,24 +39,23 @@ class WaveRing {
     void draw();
     void update();
 
+    //shape
     void setNoiseStep(float _noiseStep);
     void setNoiseAmount(float _noiseAmount);
     void setWidth(float _width);
     void setCycle(int _framesPerCycle);
     void setSegments(int _segments);
-    void setRadius(float _radius);
+    //variation
+    void setRadius(float radius);
     void setPosAmp(ofVec3f _posAmp);
     void setRotAmp(ofVec3f _rotAmp);
     void setSpeedAmp(float _speedAmp);
-    void setColorMode(bool _colMode);
-    void setSaturation(int _saturation);
-    void setBrightness(int _brightness);
-    void setAlpha(int _alpha);
+    void setColorMode(bool colMode);
+    void setStauration(int saturation);
+    void setBrightness(int brightness);
+    void setAlpha(int alpha);
 
     WaveRing(shared_ptr<Cycle>& cycle);
-    ~WaveRing(){
-      cycle.reset();;
-    }
 
 };
 #endif

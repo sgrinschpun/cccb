@@ -1,0 +1,31 @@
+<shape>
+    <shapesNum>30</shapesNum>
+    <radius>49.619998932</radius>
+    <width>0.000000000</width>
+    <segments>100</segments>
+    <speedAmp>0.028500000</speedAmp>
+</shape>
+<variations>
+    <posAmp>
+        <x>0.000000000</x>
+        <y>0.000000000</y>
+        <z>0.000000000</z>
+    </posAmp>
+    <rotAmp>
+        <x>135.918365479</x>
+        <y>135.918365479</y>
+        <z>132.244903564</z>
+    </rotAmp>
+</variations>
+<wiggle>
+    <framesPerCycle>53</framesPerCycle>
+    <noiseStep>0.055000000</noiseStep>
+    <noiseAmount>9.500000000</noiseAmount>
+</wiggle>
+<color>
+    <fadeAmnt>86</fadeAmnt>
+    <colMode>0</colMode>
+    <saturation>200</saturation>
+    <brightness>34</brightness>
+    <alpha>216</alpha>
+</color>
