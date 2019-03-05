@@ -19,53 +19,41 @@ WaveRing::WaveRing(shared_ptr<Cycle>& cycle):cycle(cycle){
 }
 
 void WaveRing::setupCircleRing(){
-  ofPoint p;
-  ofFloatColor thisColor = ofColor::fromHsb(col, saturation, brightness, alpha);
-  for(int i=0; i<=segments; i++){
-    p.x =  (radius * cos(TWO_PI * i / segments));
-    p.y =  (radius * sin(TWO_PI * i / segments));
-    fatLinePoints.push_back(p);
-    fatLineColors.push_back(thisColor);
-    fatLineWidths.push_back(width);
-  }
-  fatLine.add(fatLinePoints, fatLineColors, fatLineWidths);
-  fatLine.setFeather(2);
-  fatLine.setClosed(true);
-
+  wigglyMeshRing.setMode(OF_PRIMITIVE_LINE_STRIP);
 }
 
 void WaveRing::updateWigglyCircleRing(){
   float max = noiseAmount*(cycle -> getEaseQuart2());
   ofPoint p;
-  ofFloatColor thisColor;
-
-  if (colMode) {
-    thisColor = ofColor::fromHsb(col, 0, 15, 255);
-  }else{
-    thisColor = ofColor::fromHsb(col, saturation, brightness, alpha);
-  }
+  wigglyMeshRing.clear();
 
   for(int i=0; i<=segments; i++){
     p.x =  radius*cos(TWO_PI * i / segments);
     p.y =  radius*sin(TWO_PI * i / segments);
     p.x += ofSignedNoise(noiseCursor+noiseStep*p.x/radius, noiseCursor+noiseStep*p.y/radius)*max;
     p.y += ofSignedNoise(noiseCursor+noiseStep*p.x/radius, noiseCursor+noiseStep*p.y/radius)*max;
-    fatLine.updatePoint(i, p);
-    fatLine.updateWeight(i, width);
-    fatLine.updateColor(i, thisColor);
+    wigglyMeshRing.addVertex(p);
   }
-  fatLine.update();
 }
 
 
 void WaveRing::draw(){
+  ofFloatColor thisColor;
+  if (colMode) {
+    thisColor = ofColor::fromHsb(col, 0, 15, 255);
+  }else{
+    thisColor = ofColor::fromHsb(col, saturation, brightness, alpha);
+  }
   ofEnableBlendMode(OF_BLENDMODE_ADD);
+  ofSetLineWidth(width);
+  ofSetColor(thisColor);
+  ofNoFill();
   ofPushMatrix();
     ofTranslate(pos);
     ofRotateX(rot.x);
     ofRotateY(rot.y);
     ofRotateZ(rot.z);
-    fatLine.draw();
+    wigglyMeshRing.drawFaces();
   ofPopMatrix();
 }
 

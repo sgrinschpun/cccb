@@ -7,10 +7,9 @@
 class WaveRing {
 
   private:
-    ofxFatLine fatLine;
-    vector<ofDefaultVec3> fatLinePoints;
-    vector<ofFloatColor> fatLineColors;
-    vector<double> fatLineWidths;
+
+    ofMesh wigglyMeshRing;
+
     int segments {100};
     float width {0};
     float noiseStep {0.0};
