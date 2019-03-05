@@ -15,8 +15,10 @@ WaveRing::WaveRing(shared_ptr<Cycle>& cycle):cycle(cycle){
   rotNoise.set(ofRandom(10), ofRandom(10), ofRandom(10));
   rotAmp.set(0, 0, 0);
   col = ofRandom(255);
+
   setupCircleRing();
 }
+
 
 void WaveRing::setupCircleRing(){
   wigglyMeshRing.setMode(OF_PRIMITIVE_LINE_STRIP);
@@ -63,8 +65,7 @@ void WaveRing::update(){
   }
   updateWigglyCircleRing();
 
-  float thisNoise =ofNoise(speedNoise);
-  speed = thisNoise*speedAmp;
+  speed = ofNoise(speedNoise)*speedAmp;
 
   pos.set((ofNoise(posNoise.x)*2-1)*posAmp.x,
           (ofNoise(posNoise.y)*2-1)*posAmp.y,
@@ -124,7 +125,7 @@ void WaveRing::setColorMode(bool _colMode) {
     colMode = _colMode;
 }
 
-void WaveRing::setSaturation(int _saturation) {
+void WaveRing::setStauration(int _saturation) {
     saturation = _saturation;
 }
 
