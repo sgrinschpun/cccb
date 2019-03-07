@@ -1,9 +1,9 @@
 <shape>
     <shapesNum>28</shapesNum>
-    <radius>187.000000000</radius>
-    <width>2.000000000</width>
+    <radius>405.140014648</radius>
+    <width>0.000000000</width>
     <segments>100</segments>
-    <speedAmp>0.029499998</speedAmp>
+    <speedAmp>0.012500000</speedAmp>
 </shape>
 <variations>
     <posAmp>
@@ -12,20 +12,20 @@
         <z>0.000000000</z>
     </posAmp>
     <rotAmp>
-        <x>312.244903564</x>
-        <y>356.326538086</y>
+        <x>84.489799500</x>
+        <y>88.163269043</y>
         <z>0.000000000</z>
     </rotAmp>
 </variations>
 <wiggle>
-    <framesPerCycle>50</framesPerCycle>
+    <framesPerCycle>53</framesPerCycle>
     <noiseStep>0.000000000</noiseStep>
-    <noiseAmount>0.400000006</noiseAmount>
+    <noiseAmount>0.000000000</noiseAmount>
 </wiggle>
 <color>
-    <fadeAmnt>65</fadeAmnt>
+    <fadeAmnt>24</fadeAmnt>
     <colMode>0</colMode>
-    <saturation>200</saturation>
-    <brightness>119</brightness>
-    <alpha>100</alpha>
+    <saturation>201</saturation>
+    <brightness>242</brightness>
+    <alpha>204</alpha>
 </color>
