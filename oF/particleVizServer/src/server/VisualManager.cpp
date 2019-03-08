@@ -60,6 +60,11 @@ void VisualManager::updateMap(PhenomenaCMD phenoCMD) {
             cout << "The particle is not in the Hashmap! " << endl;
         }
     }
+    
+    if (phenoCMD.getCMD() == "PURGE"){
+        cout << "Erasing all particles in the Hashmap! PURGE!" << endl;
+        particleMap.clear();
+    }
     cout << "VisualManager Hashmap size is: " << particleMap.size() << endl;
 }
 
@@ -102,19 +107,12 @@ void VisualManager::drawFbo(){
   rgbaFbo.end();
 }
 
-<<<<<<< HEAD
-void VisualManager::purge(){
-    particleMap.clear();
-}
-
-void VisualManager::draw(){
-=======
 void VisualManager::update(){
->>>>>>> 18b4d9c073e7abeea375d709102831891b46d958
     for(auto pair:particleMap) {
       pair.second->update();
     }
     drawFbo();
+    sDisplay.update(particleMap.size());
 }
 
 void VisualManager::draw(){
@@ -122,5 +120,5 @@ void VisualManager::draw(){
   glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
   rgbaFbo.draw(0,0);
   glDisable(GL_BLEND);
-
+  sDisplay.display();
 }
