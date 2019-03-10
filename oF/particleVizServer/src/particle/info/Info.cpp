@@ -1,6 +1,6 @@
 #include "Info.h"
 
-Info::Info(shared_ptr<ParticleData>& _data): data(_data){
+Info::Info(shared_ptr<ParticleData>& _data, float _radius): data(_data), radius(_radius){
   setupFont();
 }
 
@@ -15,5 +15,5 @@ void Info::setupFont(){
 
 void Info::drawInfo(){
   string name = data->getName();
-  myFont.drawString(name, 20, -20);
+  myFont.drawString(name, radius, -radius);
 }

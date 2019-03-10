@@ -7,6 +7,7 @@ class Info {
   private:
     static ofTrueTypeFont myFont;
     void setupFont();
+    float radius;
 
 
 
@@ -15,7 +16,7 @@ class Info {
 
     void drawInfo();
 
-    Info(shared_ptr<ParticleData>& _particleData);
+    Info(shared_ptr<ParticleData>& _data, float radius);
     ~Info(){
       data.reset();
     }

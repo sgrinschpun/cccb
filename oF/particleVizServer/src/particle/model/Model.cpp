@@ -105,7 +105,7 @@ void Model::setShape(){
 }
 
 void Model::setInfo(){
-  info = make_unique<Info>(data);
+  info = make_unique<Info>(data, radius);
 }
 
 void Model::drawInfo(){
