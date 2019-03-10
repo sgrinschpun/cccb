@@ -6,7 +6,10 @@
 #include "Lepton.h"
 
 void Lepton::setXMLSettingsName(){
-  xmlSettingsName = "electron";
+  string name = data->getName();
+  if (name == "e-"||name == "e+"){xmlSettingsName = "electron";}
+  else if (name == "mu-"||name == "mu+"){xmlSettingsName = "muon";}
+  else if (name == "tau-"||name == "tau+"){xmlSettingsName = "tau";}
 }
 
 void Lepton::specificParameters(){

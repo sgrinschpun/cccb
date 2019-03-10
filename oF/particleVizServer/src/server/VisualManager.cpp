@@ -16,7 +16,7 @@ ofTrueTypeFont VisualManager::myFont;
 
 void VisualManager::setupFont(){
   if (!myFont.isLoaded()){
-    myFont.load("Lato-Regular.ttf",15);
+    myFont.load("Lato-Regular.ttf",10);
   }
 }
 
@@ -113,6 +113,16 @@ void VisualManager::draw(){
   glEnable(GL_BLEND);
   glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
   rgbaFbo.draw(0,0);
+
+  for(auto pair:particleMap) {
+    ofPoint position = pair.second->getPosition();
+    string name =pair.second->getName();
+    ofPushMatrix();
+    ofTranslate(position.x, position.y);
+    myFont.drawString(name, 20, -20);
+    ofPopMatrix();
+  }
   glDisable(GL_BLEND);
+
 
 }
