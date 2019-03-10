@@ -15,6 +15,7 @@ Neutrino::Neutrino(shared_ptr<ParticleData>& _particleData):Model(_particleData)
   setXMLSettingsName();
   buildParameters();
   setShape();
+  setInfo();
   specificParameters();
 
 }

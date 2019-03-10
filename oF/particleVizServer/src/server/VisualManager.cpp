@@ -9,15 +9,6 @@
 
 VisualManager::VisualManager(){
   setupFbo();
-  setupFont();
-}
-
-ofTrueTypeFont VisualManager::myFont;
-
-void VisualManager::setupFont(){
-  if (!myFont.isLoaded()){
-    myFont.load("Lato-Regular.ttf",10);
-  }
 }
 
 void VisualManager::updateMap(PhenomenaCMD phenoCMD) {
@@ -116,10 +107,9 @@ void VisualManager::draw(){
 
   for(auto pair:particleMap) {
     ofPoint position = pair.second->getPosition();
-    string name =pair.second->getName();
     ofPushMatrix();
     ofTranslate(position.x, position.y);
-    myFont.drawString(name, 20, -20);
+      pair.second->drawInfo();
     ofPopMatrix();
   }
   glDisable(GL_BLEND);

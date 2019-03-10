@@ -45,6 +45,11 @@ void Particle::draw(){
 
 }
 
+void Particle::drawInfo(){
+  model->drawInfo();
+}
+
+
 void Particle::update(){
   kinematics->update();
   model->update();

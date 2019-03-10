@@ -25,9 +25,6 @@ public:
   void update();
   void draw();
 
-  static ofTrueTypeFont myFont;
-  void setupFont();
-
   ofFbo rgbaFbo;
   float fboWidth;
   float fboHeight;

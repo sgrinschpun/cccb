@@ -22,6 +22,7 @@ class Particle {
 
   void update();
   void draw();
+  void drawInfo();
 
   ofPoint getPosition();
   string getName();

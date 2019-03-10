@@ -104,6 +104,15 @@ void Model::setShape(){
     shape -> setAlpha(alpha);
 }
 
+void Model::setInfo(){
+  info = make_unique<Info>(data);
+}
+
+void Model::drawInfo(){
+  info -> drawInfo();
+}
+
+
 void Model::draw(){
     shape->draw();
 }

@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "WaveRingVariation.h"
 #include "ParticleData.h"
+#include "Info.h"
 #include "ofxXmlSettings.h"
 
 
@@ -19,8 +20,10 @@ class Model {
     void buildParameters();
     virtual void specificParameters() = 0;
     void setShape();
+    void setInfo();
 
     unique_ptr<WaveRingVariation> shape;
+    unique_ptr<Info> info;
     shared_ptr<ParticleData> data;
 
     string xmlSettingsName;
@@ -41,8 +44,10 @@ class Model {
     int brightness;
     int alpha;
 
+
     void draw();
     void update();
+    void drawInfo();
 
     Model(shared_ptr<ParticleData>& _particleData);
     virtual ~Model(){
