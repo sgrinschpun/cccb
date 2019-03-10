@@ -53,6 +53,9 @@ void ofApp::setupFbo(){
   fboWidth=ofGetWidth();
   fboHeight=ofGetHeight();
 
+  //fboWidth=3840;
+  //fboHeight=2160;
+
   ofFboSettings s;
   s.width = fboWidth;
   s.height = fboHeight;
@@ -83,7 +86,7 @@ void ofApp::drawFboMove(){
     ofEnableBlendMode(OF_BLENDMODE_ALPHA);
     ofFill();
     ofSetColor(0,0,0, fadeAmnt);
-    ofDrawRectangle(0,0,ofGetWidth(),ofGetHeight());
+    ofDrawRectangle(0,0,fboWidth,fboHeight);
     ofDisableAlphaBlending();
 
     ofClearAlpha();
@@ -102,7 +105,7 @@ void ofApp::drawFboStatic(){
     ofEnableBlendMode(OF_BLENDMODE_ALPHA);
     ofFill();
     ofSetColor(0,0,0, 10);
-    ofDrawRectangle(0,0,ofGetWidth(),ofGetHeight());
+    ofDrawRectangle(0,0,fboWidth,fboHeight);
     ofDisableAlphaBlending();
     ofClearAlpha();
   rgbaFbo.end();
