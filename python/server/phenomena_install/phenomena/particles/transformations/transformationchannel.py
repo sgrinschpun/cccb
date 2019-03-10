@@ -25,7 +25,7 @@ class TransformationChannel(Channel):
 
     @property
     def names(self):
-        return map(ParticleDataSource.getName,self.ids )
+        return list(map(ParticleDataSource.getName,self.ids ))
 
     @property
     def length(self):
@@ -107,6 +107,8 @@ class TransformationChannels(object):
         We only accept 2body and 3body channels
         '''
         tclist = []
+        objlist = []
+        a=0
         for channel in decaylist:
             TC = TransformationChannel(channel[0],channel[1])
             if all([
@@ -114,7 +116,11 @@ class TransformationChannels(object):
                 TC.nameSet.intersection(TransformationChannels.EXCLUDED) == set([])
             ]):
                 tclist.append(TC)
+            elif TC.length == 1:
+                return TransformationChannels.from_decaylist(ParticleDataSource.getDecayChannels(TC.names[0]))
+
         return cls(tclist)
+
 
     @classmethod
     def from_decaylistNames(cls, decaylist):

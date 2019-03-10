@@ -113,14 +113,7 @@ class TransformController(object):
             return []
 
     def _setTime(self):
-        try:
-            if self._particle.virtuality==0:
-                self._time = TimeController.getTime()
-            else:
-                self._time = 0.5
-        except:
-            self._time = TimeController.getTime()
-
+        self._time = TimeController.getTime(self._particle)
 
     @property
     def allTypes(self):
