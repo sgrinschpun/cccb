@@ -51,7 +51,7 @@ void VisualManager::updateMap(PhenomenaCMD phenoCMD) {
             cout << "The particle is not in the Hashmap! " << endl;
         }
     }
-    
+
     if (phenoCMD.getCMD() == "PURGE"){
         cout << "Erasing all particles in the Hashmap! PURGE!" << endl;
         particleMap.clear();
@@ -103,6 +103,8 @@ void VisualManager::update(){
       pair.second->update();
     }
     drawFbo();
+
+    sDisplay.update(particleMap.size());
 }
 
 void VisualManager::draw(){
@@ -118,6 +120,8 @@ void VisualManager::draw(){
     ofPopMatrix();
   }
   glDisable(GL_BLEND);
+
+  sDisplay.display();
 
 
 }
