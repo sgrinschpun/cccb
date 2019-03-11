@@ -27,7 +27,7 @@ sources = {
     'getTau':particledatatool, #particledatatool, scikitHEP, decaylanguage??????  skhep.math.kinematics.width_to_lifetime
     'getPDGId':particledatatool,#particledatatool, scikitHEP, decaylanguage
     'getComposition':extrainfo, #decaylanguage, extrainfo
-    'getType':extrainfo, #scikitHEP,
+    'getType':scikitHEP, #extrainfo, #scikitHEP,
     'getSpin':scikitHEP,
     'getName':particledatatool,#particledatatool, scikitHEP, decaylanguage
     'getDecayChannels':particledatatool,
@@ -96,7 +96,8 @@ class ParticleDataSource(object):
 
     @staticmethod
     def getDecayChannels(name):
-        return sources['getDecayChannels'].getDecayChannels(name)
+        pdgid = ParticleDataSource.getPDGId(name)
+        return sources['getDecayChannels'].getDecayChannels(pdgid)
 
     @staticmethod
     def getWidth(name):

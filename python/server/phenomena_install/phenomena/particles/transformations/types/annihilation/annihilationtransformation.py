@@ -5,7 +5,7 @@ from phenomena.particles.sources import ParticleDataSource
 class Annihilation(Transformation):
 
     INPUT = ['e+']
-    OUTPUT = map(ParticleDataSource.getPDGId, ['gamma'])
+    OUTPUT = map(ParticleDataSource.getPDGId, ['gamma0'])
     TARGET = 'e-'
 
     def __init__(self, particle):

@@ -25,7 +25,7 @@ class TransformationChannel(Channel):
 
     @property
     def names(self):
-        return map(ParticleDataSource.getName,self.ids )
+        return list(map(ParticleDataSource.getName,self.ids ))
 
     @property
     def length(self):
@@ -96,7 +96,7 @@ class TransformationChannels(object):
     TCS.lengthCut(3) -> TCs with number of output particles <= 3
     TCS.lengthSelection(3) -> TCs with number of output particles = 3
     '''
-    EXCLUDED = set(['rndmflavgbar','rndmflavg'])
+    EXCLUDED = set(['rndmflavgbar','rndmflavg','g'])
 
     def __init__(self, tclist):
         self._tclist = tclist
@@ -105,16 +105,27 @@ class TransformationChannels(object):
     def from_decaylist(cls, decaylist):
         '''
         We only accept 2body and 3body channels
+        If we find a 1 body channel we use the decay channels of that particle
         '''
         tclist = []
         for channel in decaylist:
             TC = TransformationChannel(channel[0],channel[1])
             if all([
-                TC.length in [2,3],
+                TC.length in [2,3,4],
+                TC.BR > 0.0,
                 TC.nameSet.intersection(TransformationChannels.EXCLUDED) == set([])
             ]):
                 tclist.append(TC)
+            elif TC.length == 1:
+                oldBR = TC.BR
+
+                newDCS = ParticleDataSource.getDecayChannels(TC.names[0])
+                for newTC in TransformationChannels.from_decaylist(newDCS).all:
+                    thisBR =newTC.BR
+                    newTC = newTC._replace(BR=oldBR*thisBR)
+                    tclist.append(newTC)
         return cls(tclist)
+
 
     @classmethod
     def from_decaylistNames(cls, decaylist):
@@ -122,7 +133,8 @@ class TransformationChannels(object):
         for channel in decaylist:
             TC = TransformationChannel(channel[0],list(map(ParticleDataSource.getPDGId,channel[1])))
             if all([
-                TC.length in [2,3],
+                TC.length in [2,3,4],
+                TC.BR > 0.0,
                 TC.nameSet.intersection(TransformationChannels.EXCLUDED) == set([])
             ]):
                 tclist.append(TC)

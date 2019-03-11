@@ -39,10 +39,21 @@ class TransformController(object):
         '''
         objectlist = []
         for transformationclass in classlist:
-            if all([self._particle.lifetime != -1, transformationclass.__name__ != 'NoTransformation']):
-                objectlist.append(transformationclass(self._particle))
-            elif all([self._particle.lifetime == -1, transformationclass.__name__ != 'Decay']):
-                objectlist.append(transformationclass(self._particle))
+            if self._particle.lifetime == -1:
+                if self._particle.name in ['u', "ubar", "d", "dbar","c","cbar","s","sbar","b","bbar"]:
+                    if transformationclass.__name__ == 'Hadronization':
+                        objectlist.append(transformationclass(self._particle))
+                    else:
+                        pass
+                else:
+                    if transformationclass.__name__ != 'Decay':
+                        objectlist.append(transformationclass(self._particle))
+                    else:
+                        pass
+            else:
+                if transformationclass.__name__ != 'NoTransformation':
+                    objectlist.append(transformationclass(self._particle))
+
         self._transformationlist = objectlist
 
     def _buildTransformations(self):
@@ -113,14 +124,7 @@ class TransformController(object):
             return []
 
     def _setTime(self):
-        try:
-            if self._particle.virtuality==0:
-                self._time = TimeController.getTime()
-            else:
-                self._time = 0.5
-        except:
-            self._time = TimeController.getTime()
-
+        self._time = TimeController.getTime(self._particle)
 
     @property
     def allTypes(self):
@@ -167,3 +171,6 @@ class TransformController(object):
                 output = self.output
                 break
         return output
+
+    def selectType(self, type):
+        return [transtype for transtype in self._allTransformations if transtype.type==type][0]

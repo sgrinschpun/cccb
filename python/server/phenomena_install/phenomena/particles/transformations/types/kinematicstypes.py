@@ -72,7 +72,10 @@ class LABNBody(object):
         self._s = (self._initialparticleCM.e + self._targetCM.e)**2
 
     def _setP(self, s, m1, m2):
-        self._p = math.sqrt( Kallen_function(s, m1**2, m2**2)/(4*s))
+        try:
+            self._p = math.sqrt( Kallen_function(s, m1**2, m2**2)/(4*s))
+        except:
+            self._p = 10
 
     def _setFourMomenta(self):
         vector3Dlist = self._setVector3D(self._p)

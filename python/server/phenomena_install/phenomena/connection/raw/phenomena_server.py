@@ -29,7 +29,7 @@ class RawPhenomenaServer(PhenomenaServer):
         try:
             self._socket.bind((HOST, PORT))
         except socket.error as msg:
-            self._log.exception('Bind failed. Error Code : {0} Message {1}'.format(str(msg[0]), msg[1]))
+            #self._log.exception('Bind failed. Error Code : {0} Message {1}'.format(str(msg[0]), msg[1]))
             sys.exit()
         self._log.info('Socket bind complete')
         # Start listening on socket

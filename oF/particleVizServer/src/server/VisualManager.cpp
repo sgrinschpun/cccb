@@ -9,15 +9,6 @@
 
 VisualManager::VisualManager(){
   setupFbo();
-  setupFont();
-}
-
-ofTrueTypeFont VisualManager::myFont;
-
-void VisualManager::setupFont(){
-  if (!myFont.isLoaded()){
-    myFont.load("Lato-Regular.ttf",15);
-  }
 }
 
 void VisualManager::updateMap(PhenomenaCMD phenoCMD) {
@@ -44,7 +35,7 @@ void VisualManager::updateMap(PhenomenaCMD phenoCMD) {
 
         ofVec3f velocity;
         velocity.set(phenoCMD.getParams().vy,phenoCMD.getParams().vz,phenoCMD.getParams().vx);
-        velocity.scale(2*phenoCMD.getParams().beta);
+        velocity.scale(1*phenoCMD.getParams().beta);
         DEBUG_MSG("Particle Name " + phenoCMD.getParams().name);
 
         particleMap.insert(make_pair(phenoCMD.getParams().id, make_shared<Particle>(newParticleData,position, velocity)));
@@ -59,6 +50,11 @@ void VisualManager::updateMap(PhenomenaCMD phenoCMD) {
         else{
             cout << "The particle is not in the Hashmap! " << endl;
         }
+    }
+    
+    if (phenoCMD.getCMD() == "PURGE"){
+        cout << "Erasing all particles in the Hashmap! PURGE!" << endl;
+        particleMap.clear();
     }
     cout << "VisualManager Hashmap size is: " << particleMap.size() << endl;
 }
@@ -102,15 +98,7 @@ void VisualManager::drawFbo(){
   rgbaFbo.end();
 }
 
-<<<<<<< HEAD
-void VisualManager::purge(){
-    particleMap.clear();
-}
-
-void VisualManager::draw(){
-=======
 void VisualManager::update(){
->>>>>>> 18b4d9c073e7abeea375d709102831891b46d958
     for(auto pair:particleMap) {
       pair.second->update();
     }
@@ -121,6 +109,15 @@ void VisualManager::draw(){
   glEnable(GL_BLEND);
   glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
   rgbaFbo.draw(0,0);
+
+  for(auto pair:particleMap) {
+    ofPoint position = pair.second->getPosition();
+    ofPushMatrix();
+    ofTranslate(position.x, position.y);
+      pair.second->drawInfo();
+    ofPopMatrix();
+  }
   glDisable(GL_BLEND);
+
 
 }

@@ -23,11 +23,7 @@ class RawMessageSender(MessageSender):
 
     def sendMessage(self, module_path, command_name, *args, **kwargs):
         message = IncomingMessage.fromData(command_id = RawMessageSender.getCommandId(), command_name=command_name, module_path=module_path,
-                                           params={'particle_name': kwargs.get('particle_name',0), 
-                                                   'theta': kwargs.get('theta',0),
-                                                   'phi': kwargs.get('phi',0),
-                                                   'p':kwargs.get('p',None),
-                                                   'E':kwargs.get('E',None)})
-        self._petition_handler.sendPetition(message)
+                                           params = kwargs)
+        return self._petition_handler.sendPetition(message)
 
 

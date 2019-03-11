@@ -23,11 +23,7 @@ public:
   VisualManager();
   void updateMap(PhenomenaCMD phenoCMD);
   void update();
-  void purge();
   void draw();
-
-  static ofTrueTypeFont myFont;
-  void setupFont();
 
   ofFbo rgbaFbo;
   float fboWidth;
