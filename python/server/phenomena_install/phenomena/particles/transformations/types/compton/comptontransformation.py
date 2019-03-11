@@ -4,8 +4,8 @@ from phenomena.particles.sources import ParticleDataSource
 
 class ComptonEffect(Transformation):
 
-    INPUT = ['gamma']
-    OUTPUT = map(ParticleDataSource.getPDGId, ['gamma', 'e-'])
+    INPUT = ['gamma0']
+    OUTPUT = map(ParticleDataSource.getPDGId, ['gamma0', 'e-'])
     TARGET = 'e-'
 
     def __init__(self, particle):

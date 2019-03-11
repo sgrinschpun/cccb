@@ -13,7 +13,7 @@ class PairProduction(Transformation):
 
     TARGET = None
 
-    INPUT = ['gamma']
+    INPUT = ['gamma0']
     OUTPUT = map(ParticleDataSource.getPDGId, ['e-', 'e+'])
 
     def __init__(self, particle):

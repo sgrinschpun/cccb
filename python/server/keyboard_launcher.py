@@ -20,7 +20,7 @@ particle_keyboard = {
 'W-':{keyboard.KeyCode(char='w')},
 'W+':{keyboard.Key.shift, keyboard.KeyCode(char='W')},
 'Z0':{keyboard.KeyCode(char='z')},
-'h0(H_1)':{keyboard.KeyCode(char='h')},
+'H0':{keyboard.KeyCode(char='h')},#'h0(H_1)':{keyboard.KeyCode(char='h')},
 'B-':{keyboard.KeyCode(char='b')},
 'B+':{keyboard.Key.shift, keyboard.KeyCode(char='B')},
 'B0':{keyboard.Key.alt, keyboard.KeyCode(char='B')},

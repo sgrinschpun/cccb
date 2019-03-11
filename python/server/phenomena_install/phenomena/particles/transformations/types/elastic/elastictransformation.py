@@ -5,7 +5,7 @@ from phenomena.particles.sources import ParticleDataSource
 
 
 class ElasticCollision(Transformation):
-    excluded_part = ['gamma','e-','e+','nu_e','nu_mu','nu_tau','nu_ebar','nu_mubar','nu_taubar']
+    excluded_part = ['gamma0','e-','e+','nu_e','nu_mu','nu_tau','nu_ebar','nu_mubar','nu_taubar']
 
     def __init__(self, particle, target):
         self._particle = particle

@@ -7,13 +7,12 @@ from .hadronizationdata import HadronizationData
 class Hadronization(Transformation):
 
     TARGET = None
-    INPUT = ['u', "ubar", "d", "dbar","c","cbar","s","sbar","b","bar"]
+    INPUT = ['u', "ubar", "d", "dbar","c","cbar","s","sbar","b","bbar"]
 
     def __init__(self, particle):
         self._particle = particle
         self._values = {}
         if  self._particle.name in Hadronization.INPUT:
-        #if  self._particle.name in HadronizationData.listOriginParticles():
             self._buildTransfValues()
 
     def _transformationChannels(self):

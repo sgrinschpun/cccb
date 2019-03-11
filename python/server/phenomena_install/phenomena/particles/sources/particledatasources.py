@@ -96,7 +96,8 @@ class ParticleDataSource(object):
 
     @staticmethod
     def getDecayChannels(name):
-        return sources['getDecayChannels'].getDecayChannels(name)
+        pdgid = ParticleDataSource.getPDGId(name)
+        return sources['getDecayChannels'].getDecayChannels(pdgid)
 
     @staticmethod
     def getWidth(name):
