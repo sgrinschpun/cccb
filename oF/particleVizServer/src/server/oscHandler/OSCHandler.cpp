@@ -11,32 +11,32 @@
 OSCHandler::OSCHandler(){}
 
 void OSCHandler::acumulativeParticleParse(ofxOscMessage message){
-    if(message.getAddress() == "/particle/id")
+    if(message.getAddress() == "/particle/attributes/id")
         middleParams.id = message.getArgAsInt(0);
-    if(message.getAddress() == "/particle/parent")
+    if(message.getAddress() == "/particle/attributes/parent")
         middleParams.parent = message.getArgAsInt(0);
-    if(message.getAddress() == "/particle/name")
+    if(message.getAddress() == "/particle/attributes/name")
         middleParams.name = message.getArgAsString(0);
-    if(message.getAddress() == "/particle/mass")
+    if(message.getAddress() == "/particle/attributes/mass")
         middleParams.mass = message.getArgAsFloat(0);
-    if(message.getAddress() == "/particle/charge")
+    if(message.getAddress() == "/particle/attributes/charge")
         middleParams.charge = message.getArgAsFloat(0);
-    if(message.getAddress() == "/particle/type")
+    if(message.getAddress() == "/particle/attributes/type")
         middleParams.type = message.getArgAsString(0);
-    if(message.getAddress() == "/particle/E")
+    if(message.getAddress() == "/particle/attributes/E")
         middleParams.energy = message.getArgAsFloat(0);
-    if(message.getAddress() == "/particle/vx")
+    if(message.getAddress() == "/particle/attributes/vx")
         middleParams.vx = message.getArgAsFloat(0);
-    if(message.getAddress() == "/particle/vy")
+    if(message.getAddress() == "/particle/attributes/vy")
         middleParams.vy = message.getArgAsFloat(0);
-    if(message.getAddress() == "/particle/vz")
+    if(message.getAddress() == "/particle/attributes/vz")
         middleParams.vz = message.getArgAsFloat(0);
-    if(message.getAddress() == "/particle/beta")
+    if(message.getAddress() == "/particle/attributes/beta")
         middleParams.beta = message.getArgAsFloat(0);
 
-    // if(message.getAddress() == "/particle/p")
+    // if(message.getAddress() == "/particle/attribute/p")
     //     middleParams.p = message.getArgAsFloat(0);
-    // if(message.getAddress() == "/particle/composition")
+    // if(message.getAddress() == "/particle/attribute/composition")
     //     middleParams.composition[0] = message.getArgAsString(0);
 }
 

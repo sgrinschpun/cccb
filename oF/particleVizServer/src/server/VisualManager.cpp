@@ -51,6 +51,11 @@ void VisualManager::updateMap(PhenomenaCMD phenoCMD) {
             cout << "The particle is not in the Hashmap! " << endl;
         }
     }
+    
+    if (phenoCMD.getCMD() == "PURGE"){
+        cout << "Erasing all particles in the Hashmap! PURGE!" << endl;
+        particleMap.clear();
+    }
     cout << "VisualManager Hashmap size is: " << particleMap.size() << endl;
 }
 

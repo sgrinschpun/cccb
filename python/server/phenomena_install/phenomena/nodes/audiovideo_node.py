@@ -46,6 +46,12 @@ class JsonRemoteAudioVideoNode(ParticleActionNodeChain):
         self._node.getNextNode(self).transformParticle(particle, new_particles)
         #self._sendMessage(all_messages)
 
+    def purgeParticles(self):
+        new_message = {}
+        new_message['CMD'] = "PURGE"
+        new_message['PARAMS'] = {}
+        self._sendMessage("particle", new_message)
+        
     def getIdentifier(self):
         return "AudioVideoController"
 

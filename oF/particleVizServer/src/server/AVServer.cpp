@@ -20,7 +20,7 @@ void AVServer::update(){
          if(message.getAddress() == "/particle/operation"){
              manageAV.update(oscHandler.releaseParticle(message));
          }
-         else if (message.getAddress() != "/particle/operation") {
+         else if (message.getAddress().find("/particle/attributes") != string::npos) {
              oscHandler.acumulativeParticleParse(message);
          }
          else{

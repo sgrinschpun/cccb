@@ -20,7 +20,7 @@ class OSCBundledMessageSender(MessageSender):
         module_path = "/{0}".format(module_path.replace(".", "/"))
         osc_bundle = osc_bundle_builder.OscBundleBuilder(osc_bundle_builder.IMMEDIATELY)
         for key, value in kwargs.items():
-            msg = osc_message_builder.OscMessageBuilder(address = "{0}/{1}".format(module_path, key))
+            msg = osc_message_builder.OscMessageBuilder(address = "{0}/attributes/{1}".format(module_path, key))
             msg.add_arg(value)
             osc_bundle.add_content(msg.build())
         msg = osc_message_builder.OscMessageBuilder(address = "{0}/{1}".format(module_path, "operation"))

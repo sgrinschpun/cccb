@@ -58,8 +58,7 @@ particle_keyboard = {
 'K*0':{keyboard.Key.alt, keyboard.KeyCode(char='A')},
 'phi':{keyboard.KeyCode(char='f')},
 'omega':{keyboard.KeyCode(char='o')},
-'nu_e':{keyboard.KeyCode(char='q')},
-'nubar_e':{keyboard.Key.shift, keyboard.KeyCode(char='Q')}
+'purge':{keyboard.KeyCode(char='q')}
 }
 
 # The currently active modifiers
@@ -75,9 +74,12 @@ def on_press(key):
     #print ('Current: ', current)
     for particle, combination in particle_keyboard.items():
         if all(k in current for k in combination):
-            print('Triggering particle', particle)
-            trigger_particle(particle)
-            print('-----------')
+            if particle == 'purge':
+                print(phenomena.purgeParticles())
+            else:
+                print('Triggering particle', particle)
+                trigger_particle(particle)
+                print('-----------')
     if key == keyboard.Key.esc:
         listener.stop()
 
