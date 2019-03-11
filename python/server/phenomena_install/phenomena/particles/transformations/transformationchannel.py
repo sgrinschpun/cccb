@@ -111,7 +111,7 @@ class TransformationChannels(object):
         for channel in decaylist:
             TC = TransformationChannel(channel[0],channel[1])
             if all([
-                TC.length in [2,3],
+                TC.length in [2,3,4],
                 TC.nameSet.intersection(TransformationChannels.EXCLUDED) == set([])
             ]):
                 tclist.append(TC)
@@ -132,7 +132,7 @@ class TransformationChannels(object):
         for channel in decaylist:
             TC = TransformationChannel(channel[0],list(map(ParticleDataSource.getPDGId,channel[1])))
             if all([
-                TC.length in [2,3],
+                TC.length in [2,3,4],
                 TC.nameSet.intersection(TransformationChannels.EXCLUDED) == set([])
             ]):
                 tclist.append(TC)
