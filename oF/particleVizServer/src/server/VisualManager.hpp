@@ -13,11 +13,13 @@
 #include "Particle.h"
 #include "ParticleData.h"
 #include <memory>
+#include "StatsDisplay.hpp"
 using namespace std;
 
 class VisualManager{
   map <int, shared_ptr<Particle> > particleMap;
   map <int, shared_ptr<Particle> > ::iterator particleIt;
+  StatsDisplay sDisplay;
 
 public:
   VisualManager();
