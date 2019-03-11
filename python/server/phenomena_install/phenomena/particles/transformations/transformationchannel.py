@@ -105,10 +105,9 @@ class TransformationChannels(object):
     def from_decaylist(cls, decaylist):
         '''
         We only accept 2body and 3body channels
+        If we find a 1 body channel we use the decay channels of that particle
         '''
         tclist = []
-        objlist = []
-        a=0
         for channel in decaylist:
             TC = TransformationChannel(channel[0],channel[1])
             if all([
@@ -117,8 +116,13 @@ class TransformationChannels(object):
             ]):
                 tclist.append(TC)
             elif TC.length == 1:
-                return TransformationChannels.from_decaylist(ParticleDataSource.getDecayChannels(TC.names[0]))
+                oldBR = TC.BR
 
+                newDCS = ParticleDataSource.getDecayChannels(TC.names[0])
+                for newTC in TransformationChannels.from_decaylist(newDCS).all:
+                    thisBR =newTC.BR
+                    newTC = newTC._replace(BR=oldBR*thisBR)
+                    tclist.append(newTC)
         return cls(tclist)
 
 
