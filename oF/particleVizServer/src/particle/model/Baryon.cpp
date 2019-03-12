@@ -5,6 +5,8 @@ void Baryon::setXMLSettingsName(){
 }
 
 void Baryon::specificParameters(){
+  float mass = data->getMass();
+  if (mass!=0){radius = 100*mass;}
 
 }
 

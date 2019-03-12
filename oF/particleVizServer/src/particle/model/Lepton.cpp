@@ -13,6 +13,9 @@ void Lepton::setXMLSettingsName(){
 }
 
 void Lepton::specificParameters(){
+  float mass = data->getMass();
+  if (mass!=0){radius = 100*mass;}
+
   string name = data->getName();
   const string antileptons[] = {"e+", "mu+", "tau+"};
   auto it = find(begin(antileptons), end(antileptons), name);

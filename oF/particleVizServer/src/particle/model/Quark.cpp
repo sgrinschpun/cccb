@@ -6,10 +6,12 @@ void Quark::setXMLSettingsName(){
 }
 
 void Quark::specificParameters(){
-  string name = data->getName();
-  const string quarks[] = {"u", "ubar", "d", "dbar","c","cbar","s","sbar","b","bar"};
-  auto it = find(begin(quarks), end(quarks), name);
-  if (it != end(quarks)) {radius = 10;}
+  // string name = data->getName();
+  // const string quarks[] = {"u", "ubar", "d", "dbar","c","cbar","s","sbar","b","bar"};
+  // auto it = find(begin(quarks), end(quarks), name);
+  // if (it != end(quarks)) {radius = 10;}
+  float mass = data->getMass();
+  if (mass!=0){radius = 100*mass;}
 }
 
 Quark::Quark(shared_ptr<ParticleData>& _particleData):Model(_particleData){

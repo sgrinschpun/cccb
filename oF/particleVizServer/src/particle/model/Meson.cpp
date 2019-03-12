@@ -5,6 +5,8 @@ void Meson::setXMLSettingsName(){
 }
 
 void Meson::specificParameters(){
+  float mass = data->getMass();
+  if (mass!=0){radius = 100*mass;}
 }
 
 Meson::Meson(shared_ptr<ParticleData>& _particleData):Model(_particleData){
