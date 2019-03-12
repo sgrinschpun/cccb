@@ -15,5 +15,7 @@ void Info::setupFont(){
 
 void Info::drawInfo(){
   string name = data->getName();
+  float mass = data->getMass();
   myFont.drawString(name, radius, -radius);
+  myFont.drawString(to_string(mass), radius, -radius-30);
 }
