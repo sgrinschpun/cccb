@@ -1,6 +1,12 @@
 import random
 
 class TimeController(object):
+    '''
+    Quark through hadronization -> 0.2
+    Top, Mesons Barions -> rand (2)
+    Leptons, Bosons -> rand(1,5)
+    Neutron -> Rand(2,5)
+    '''
 
     @staticmethod
     def getTime(particle):

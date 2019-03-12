@@ -2,33 +2,26 @@
 
 Kinematics::Kinematics(shared_ptr<ParticleData>& _particleData, ofPoint _position, ofVec3f _velocity): data(_particleData), position(_position), velocity(_velocity){
 
-  Bfield.set(0,0,0.000001);
-  acceleration.set(0,0,0);
-  initSpeed = 30;
-  finalSpeed = velocity.length();
-  initTime = ofGetElapsedTimeMillis();
+  //Bfield.set(0,0,0.0000015);
+  acceleration.set(0,0);
+  //initSpeed = 30;
+  //finalSpeed = velocity.length();
+  //initTime = 50*ofGetElapsedTimeMillis();
+  velocity *= 1.5;
 }
 
 void Kinematics::setBforce(){
   float q = data->getCharge();
   float mass = data->getMass();
-  Bforce = velocity.getCrossed(Bfield)*q/mass;
-}
-
-void Kinematics::setDragFroce(){
-  float speed = velocity.length();
-  float dragMagnitude = pow(speed,0.0001);
-  //cout << "dragMagnitude" << dragMagnitude<< endl;
-  DragForce = velocity * -1;
-  //cout << "DragForce" << DragForce<< endl;
-  DragForce.normalize();
-  DragForce *= dragMagnitude;
-  //cout << "DragForce" << DragForce<< endl;
+  ofVec2f perpendicular= velocity.getPerpendicular();
+  Bforce = 0.0000015*perpendicular*q/mass;
+  //velocity.getCrossed(Bfield)*q/mass;
 }
 
 void Kinematics::setVelocity(){
-  float elapsedTime = ofGetElapsedTimeMillis() - initTime;
-  float speed = initSpeed*exp(-pow(elapsedTime,2)/10) + finalSpeed;
+  float elapsedTime = 50*ofGetElapsedTimeMillis() - initTime;
+  //float speed = initSpeed*exp(-pow(elapsedTime,2)/10) + finalSpeed;
+  float speed = initSpeed/(1+pow(elapsedTime,2))+ finalSpeed;
   velocity.normalize();
   velocity *= speed;
 }
@@ -40,7 +33,7 @@ ofVec3f Kinematics::applyForce(ofVec3f _vector){
 
 
 void Kinematics::update(){
-  setVelocity();
+  //setVelocity();
   setBforce();
   applyForce(Bforce);
   velocity += acceleration;

@@ -6,18 +6,16 @@
 class Kinematics {
   private:
     shared_ptr<ParticleData> data;
-    ofPoint position;
-    ofVec3f velocity;
-    ofVec3f acceleration;
+    ofVec2f position;
+    ofVec2f velocity;
+    ofVec2f acceleration;
 
     void setInitialSpeed();
     ofVec3f applyForce(ofVec3f _vector);
 
-    ofVec3f Bfield;
-    ofVec3f Bforce;
+    //ofVec3f Bfield;
+    ofVec2f Bforce;
     void setBforce();
-    ofVec3f DragForce;
-    void setDragFroce();
 
     float initTime;
     float initSpeed;
