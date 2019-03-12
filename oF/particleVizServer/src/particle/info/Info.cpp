@@ -15,9 +15,11 @@ void Info::setupFont(){
 
 void Info::drawInfo(ofVec2f& _velocity){
   ofVec2f textPosition = _velocity.getNormalized().getScaled(radius);
+  float deltax = 30*textPosition.getNormalized().x;
+  float deltay = 30*textPosition.getNormalized().y;
 
   string name = data->getName();
   float mass = data->getMass();
-  myFont.drawString(name, textPosition.x+30, textPosition.y+30);
+  myFont.drawString(name, textPosition.x+deltax, textPosition.y+deltay);
   //myFont.drawString(to_string(mass), textPosition.x, textPosition.y-30);
 }

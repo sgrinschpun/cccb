@@ -102,9 +102,13 @@ void VisualManager::update(){
     for(auto pair:particleMap) {
       pair.second->update();
     }
+    glEnable(GL_AUTO_NORMAL);
+    glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
     drawFbo();
+    glDisable(GL_AUTO_NORMAL);
 
-    sDisplay.update(particleMap.size());
+
+    //sDisplay.update(particleMap.size());
 }
 
 void VisualManager::draw(){
