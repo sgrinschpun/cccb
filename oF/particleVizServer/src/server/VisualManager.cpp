@@ -121,7 +121,7 @@ void VisualManager::draw(){
   }
   glDisable(GL_BLEND);
 
-  sDisplay.display();
+  //sDisplay.display();
 
 
 }
