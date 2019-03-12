@@ -20,7 +20,7 @@ void Boson::specificParameters(){
 Boson::Boson(shared_ptr<ParticleData>& _particleData):Model(_particleData){
   setXMLSettingsName();
   buildParameters();
+  specificParameters();
   setShape();
   setInfo();
-  specificParameters();
 }

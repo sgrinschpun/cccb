@@ -13,6 +13,14 @@ void Lepton::setXMLSettingsName(){
 }
 
 void Lepton::specificParameters(){
+  string name = data->getName();
+  const string antileptons[] = {"e+", "mu+", "tau+"};
+  auto it = find(begin(antileptons), end(antileptons), name);
+  if (it != end(antileptons)) {
+    colMode = 1;
+    width=10;
+  }
+
 
 }
 
@@ -20,7 +28,7 @@ void Lepton::specificParameters(){
 Lepton::Lepton(shared_ptr<ParticleData>& _particleData):Model(_particleData){
   setXMLSettingsName();
   buildParameters();
+  specificParameters();
   setShape();
   setInfo();
-  specificParameters();
 }

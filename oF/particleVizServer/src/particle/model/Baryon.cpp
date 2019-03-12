@@ -11,7 +11,7 @@ void Baryon::specificParameters(){
 Baryon::Baryon(shared_ptr<ParticleData>& _particleData):Model(_particleData){
   setXMLSettingsName();
   buildParameters();
+  specificParameters();
   setShape();
   setInfo();
-  specificParameters();
 }
