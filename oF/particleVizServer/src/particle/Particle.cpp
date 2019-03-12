@@ -11,12 +11,12 @@ Particle::Particle(shared_ptr<ParticleData>& _data): data(_data){
   position.set(ofGetWidth()/2, ofGetHeight()/2,0);
   ofVec3f velocity;
   velocity.set(0,0,0);
-  kinematics = make_unique<Kinematics>(position, velocity);
+  kinematics = make_unique<Kinematics>(_data, position, velocity);
   buildModel();
 }
 
 Particle::Particle(shared_ptr<ParticleData>& _data, ofPoint _position, ofVec3f _velocity): data(_data){
-  kinematics = make_unique<Kinematics>(_position, _velocity);
+  kinematics = make_unique<Kinematics>(_data, _position, _velocity);
   buildModel();
 }
 
