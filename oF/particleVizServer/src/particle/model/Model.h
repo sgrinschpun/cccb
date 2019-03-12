@@ -47,7 +47,7 @@ class Model {
 
     void draw();
     void update();
-    void drawInfo();
+    void drawInfo(ofVec2f& _velocity);
 
     Model(shared_ptr<ParticleData>& _particleData);
     virtual ~Model(){

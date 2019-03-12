@@ -11,7 +11,7 @@ class Kinematics {
     ofVec2f acceleration;
 
     void setInitialSpeed();
-    ofVec3f applyForce(ofVec3f _vector);
+    ofVec2f applyForce(ofVec3f _vector);
 
     //ofVec3f Bfield;
     ofVec2f Bforce;
@@ -26,12 +26,13 @@ class Kinematics {
 
   public:
     void update();
-    ofPoint getPosition();
+    ofVec2f getPosition();
+    ofVec2f getVelocity();
     float getDistance();
 
 
 
-    Kinematics(shared_ptr<ParticleData>& _particleData, ofPoint _position, ofVec3f _velocity);
+    Kinematics(shared_ptr<ParticleData>& _particleData, ofVec2f _position, ofVec2f _velocity);
 
 };
 #endif

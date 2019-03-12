@@ -83,7 +83,7 @@ void VisualManager::drawFbo(){
   rgbaFbo.begin();
     ofEnableAlphaBlending();
     for(auto pair:particleMap) {
-      ofPoint position = pair.second->getPosition();
+      ofVec2f position = pair.second->getPosition();
       ofPushMatrix();
       ofTranslate(position.x, position.y);
       pair.second->draw();
@@ -113,7 +113,7 @@ void VisualManager::draw(){
   rgbaFbo.draw(0,0);
 
   for(auto pair:particleMap) {
-    ofPoint position = pair.second->getPosition();
+    ofVec2f position = pair.second->getPosition();
     ofPushMatrix();
     ofTranslate(position.x, position.y);
       pair.second->drawInfo();

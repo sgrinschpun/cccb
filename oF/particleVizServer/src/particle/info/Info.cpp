@@ -13,9 +13,11 @@ void Info::setupFont(){
 }
 
 
-void Info::drawInfo(){
+void Info::drawInfo(ofVec2f& _velocity){
+  ofVec2f textPosition = _velocity.getNormalized().getScaled(radius);
+
   string name = data->getName();
   float mass = data->getMass();
-  myFont.drawString(name, radius, -radius);
-  myFont.drawString(to_string(mass), radius, -radius-30);
+  myFont.drawString(name, textPosition.x+30, textPosition.y+30);
+  //myFont.drawString(to_string(mass), textPosition.x, textPosition.y-30);
 }

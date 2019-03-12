@@ -46,7 +46,8 @@ void Particle::draw(){
 }
 
 void Particle::drawInfo(){
-  model->drawInfo();
+  ofVec2f velocity = kinematics->getVelocity();
+  model->drawInfo(velocity);
 }
 
 
@@ -55,7 +56,7 @@ void Particle::update(){
   model->update();
 }
 
-ofPoint Particle::getPosition(){
+ofVec2f Particle::getPosition(){
   return kinematics->getPosition();
 }
 

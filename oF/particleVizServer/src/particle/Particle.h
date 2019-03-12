@@ -24,7 +24,7 @@ class Particle {
   void draw();
   void drawInfo();
 
-  ofPoint getPosition();
+  ofVec2f getPosition();
   string getName();
 
   Particle(shared_ptr<ParticleData>& _data);

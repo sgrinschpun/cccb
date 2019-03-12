@@ -14,7 +14,7 @@ class Info {
   public:
     shared_ptr<ParticleData> data;
 
-    void drawInfo();
+    void drawInfo(ofVec2f& _velocity);
 
     Info(shared_ptr<ParticleData>& _data, float radius);
     ~Info(){

@@ -1,6 +1,6 @@
 #include "Kinematics.h"
 
-Kinematics::Kinematics(shared_ptr<ParticleData>& _particleData, ofPoint _position, ofVec3f _velocity): data(_particleData), position(_position), velocity(_velocity){
+Kinematics::Kinematics(shared_ptr<ParticleData>& _particleData, ofVec2f _position, ofVec2f _velocity): data(_particleData), position(_position), velocity(_velocity){
 
   //Bfield.set(0,0,0.0000015);
   acceleration.set(0,0);
@@ -27,7 +27,7 @@ void Kinematics::setVelocity(){
 }
 
 
-ofVec3f Kinematics::applyForce(ofVec3f _vector){
+ofVec2f Kinematics::applyForce(ofVec3f _vector){
   acceleration += _vector;
 }
 
@@ -42,8 +42,12 @@ void Kinematics::update(){
 
 }
 
-ofPoint Kinematics::getPosition(){
+ofVec2f Kinematics::getPosition(){
   return position;
+}
+
+ofVec2f Kinematics::getVelocity(){
+  return velocity;
 }
 
 
