@@ -2,14 +2,22 @@ import pytest
 from phenomena.particles.models import QuantumUniverseParticle
 from phenomena.particles.sources import ParticleDataSource
 from phenomena.particles.transformations import TransformationChannels
+from particletools.tables import *
 
 
 
 def test_particle():
-    for part in ['u', "ubar", "d", "dbar","c","cbar","s","sbar","b","bbar"]:
-        this = QuantumUniverseParticle(part)
-        print (this.transformtime)
+    # for part in ['u', "ubar", "d", "dbar","c","cbar","s","sbar","b","bbar"]:
+    #     this = QuantumUniverseParticle(part)
+    #     print (this.transformtime)
+    excluded =[]
+    for item in ParticleDataSource.getParticleList():
+        if ParticleDataSource.getType(item[1].name) == '':
+            excluded.append(item[1].name)
+    ['lepton', 'baryon', 'meson', 'quark', 'boson']
+    print (excluded)
 
+    print (ParticleDataSource.getExcludedParticles())
 
     #print (ParticleDataSource.getName(25))
     #print (ParticleDataSource.getName(22))

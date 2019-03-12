@@ -96,7 +96,10 @@ class TransformationChannels(object):
     TCS.lengthCut(3) -> TCs with number of output particles <= 3
     TCS.lengthSelection(3) -> TCs with number of output particles = 3
     '''
-    EXCLUDED = set(['rndmflavgbar','rndmflavg','g'])
+    EXCLUDED = ParticleDataSource.getExcludedParticles()
+    EXCLUDED.append('g')
+    EXCLUDEDSET = set(EXCLUDED)
+    #EXCLUDED = set(['rndmflavgbar','rndmflavg','g'])
 
     def __init__(self, tclist):
         self._tclist = tclist
@@ -113,7 +116,7 @@ class TransformationChannels(object):
             if all([
                 TC.length in [2,3,4],
                 TC.BR > 0.0,
-                TC.nameSet.intersection(TransformationChannels.EXCLUDED) == set([])
+                TC.nameSet.intersection(TransformationChannels.EXCLUDEDSET) == set([])
             ]):
                 tclist.append(TC)
             elif TC.length == 1:

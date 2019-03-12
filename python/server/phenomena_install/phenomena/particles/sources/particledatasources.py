@@ -49,6 +49,8 @@ class ParticleDataSource(object):
     usage example in mixin: self._mass = ParticleDataSource.getMass(self._name)
     '''
 
+    TYPES = ['lepton', 'baryon', 'meson', 'quark', 'boson']
+
     @staticmethod
     def getName(pdgid):
         name =''
@@ -127,6 +129,10 @@ class ParticleDataSource(object):
     @staticmethod
     def getParticleList():
         return sources['getParticleList'].getParticleList()
+
+    @staticmethod
+    def getExcludedParticles():
+        return [part[1].name for part in ParticleDataSource.getParticleList() if ParticleDataSource.getType(part[1].name) not in ParticleDataSource.TYPES]
 
     @staticmethod
     def getParticleByComposition():
