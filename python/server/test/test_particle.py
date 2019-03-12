@@ -2,14 +2,16 @@ import pytest
 from phenomena.particles.models import QuantumUniverseParticle
 from phenomena.particles.sources import ParticleDataSource
 from phenomena.particles.transformations import TransformationChannels
+from particletools.tables import *
 
 
 
 def test_particle():
-    for part in ['u', "ubar", "d", "dbar","c","cbar","s","sbar","b","bbar"]:
-        this = QuantumUniverseParticle(part)
-        print (this.transformtime)
-
+    # for part in ['u', "ubar", "d", "dbar","c","cbar","s","sbar","b","bbar"]:
+    #     this = QuantumUniverseParticle(part)
+    #     print (this.transformtime)
+    top = QuantumUniverseParticle('t')
+    print (top.mass)
 
     #print (ParticleDataSource.getName(25))
     #print (ParticleDataSource.getName(22))

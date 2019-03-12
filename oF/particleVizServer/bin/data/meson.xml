@@ -1,18 +1,18 @@
 <shape>
     <shapesNum>2</shapesNum>
-    <radius>42.139999390</radius>
+    <radius>23.439998627</radius>
     <width>3.000000000</width>
     <segments>100</segments>
-    <speedAmp>0.022000000</speedAmp>
+    <speedAmp>0.021500001</speedAmp>
 </shape>
 <variations>
     <posAmp>
-        <x>73.469390869</x>
-        <y>69.795913696</y>
+        <x>0.000000000</x>
+        <y>0.000000000</y>
         <z>0.000000000</z>
     </posAmp>
     <rotAmp>
-        <x>264.489807129</x>
+        <x>264.000000000</x>
         <y>268.000000000</y>
         <z>0.000000000</z>
     </rotAmp>
@@ -26,6 +26,6 @@
     <fadeAmnt>10</fadeAmnt>
     <colMode>0</colMode>
     <saturation>200</saturation>
-    <brightness>130</brightness>
-    <alpha>121</alpha>
+    <brightness>63</brightness>
+    <alpha>116</alpha>
 </color>

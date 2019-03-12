@@ -107,9 +107,8 @@ void Model::setShape(){
 void Model::setInfo(){
   info = make_unique<Info>(data, radius);
 }
-
-void Model::drawInfo(){
-  info -> drawInfo();
+void Model::drawInfo(ofVec2f& _velocity){
+  info -> drawInfo(_velocity);
 }
 
 

@@ -24,11 +24,11 @@ class Particle {
   void draw();
   void drawInfo();
 
-  ofPoint getPosition();
+  ofVec2f getPosition();
   string getName();
 
   Particle(shared_ptr<ParticleData>& _data);
-  Particle(shared_ptr<ParticleData>& _data, ofPoint _position, ofVec3f _velocity);
+  Particle(shared_ptr<ParticleData>& _data, ofVec2f _position, ofVec2f _velocity);
   ~Particle() {
     kinematics.reset();
     model.reset();

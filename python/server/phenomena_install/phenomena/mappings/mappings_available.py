@@ -1,3 +1,4 @@
+import math
 from .mapping_interface import Mapping
 
 class ListMapping(Mapping):
@@ -18,6 +19,16 @@ class MirrorMapping(Mapping):
 
     def translateValue(self, value):
         return value
+
+    def updateMapping(self, new_values):
+        pass
+
+class MassMapping(Mapping):
+    def __init__(self):
+        self._M0 = 171.0
+
+    def translateValue(self, value):
+        return math.pow((value/self._M0),1/3)
 
     def updateMapping(self, new_values):
         pass

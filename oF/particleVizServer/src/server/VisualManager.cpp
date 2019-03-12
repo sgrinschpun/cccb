@@ -33,10 +33,10 @@ void VisualManager::updateMap(PhenomenaCMD phenoCMD) {
           position.set(ofGetWidth()/2, ofGetHeight()/2,0);
         }
 
-        ofVec3f velocity;
-        velocity.set(phenoCMD.getParams().vy,phenoCMD.getParams().vz,phenoCMD.getParams().vx);
+        ofVec2f velocity;
+        velocity.set(phenoCMD.getParams().vy,phenoCMD.getParams().vz);
         velocity.scale(1*phenoCMD.getParams().beta);
-        DEBUG_MSG("Particle Name " + phenoCMD.getParams().name);
+        DEBUG_MSG("Particle Name " + phenoCMD.getParams().name + to_string(phenoCMD.getParams().beta));
 
         particleMap.insert(make_pair(phenoCMD.getParams().id, make_shared<Particle>(newParticleData,position, velocity)));
     }
@@ -83,7 +83,7 @@ void VisualManager::drawFbo(){
   rgbaFbo.begin();
     ofEnableAlphaBlending();
     for(auto pair:particleMap) {
-      ofPoint position = pair.second->getPosition();
+      ofVec2f position = pair.second->getPosition();
       ofPushMatrix();
       ofTranslate(position.x, position.y);
       pair.second->draw();
@@ -102,9 +102,13 @@ void VisualManager::update(){
     for(auto pair:particleMap) {
       pair.second->update();
     }
+    glEnable(GL_AUTO_NORMAL);
+    glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
     drawFbo();
+    glDisable(GL_AUTO_NORMAL);
 
-    sDisplay.update(particleMap.size());
+
+    //sDisplay.update(particleMap.size());
 }
 
 void VisualManager::draw(){
@@ -113,7 +117,7 @@ void VisualManager::draw(){
   rgbaFbo.draw(0,0);
 
   for(auto pair:particleMap) {
-    ofPoint position = pair.second->getPosition();
+    ofVec2f position = pair.second->getPosition();
     ofPushMatrix();
     ofTranslate(position.x, position.y);
       pair.second->drawInfo();
@@ -121,7 +125,7 @@ void VisualManager::draw(){
   }
   glDisable(GL_BLEND);
 
-  sDisplay.display();
+  //sDisplay.display();
 
 
 }

@@ -1,6 +1,6 @@
 <shape>
     <shapesNum>1</shapesNum>
-    <radius>15.000000000</radius>
+    <radius>15</radius>
     <width>1.000000000</width>
     <segments>100</segments>
     <speedAmp>0.033000004</speedAmp>

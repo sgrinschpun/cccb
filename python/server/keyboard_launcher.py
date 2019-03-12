@@ -57,7 +57,7 @@ particle_keyboard = {
 'K*+':{keyboard.Key.shift, keyboard.KeyCode(char='A')},
 'K*0':{keyboard.Key.alt, keyboard.KeyCode(char='A')},
 'phi':{keyboard.KeyCode(char='f')},
-'omega':{keyboard.KeyCode(char='o')},
+'Omega_b-':{keyboard.KeyCode(char='o')},
 'purge':{keyboard.KeyCode(char='q')}
 }
 

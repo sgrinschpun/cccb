@@ -15,12 +15,15 @@ void Boson::setXMLSettingsName(){
 }
 
 void Boson::specificParameters(){
+  float mass = data->getMass();
+  if (mass!=0){radius = 100*mass;}
+
 }
 
 Boson::Boson(shared_ptr<ParticleData>& _particleData):Model(_particleData){
   setXMLSettingsName();
   buildParameters();
+  specificParameters();
   setShape();
   setInfo();
-  specificParameters();
 }

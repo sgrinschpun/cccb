@@ -1,4 +1,4 @@
-from .mappings_available import ConstMapping, MirrorMapping
+from .mappings_available import ConstMapping, MirrorMapping, MassMapping
 from phenomena.particles.particle import Particle, BasicParticle
 
 
@@ -6,7 +6,7 @@ class MappingsController:
 
     def __init__(self):
         self._map_dictionary = {"charge": MirrorMapping(),
-                               "mass": MirrorMapping(),
+                               "mass": MassMapping(),
                                "transformtime": MirrorMapping(),
                                "composition": MirrorMapping(),
                                "type": MirrorMapping(),
