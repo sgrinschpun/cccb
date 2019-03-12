@@ -1,16 +1,27 @@
 #ifndef _Kinematics
 #define _Kinematics
 #include "ofMain.h"
+#include "ParticleData.h"
 
 class Kinematics {
   private:
-    ofPoint position;
-    ofVec3f velocity;
-    ofVec3f acceleration;
+    shared_ptr<ParticleData> data;
+    ofVec2f position;
+    ofVec2f velocity;
+    ofVec2f acceleration;
 
-    float topSpeed;
+    void setInitialSpeed();
+    ofVec3f applyForce(ofVec3f _vector);
 
-    void setAcceleration();
+    //ofVec3f Bfield;
+    ofVec2f Bforce;
+    void setBforce();
+
+    float initTime;
+    float initSpeed;
+    void setVelocity();
+    float finalSpeed;
+
     void checkEdges();
 
   public:
@@ -18,7 +29,9 @@ class Kinematics {
     ofPoint getPosition();
     float getDistance();
 
-    Kinematics(ofPoint _position, ofVec3f _velocity);
+
+
+    Kinematics(shared_ptr<ParticleData>& _particleData, ofPoint _position, ofVec3f _velocity);
 
 };
 #endif

@@ -1,13 +1,56 @@
 #include "Kinematics.h"
 
-Kinematics::Kinematics(ofPoint _position, ofVec3f _velocity): position(_position), velocity(_velocity){
-  setAcceleration();
-  topSpeed = 4;
+Kinematics::Kinematics(shared_ptr<ParticleData>& _particleData, ofPoint _position, ofVec3f _velocity): data(_particleData), position(_position), velocity(_velocity){
+
+  //Bfield.set(0,0,0.0000015);
+  acceleration.set(0,0);
+  //initSpeed = 30;
+  //finalSpeed = velocity.length();
+  //initTime = 50*ofGetElapsedTimeMillis();
+  velocity *= 1.5;
 }
 
-void Kinematics::setAcceleration(){
-  acceleration.set(0,0,0);
+void Kinematics::setBforce(){
+  float q = data->getCharge();
+  float mass = data->getMass();
+  ofVec2f perpendicular= velocity.getPerpendicular();
+  Bforce = 0.0000015*perpendicular*q/mass;
+  //velocity.getCrossed(Bfield)*q/mass;
 }
+
+void Kinematics::setVelocity(){
+  float elapsedTime = 50*ofGetElapsedTimeMillis() - initTime;
+  //float speed = initSpeed*exp(-pow(elapsedTime,2)/10) + finalSpeed;
+  float speed = initSpeed/(1+pow(elapsedTime,2))+ finalSpeed;
+  velocity.normalize();
+  velocity *= speed;
+}
+
+
+ofVec3f Kinematics::applyForce(ofVec3f _vector){
+  acceleration += _vector;
+}
+
+
+void Kinematics::update(){
+  //setVelocity();
+  setBforce();
+  applyForce(Bforce);
+  velocity += acceleration;
+  position += velocity;
+  acceleration *= 0;
+
+}
+
+ofPoint Kinematics::getPosition(){
+  return position;
+}
+
+
+
+
+
+
 
 void Kinematics::checkEdges(){
   if (position.x > ofGetWidth()) {
@@ -24,19 +67,8 @@ void Kinematics::checkEdges(){
   }
 }
 
-ofPoint Kinematics::getPosition(){
-  return position;
-}
 
 float Kinematics::getDistance(){
   ofVec3f center(3, 4, 2);
   return position.distance(center);
-}
-
-void Kinematics::update(){
-  //checkEdges();
-  velocity+=acceleration;
-  velocity.limit(topSpeed);
-  position+=velocity;
-
 }
