@@ -4,10 +4,9 @@ from skhep.pdg import ParticleDataTable
 from skhep.simulation import pdgid as PDGID
 from skhep import units as u
 from phenomena.particles.particle import Particle
-from os.path import expanduser, join
-home = expanduser("~")
-tbl = ParticleDataTable(join(home, '.phenomena/conf/mass_width_2017.mcd'))
-#tbl = ParticleDataTable()
+
+import os
+tbl = ParticleDataTable(os.path.join(os.path.dirname(__file__), "data/mass_width_2017.mcd"))
 
 class SciKitHEPFetcher(object):
 
@@ -38,18 +37,18 @@ class SciKitHEPFetcher(object):
 
     @staticmethod
     def getType(pdgid):
-        type = ''
+        pdtype = ''
         if PDGID.isLepton(pdgid):
-            type = 'lepton'
+            pdtype = 'lepton'
         elif PDGID.isBaryon(pdgid):
-            type = 'baryon'
+            pdtype = 'baryon'
         elif PDGID.isMeson(pdgid):
-            type = 'meson'
+            pdtype = 'meson'
         elif pdgid in [1,2,3,4,5,6,-1,-2,-3,-4,-5,-6]:
-            type = 'quark'
+            pdtype = 'quark'
         elif pdgid in [21, 22, 23, 24, -24, 25, 37]:
-            type = 'boson'
-        return type
+            pdtype = 'boson'
+        return pdtype
 
     @staticmethod
     def getSpin(pdgid):
@@ -66,3 +65,11 @@ class SciKitHEPFetcher(object):
     @staticmethod
     def getCTau(pdgid):
         return tbl[pdgid].ctau
+
+    @staticmethod
+    def isLepton(pdgid):
+        return PDGID.isLepton(pdgid)
+
+    @staticmethod
+    def isSUSY(pdgid):
+        return PDGID.isSUSY(pdgid)

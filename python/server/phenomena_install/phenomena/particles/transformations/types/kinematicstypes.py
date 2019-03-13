@@ -72,7 +72,10 @@ class LABNBody(object):
         self._s = (self._initialparticleCM.e + self._targetCM.e)**2
 
     def _setP(self, s, m1, m2):
-        self._p = math.sqrt( Kallen_function(s, m1**2, m2**2)/(4*s))
+        try:
+            self._p = math.sqrt( Kallen_function(s, m1**2, m2**2)/(4*s))
+        except:
+            self._p = 10
 
     def _setFourMomenta(self):
         vector3Dlist = self._setVector3D(self._p)
@@ -81,7 +84,7 @@ class LABNBody(object):
 
     def _setVector3D(self,p):
         theta = math.pi * random.random() # [0, math.pi]
-        phi = 2*math.pi * random.random() #random.choice([-math.pi/2, math.pi/2])
+        phi = 2*math.pi * random.random()#random.choice([-math.pi/2, math.pi/2])
         vector1 = Vector3D.fromsphericalcoords(p,theta,phi)
         vector2 = -1*vector1
         return [vector1, vector2]

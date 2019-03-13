@@ -43,9 +43,9 @@ class Particle(object):
     def p(self):
         pass
 
-    @abc.abstractproperty
-    def theta(self):
-        pass
+    # @abc.abstractproperty
+    # def theta(self):
+    #     pass
 
     @abc.abstractproperty
     def beta(self):
@@ -60,7 +60,7 @@ class BasicParticle(Particle):
     This class is used by the server to transmit the messages through the socket. It is just a container of information.
     '''
 
-    def __init__(self, parent, id, name, type, mass, charge, composition, transformtime, p, theta, phi, beta):
+    def __init__(self, parent, id, name, type, mass, charge, composition, transformtime, p, E, vx, vy, vz, beta):
         self._parent = parent
         self._id = id
         self._name = name
@@ -70,8 +70,10 @@ class BasicParticle(Particle):
         self._charge = charge
         self._transformtime = transformtime
         self._p = p
-        self._theta = theta
-        self._phi = phi
+        self._E = E
+        self._vx = vx
+        self._vy = vy
+        self._vz = vz
         self._beta = beta
 
     @property
@@ -111,13 +113,19 @@ class BasicParticle(Particle):
         return self._p
 
     @property
-    def theta(self):
-        return self._theta
+    def E(self):
+        return self._E
 
     @property
-    def phi(self):
-        return self._phi
+    def vx(self):
+        return self._vx
 
+    @property
+    def vy(self):
+        return self._vy
+    @property
+    def vz(self):
+        return self._vz
     @property
     def beta(self):
         return self._beta
@@ -127,7 +135,7 @@ class BasicParticle(Particle):
 
 def toDictionary(particle):
     '''
-    This method is used to extract the infromation required by the visualization and sonification nodes and send it through the socket
+    This method is used to extract the information required by the visualization and sonification nodes and send it through the socket
     '''
     return {"name": particle.name,
             "parent": particle.parent,
@@ -135,10 +143,12 @@ def toDictionary(particle):
             "type": particle.type,
             "mass": particle.mass,
             "charge": particle.charge,
-            "transformtime": particle.transformtime,
-            "composition": particle.composition,
-            "p": particle.p,
-            "theta": particle.theta,
-            "phi": particle.phi,
+            #"transformtime": particle.transformtime,
+            #"composition": ".".join(particle.composition),
+            #"p": particle.p,
+            "E": particle.E,
+            "vx": particle.vx,
+            "vy": particle.vy,
+            "vz": particle.vz,
             "beta": particle.beta
             }

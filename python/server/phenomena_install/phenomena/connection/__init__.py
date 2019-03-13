@@ -1,4 +1,5 @@
 from .osc import OSCMessageSender
+from .osc import OSCBundledMessageSender
 from .osc import OSCPhenomenaServer
 from .raw import RawMessageSender
 from .raw import RawPhenomenaServer

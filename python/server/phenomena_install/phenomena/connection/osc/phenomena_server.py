@@ -2,19 +2,15 @@ import threading
 import sys
 import os
 from phenomena.utils.log import get_logger
-from phenomena.nodes import getNodeController
 from phenomena.connection.interface import PhenomenaServer
+from phenomena.connection.phenomena_message import IncomingMessage, OutcomingMessage
 from pythonosc import dispatcher
 from pythonosc import osc_server
 from .commons import PORT, HOST
-from phenomena.connection.phenomena_message import IncomingMessage, OutcomingMessage
-
-
-  
  
 class OSCPhenomenaServer(PhenomenaServer):
 
-    def __init__(self, node_controller = getNodeController()):
+    def __init__(self, node_controller):
         self._log = get_logger("Connection.OCSServer")
         self._log.info("Creating Server")
         self._dispatcher = dispatcher.Dispatcher()
@@ -38,14 +34,12 @@ class OSCPhenomenaServer(PhenomenaServer):
         self._server_thread = threading.Thread(target = self._startServer)
 
     def _attendPetition(self, address, *args):
-        print("Attending!")
         try:
             module_path = str(address)[1:].replace('/', '.')
             params = dict(zip(args[::2], args[1::2]))
-            print(module_path)
-            _id = params.pop("id")
+            _id = params.pop("command_id")
             command_name = params.pop("command_name")
-            new_message = IncomingMessage.fromData(command_id = _id, command_name = command_name, module_path=module_path, params = params)
+            new_message = IncomingMessage.fromData(command_id = _id, command_name = command_name, module_path = module_path, params = params)
             node = self._node_controller.findModule(new_message.module_path)
             node.execute(new_message)
             out_message = OutcomingMessage.okMessage(new_message, new_message.params)
@@ -54,7 +48,6 @@ class OSCPhenomenaServer(PhenomenaServer):
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
             message = "Exception: Type: {0} Name: {1} Line: {2} Messsage: {3}".format(exc_type, fname, exc_tb.tb_lineno, str(ex))
-            print(message)
             out_message = OutcomingMessage.errorMessage(new_message, message)
             self._log.exception(out_message)
 

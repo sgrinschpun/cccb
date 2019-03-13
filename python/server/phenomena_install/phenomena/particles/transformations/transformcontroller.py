@@ -10,8 +10,9 @@ __status__ = "Development"
 from random import shuffle
 
 from phenomena.particles.transformations.selections import TypeSelector, ChannelSelector
-from .kinematicscontroller import KinematicsController
+from phenomena.particles.transformations.types.decaysviavirtual.virtualparticlechannel import VirtualParticleChannel
 from phenomena.particles.transformations.time import TimeController
+from .kinematicscontroller import KinematicsController, VirtualKinematicsController
 
 class TransformController(object):
     '''
@@ -26,15 +27,33 @@ class TransformController(object):
         self._buildTransformations() ## las one needed for online selections
         self._selectType()
         self._selectChannel()
+        self._useVirtual()
         self._setTime()
+
 
     def _setTransformationList(self, classlist):
         '''
         Sets list of all transformation objects
+        If self._particle.lifetime == -1, it should not add the Decay tranformation
+        If the Decay tranf is in the list, it should not include NoTransformation for self._particle.lifetime != -1 particles. We asume Decay is always present.
         '''
         objectlist = []
         for transformationclass in classlist:
-            objectlist.append(transformationclass(self._particle))
+            if self._particle.lifetime == -1:
+                if self._particle.name in ['u', "ubar", "d", "dbar","c","cbar","s","sbar","b","bbar"]:
+                    if transformationclass.__name__ == 'Hadronization':
+                        objectlist.append(transformationclass(self._particle))
+                    else:
+                        pass
+                else:
+                    if transformationclass.__name__ != 'Decay':
+                        objectlist.append(transformationclass(self._particle))
+                    else:
+                        pass
+            else:
+                if transformationclass.__name__ != 'NoTransformation':
+                    objectlist.append(transformationclass(self._particle))
+
         self._transformationlist = objectlist
 
     def _buildTransformations(self):
@@ -45,25 +64,17 @@ class TransformController(object):
         newtransformationlist =[]
         for transf in self._transformationlist :
             item = transf.values
-            if item != {}:
+            if item:
                 allTransformations.append(item)
                 newtransformationlist.append(transf)
             else:
                 pass
 
-        
-
-        # if decay values list is [] keep NoTransformation
-        # if decay values list is not [] get rid of Notransformaton
-        #spaghetti
-        # if not any('Decay' in item['type'] for item in allTransformations):
-        #     allTransformations.append({'type':'NoTransformation'})
-
         self._transformationlist = newtransformationlist
         self._allTransformations = allTransformations
 
     def _selectByType(self, type):
-        return [element for element in self._allTransformations if element['type'] == type][0]
+        return [element for element in self._allTransformations if element.type == type][0]
 
     def _selectType(self):
         '''
@@ -76,20 +87,44 @@ class TransformController(object):
         From all the possible channels, choose one
         '''
         try:
-            channel = ChannelSelector(self._selectedType['list']).value
+            channel = ChannelSelector(self._selectedType.channels.all).value
         except:
             channel = []
         finally:
             self._selectedChannel = channel
 
+    def _useVirtual(self):
+        '''
+        If the flag DECAYTHROUGHVIRTUAL is set in the model, check if 3body decay and change self._selectedChannel to 2body with virtual
+        '''
+        self._virtual = False
+        if self._particle.__class__.DECAYTHROUGHVIRTUAL == True:
+            if len(self.selectedChannel) == 3 and self._selectedType.type == "Decay":
+                virtualchannel = VirtualParticleChannel(self._particle,self._selectedChannel.names).getValues()
+                if virtualchannel != []:
+                    self._virtual = True
+                    self._selectedChannel = virtualchannel
+                else:
+                    pass
+        else:
+            pass
+
+
     def _buildOutput(self):
         '''
-        Get de list of output particles boosted values
+        Get de list of output particles boosted values.
+        Different classes if virtual or not.
         '''
-        return KinematicsController(self._particle).getFinalState() if self.selectedType != 'NoTransformation'else []
+        if self.selectedType.type != 'NoTransformation':
+            if not self._virtual:
+                return KinematicsController(self._particle).getFinalState()
+            else:
+                return VirtualKinematicsController(self._particle).getFinalState()
+        else:
+            return []
 
     def _setTime(self):
-        self._time = TimeController.getTime()
+        self._time = TimeController.getTime(self._particle)
 
     @property
     def allTypes(self):
@@ -97,12 +132,12 @@ class TransformController(object):
 
     @property
     def selectedType(self):
-        return self._selectedType['type']
+        return self._selectedType
 
     @property
     def target(self):
         try:
-            target = self._selectedType['target']
+            target = self._selectedType.target
         except:
             target = None
         finally:
@@ -111,7 +146,7 @@ class TransformController(object):
     @property
     def selectedChannel(self):
         try:
-            channel = self._selectedChannel[1]
+            channel = self._selectedChannel.names
         except:
             channel = []
         finally:
@@ -131,9 +166,11 @@ class TransformController(object):
         for transf in self._transformationlist:
             probability = transf.getProbability(dt)
             if TypeSelector.getDecision(probability):
-                print(transf.name)
                 self._selectedType = self._selectByType(transf.name)
                 self._selectChannel()
                 output = self.output
                 break
         return output
+
+    def selectType(self, type):
+        return [transtype for transtype in self._allTransformations if transtype.type==type][0]

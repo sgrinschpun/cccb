@@ -27,14 +27,15 @@ sources = {
     'getTau':particledatatool, #particledatatool, scikitHEP, decaylanguage??????  skhep.math.kinematics.width_to_lifetime
     'getPDGId':particledatatool,#particledatatool, scikitHEP, decaylanguage
     'getComposition':extrainfo, #decaylanguage, extrainfo
-    'getType':extrainfo, #scikitHEP,
+    'getType':scikitHEP, #extrainfo, #scikitHEP,
     'getSpin':scikitHEP,
     'getName':particledatatool,#particledatatool, scikitHEP, decaylanguage
     'getDecayChannels':particledatatool,
-    'getWidth':scikitHEP, #scikitHEP, decaylanguage  skhep.math.kinematics.width_to_lifetime
+    'getWidth':particledatatool, #particledatatool,scikitHEP, decaylanguage  skhep.math.kinematics.width_to_lifetime
     'getCTau':scikitHEP, #particledatatool, scikitHEP
     'getRadius':decaylanguage,
     'getAnti':decaylanguage,
+    'isNewPhysics':scikitHEP,
     'getParticleList':particledatatool,
     'getParticleByComposition':extrainfo
 }
@@ -47,6 +48,8 @@ class ParticleDataSource(object):
 
     usage example in mixin: self._mass = ParticleDataSource.getMass(self._name)
     '''
+
+    TYPES = ['lepton', 'baryon', 'meson', 'quark', 'boson']
 
     @staticmethod
     def getName(pdgid):
@@ -95,11 +98,13 @@ class ParticleDataSource(object):
 
     @staticmethod
     def getDecayChannels(name):
-        return sources['getDecayChannels'].getDecayChannels(name)
+        pdgid = ParticleDataSource.getPDGId(name)
+        return sources['getDecayChannels'].getDecayChannels(pdgid)
 
     @staticmethod
     def getWidth(name):
-        return sources['getWidth'].getWidth(name) * u.GeV / u.GeV
+        pdgid = ParticleDataSource.getPDGId(name)
+        return sources['getWidth'].getWidth(pdgid) * u.GeV / u.GeV
 
     @staticmethod
     def getCTau(name):
@@ -117,8 +122,17 @@ class ParticleDataSource(object):
         return ParticleDataSource.getName(sources['getAnti'].getAnti(pdgid))
 
     @staticmethod
+    def isNewPhysics(name):
+        pdgid = ParticleDataSource.getPDGId(name)
+        return sources['isNewPhysics'].isNewPhysics(pdgid)
+
+    @staticmethod
     def getParticleList():
         return sources['getParticleList'].getParticleList()
+
+    @staticmethod
+    def getExcludedParticles():
+        return [part[1].name for part in ParticleDataSource.getParticleList() if ParticleDataSource.getType(part[1].name) not in ParticleDataSource.TYPES]
 
     @staticmethod
     def getParticleByComposition():

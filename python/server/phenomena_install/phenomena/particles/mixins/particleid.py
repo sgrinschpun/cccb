@@ -8,10 +8,12 @@ __status__ = "Development"
 
 NO_PARENT = -1
 
+from phenomena.particles.particle import toDictionary
+
 class ParticleId(object):
     '''
     This is a mixin class for the Particle class
-    It adds functionality ised by the particle server:
+    It adds functionality used by the particle server:
      - It adds the attributes and methods related to id & parent
      - It adds the CLASS_COUNTER class attribute
      - It adds the toDictionary method
@@ -30,7 +32,11 @@ class ParticleId(object):
     def parent(self):
         return self._parent
 
-    def _set_parent(self, parent):
+    def _set_parent(self, argv):
+        try:
+            parent = argv[1]
+        except:
+            parent = NO_PARENT
         self._parent = parent
 
     def toDictionary(self):

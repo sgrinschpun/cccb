@@ -1,2 +1,2 @@
-from .phenomena_client import OSCMessageSender
+from .phenomena_client import OSCMessageSender, OSCBundledMessageSender
 from .phenomena_server import OSCPhenomenaServer
