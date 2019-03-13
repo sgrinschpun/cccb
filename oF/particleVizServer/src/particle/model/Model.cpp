@@ -14,7 +14,7 @@ map <string, string> Model::setXMLSettingsNames(){
   m["baryon"] = "baryon.xml";
   m["gamma"] = "gamma.xml";
   m["W"] = "W.xml";
-  m["Z0"] = "Z0.xml";
+  m["Z"] = "Z.xml";
   m["higgs"] = "higgs.xml";
   m["electron"] = "electron.xml";
   m["muon"] = "muon.xml";
