@@ -1,8 +1,9 @@
 import pytest
 from phenomena.particles.models import QuantumUniverseParticle
-from phenomena.particles.sources import ParticleDataSource
+from phenomena.particles.sources import ParticleDataSource, DecayLanguageFetcher
 from phenomena.particles.transformations import TransformationChannels
 from particletools.tables import *
+from pylatexenc.latex2text import LatexNodes2Text
 
 
 
@@ -10,8 +11,12 @@ def test_particle():
     # for part in ['u', "ubar", "d", "dbar","c","cbar","s","sbar","b","bbar"]:
     #     this = QuantumUniverseParticle(part)
     #     print (this.transformtime)
-    top = QuantumUniverseParticle('t')
-    print (top.mass)
+    particle = QuantumUniverseParticle('J/psi')
+    #print (top.mass)
+
+    print (DecayLanguageFetcher.getHTMLName(particle.pdgid))
+    latex = DecayLanguageFetcher.getLatexName(particle.pdgid)
+    print (LatexNodes2Text().latex_to_text(latex))
 
     #print (ParticleDataSource.getName(25))
     #print (ParticleDataSource.getName(22))
