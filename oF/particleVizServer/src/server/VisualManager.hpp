@@ -20,6 +20,7 @@ class VisualManager{
   map <int, shared_ptr<Particle> > particleMap;
   map <int, shared_ptr<Particle> > ::iterator particleIt;
   StatsDisplay sDisplay;
+  static float fadeAmnt;
 
 public:
   VisualManager();

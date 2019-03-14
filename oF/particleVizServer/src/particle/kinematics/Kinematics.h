@@ -8,6 +8,7 @@ class Kinematics {
     shared_ptr<ParticleData> data;
     ofVec2f position;
     ofVec2f velocity;
+    static float velocityAmp;
     ofVec2f acceleration;
 
     void setInitialSpeed();
@@ -16,6 +17,7 @@ class Kinematics {
     //ofVec3f Bfield;
     ofVec2f Bforce;
     void setBforce();
+    static float BMag;
 
     float initTime;
     float initSpeed;

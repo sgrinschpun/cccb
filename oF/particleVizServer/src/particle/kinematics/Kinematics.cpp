@@ -1,15 +1,22 @@
 #include "Kinematics.h"
+#include "Parameters.h"
+
+float Kinematics::BMag{Parameters::BMag};
+float Kinematics::velocityAmp{Parameters::velocityAmp};
 
 Kinematics::Kinematics(shared_ptr<ParticleData>& _particleData, ofVec2f _position, ofVec2f _velocity): data(_particleData), position(_position), velocity(_velocity){
   acceleration.set(0,0);
-  velocity *= 1.5;
+  velocity *= velocityAmp;
 }
 
 void Kinematics::setBforce(){
   float q = data->getCharge();
   float mass = data->getMass();
   ofVec2f perpendicular= velocity.getPerpendicular();
-  Bforce = 0.00005*perpendicular*q/mass;
+  //Bforce = 0.00005*perpendicular*q/mass;
+  Bforce = BMag*perpendicular*q/mass;
+  cout<<"BMag"<<BMag<<endl;
+  cout<<"velocityAmp"<<velocityAmp<<endl;
 }
 
 void Kinematics::setVelocity(){

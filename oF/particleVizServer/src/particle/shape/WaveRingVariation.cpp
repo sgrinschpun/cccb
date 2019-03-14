@@ -31,10 +31,6 @@ void WaveRingVariation::setShapeNum(int _shapesNum) {
     }
 }
 
-void WaveRingVariation::setFadeAmnt(int _fadeAmnt){
-  fadeAmnt = _fadeAmnt;
-}
-
 void WaveRingVariation::setCycle(int _framesPerCycle){
   framesPerCycle = _framesPerCycle;
   cycle = make_shared<Cycle>(framesPerCycle);
