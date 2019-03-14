@@ -1,16 +1,9 @@
-//
-//  AVServer.hpp
-//  oscReceiveExample
-//
-//  Created by Oscar Martinez Carmona on 05/02/2019.
-//
-
-#pragma once
+#ifndef _AVServer
+#define _AVServer
 
 #include "ofxOsc.h"
-#include "OSCHandler.hpp"
-#include "AudioVisualManager.hpp"
-#include <iostream>
+#include "OSCHandler.h"
+#include "AudioVisualManager.h"
 
 class AVServer{
     ofxOscReceiver oscReceiver;
@@ -24,3 +17,4 @@ public:
     void update();
 
 };
+#endif

@@ -1,14 +1,7 @@
-//
-//  PhenomenaCMD.hpp
-//  oscReceiveExample
-//
-//  Created by Oscar Martinez Carmona on 05/02/2019.
-//
-
-#pragma once
-
-#include <stdio.h>
-#include "PhenomenaParams.hpp"
+#ifndef _PhenomenaCMD
+#define _PhenomenaCMD
+#include "PhenomenaParams.h"
+using namespace std;
 
 class PhenomenaCMD{
     string _cmd;
@@ -17,5 +10,6 @@ public:
     PhenomenaCMD(string cmd, PhenomenaParams params);
     string getCMD();
     PhenomenaParams getParams();
-    
+
 };
+#endif

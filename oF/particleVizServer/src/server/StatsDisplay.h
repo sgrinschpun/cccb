@@ -1,16 +1,6 @@
-//
-//  StatsDisplay.hpp
-//  cccbServer
-//
-//  Created by Oscar Martinez Carmona on 05/03/2019.
-//
-
-#pragma once
-
-#include <stdio.h>
-#include <iostream>
+#ifndef _Stats
+#define _Stats
 #include <ofMain.h>
-
 using namespace std;
 
 struct Stats{
@@ -28,3 +18,4 @@ public:
     void update(int nPart);
     void display();
 };
+#endif

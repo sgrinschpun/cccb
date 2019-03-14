@@ -4,7 +4,7 @@
 #define DEBUG_MSG(str) do { } while ( false )
 #endif
 
-#include "VisualManager.hpp"
+#include "VisualManager.h"
 #include "ParticleData.h"
 #include "Parameters.h"
 
