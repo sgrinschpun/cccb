@@ -11,7 +11,7 @@ class Kinematics {
     ofVec2f acceleration;
 
     void setInitialSpeed();
-    ofVec2f applyForce(ofVec3f _vector);
+    void applyForce(ofVec2f _vector);
 
     //ofVec3f Bfield;
     ofVec2f Bforce;

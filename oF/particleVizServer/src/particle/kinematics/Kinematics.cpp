@@ -20,7 +20,7 @@ void Kinematics::setVelocity(){
 }
 
 
-ofVec2f Kinematics::applyForce(ofVec3f _vector){
+void Kinematics::applyForce(ofVec2f _vector){
   acceleration += _vector;
 }
 
