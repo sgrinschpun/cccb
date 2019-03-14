@@ -14,7 +14,6 @@ class Kinematics {
     void setInitialSpeed();
     void applyForce(ofVec2f _vector);
 
-    //ofVec3f Bfield;
     ofVec2f Bforce;
     void setBforce();
     static float BMag;

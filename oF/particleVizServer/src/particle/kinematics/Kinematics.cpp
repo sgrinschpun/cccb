@@ -13,10 +13,7 @@ void Kinematics::setBforce(){
   float q = data->getCharge();
   float mass = data->getMass();
   ofVec2f perpendicular= velocity.getPerpendicular();
-  //Bforce = 0.00005*perpendicular*q/mass;
   Bforce = BMag*perpendicular*q/mass;
-  cout<<"BMag"<<BMag<<endl;
-  cout<<"velocityAmp"<<velocityAmp<<endl;
 }
 
 void Kinematics::setVelocity(){
