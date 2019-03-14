@@ -9,8 +9,6 @@ class Info {
     void setupFont();
     float radius;
 
-
-
   public:
     shared_ptr<ParticleData> data;
 

@@ -10,36 +10,20 @@ shared_ptr<ofxXmlSettings> Parameters::setXMLParameters(){
 
 float Parameters::BMag = setBMag();
 float Parameters::setBMag(){
-  //unique_ptr<ofxXmlSettings>& parameters =xmlParameters;
-  //xmlParameters->pushTag("kinematics");
   return xmlParameters->getValue("magneticField", 0.0);
-  //xmlParameters->popTag();
 }
 
 float Parameters::velocityAmp = setVelocityAmp();
 float Parameters::setVelocityAmp(){
-  //unique_ptr<ofxXmlSettings>& parameters =xmlParameters;
-  //xmlParameters->pushTag("kinematics");
   return xmlParameters->getValue("velocity", 0.0);
-  //xmlParameters->popTag();
 }
 
 float Parameters::fadeAmnt = setFadeAmnt();
 float Parameters::setFadeAmnt(){
-  //unique_ptr<ofxXmlSettings>& parameters =xmlParameters;
-  //xmlParameters->pushTag("appearence");
   return xmlParameters->getValue("fadeAmnt", 0.0);
-  //xmlParameters->popTag();
 }
 
 float Parameters::baseRadius = setBaseRadius();
 float Parameters::setBaseRadius(){
-  //unique_ptr<ofxXmlSettings>& parameters =xmlParameters;
-  //xmlParameters->pushTag("appearence");
   return xmlParameters->getValue("baseRadius", 0.0);
-  //xmlParameters->popTag();
 }
-
- Parameters::Parameters(){
-
- }

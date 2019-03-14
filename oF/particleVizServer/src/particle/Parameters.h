@@ -17,6 +17,5 @@ class Parameters {
     static float baseRadius;
     static float setBaseRadius();
 
-    Parameters();
 };
 #endif
