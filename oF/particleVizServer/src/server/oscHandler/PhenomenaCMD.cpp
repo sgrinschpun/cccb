@@ -1,12 +1,5 @@
-//
-//  PhenomenaCMD.cpp
-//  oscReceiveExample
-//
-//  Created by Oscar Martinez Carmona on 05/02/2019.
-//
-
-#include "PhenomenaCMD.hpp"
-#include "PhenomenaParams.hpp"
+#include "PhenomenaCMD.h"
+#include "PhenomenaParams.h"
 
 PhenomenaCMD::PhenomenaCMD(string cmd, PhenomenaParams params){
     _cmd = cmd;

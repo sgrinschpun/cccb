@@ -4,8 +4,12 @@
 #define DEBUG_MSG(str) do { } while ( false )
 #endif
 
-#include "VisualManager.hpp"
+#include "VisualManager.h"
 #include "ParticleData.h"
+#include "Parameters.h"
+
+float VisualManager::fadeAmnt{Parameters::fadeAmnt};
+
 
 VisualManager::VisualManager(){
   setupFbo();
@@ -91,7 +95,7 @@ void VisualManager::drawFbo(){
     }
     ofEnableBlendMode(OF_BLENDMODE_ALPHA);
     ofFill();
-    ofSetColor(0,0,0, 10);
+    ofSetColor(0,0,0, fadeAmnt);
     ofDrawRectangle(0,0,ofGetWidth(),ofGetHeight());
     ofDisableAlphaBlending();
 

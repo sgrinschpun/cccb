@@ -1,25 +1,18 @@
-//
-//  VisualManager.hpp
-//  oscReceiveExample
-//
-//  Created by Oscar Martinez Carmona on 05/02/2019.
-//
-
-#pragma once
-
-#include <iostream>
+#ifndef _VisualManager
+#define _VisualManager
 #include <map>
-#include "PhenomenaCMD.hpp"
+#include "PhenomenaCMD.h"
 #include "Particle.h"
 #include "ParticleData.h"
 #include <memory>
-#include "StatsDisplay.hpp"
+#include "StatsDisplay.h"
 using namespace std;
 
 class VisualManager{
   map <int, shared_ptr<Particle> > particleMap;
   map <int, shared_ptr<Particle> > ::iterator particleIt;
   StatsDisplay sDisplay;
+  static float fadeAmnt;
 
 public:
   VisualManager();
@@ -33,3 +26,4 @@ public:
   void setupFbo();
   void drawFbo();
 };
+#endif

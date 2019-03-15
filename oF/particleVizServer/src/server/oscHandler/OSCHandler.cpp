@@ -1,12 +1,4 @@
-//
-//  OSCHandler.cpp
-//  oscReceiveExample
-//
-//  Created by Oscar Martinez Carmona on 05/02/2019.
-//
-
-#include "OSCHandler.hpp"
-#define DEBUG true
+#include "OSCHandler.h"
 
 OSCHandler::OSCHandler(){}
 
@@ -33,11 +25,6 @@ void OSCHandler::acumulativeParticleParse(ofxOscMessage message){
         middleParams.vz = message.getArgAsFloat(0);
     if(message.getAddress() == "/particle/attributes/beta")
         middleParams.beta = message.getArgAsFloat(0);
-
-    // if(message.getAddress() == "/particle/attribute/p")
-    //     middleParams.p = message.getArgAsFloat(0);
-    // if(message.getAddress() == "/particle/attribute/composition")
-    //     middleParams.composition[0] = message.getArgAsString(0);
 }
 
 PhenomenaCMD OSCHandler::releaseParticle(ofxOscMessage message){

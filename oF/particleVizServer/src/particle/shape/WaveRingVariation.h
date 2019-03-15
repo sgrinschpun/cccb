@@ -17,7 +17,6 @@ public:
     void draw();
 
     void setShapeNum(int _shapesNum);
-    void setFadeAmnt(int _fadeAmnt);
     //Variations
     void setRadius(float _radius);
     void setPosAmp(ofVec3f _posAmp);
@@ -41,7 +40,6 @@ private:
   float radius;
   int shapesNum {1};
   int framesPerCycle{50};
-  int fadeAmnt{50};
 
 };
 #endif

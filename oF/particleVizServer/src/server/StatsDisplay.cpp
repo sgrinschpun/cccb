@@ -1,11 +1,4 @@
-//
-//  StatsDisplay.cpp
-//  cccbServer
-//
-//  Created by Oscar Martinez Carmona on 05/03/2019.
-//
-
-#include "StatsDisplay.hpp"
+#include "StatsDisplay.h"
 
 
 StatsDisplay::StatsDisplay(){

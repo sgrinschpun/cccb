@@ -13,7 +13,7 @@ RealInfo = namedtuple('RealInfo', 'name')
 class VirtualParticleChannel(object):
     def __init__(self,particle,decaylist):
         self._particle = particle
-        self._channels = TransformationChannels.from_decaylist(self._particle.decay_channels)
+        self._channels = TransformationChannels.from_decaylist(self._particle.decay_channels, self._particle.E)
         self._channel = self._channels.getChannel(decaylist)[0]
         self._alldecays = AllDecays()
         self._virtualchannels = self._buildVirtualChannels()

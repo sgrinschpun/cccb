@@ -12,9 +12,6 @@ void ofApp::setup(){
   avServer.setup(PORT);
 }
 
-
-
-
 //--------------------------------------------------------------
 void ofApp::update(){
   avServer.update();

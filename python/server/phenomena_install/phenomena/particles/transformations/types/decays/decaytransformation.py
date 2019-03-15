@@ -14,7 +14,7 @@ class Decay(Transformation):
         self._buildTransfValues()
 
     def _transformationChannels(self):
-        return TransformationChannels.from_decaylist(self._particle.decay_channels)
+        return TransformationChannels.from_decaylist(self._particle.decay_channels, self._particle.E)
 
     def getProbability(self, dt=1./60.):
         dt = dt *u.s

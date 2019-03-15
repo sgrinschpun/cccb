@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
-#include "AVServer.hpp"
+#include "AVServer.h"
 #define PORT 12345
 
 class ofApp : public ofBaseApp{

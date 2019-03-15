@@ -104,7 +104,7 @@ void ofApp::drawFboStatic(){
     ofPopMatrix();
     ofEnableBlendMode(OF_BLENDMODE_ALPHA);
     ofFill();
-    ofSetColor(0,0,0, 10);
+    ofSetColor(0,0,0, fadeAmnt);
     ofDrawRectangle(0,0,fboWidth,fboHeight);
     ofDisableAlphaBlending();
     ofClearAlpha();

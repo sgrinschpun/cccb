@@ -1,9 +1,9 @@
 <shape>
-    <shapesNum>8</shapesNum>
-    <radius>68.319999695</radius>
-    <width>0.799999952</width>
+    <shapesNum>20</shapesNum>
+    <radius>88.889999390</radius>
+    <width>0.000000000</width>
     <segments>100</segments>
-    <speedAmp>0.030000001</speedAmp>
+    <speedAmp>0.005000000</speedAmp>
 </shape>
 <variations>
     <posAmp>
@@ -12,8 +12,8 @@
         <z>0.000000000</z>
     </posAmp>
     <rotAmp>
-        <x>466.530609131</x>
-        <y>466.530609131</y>
+        <x>466.000000000</x>
+        <y>466.000000000</y>
         <z>0.000000000</z>
     </rotAmp>
 </variations>
