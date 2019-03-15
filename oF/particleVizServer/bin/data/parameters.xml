@@ -1,4 +1,4 @@
 <velocity>1.5</velocity>
-<magneticField>0.00005</magneticField>
+<magneticField>0.0001</magneticField>
 <fadeAmnt>10</fadeAmnt>
-<baseRadius>100</baseRadius>
+<baseRadius>300</baseRadius>
