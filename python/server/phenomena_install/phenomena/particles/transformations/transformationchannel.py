@@ -124,7 +124,7 @@ class TransformationChannels(object):
                 TC.length in [2,3,4],
                 TC.BR > 0.0,
                 TC.nameSet.intersection(TransformationChannels.EXCLUDEDSET) == set([]),
-                TC.totalMass <= energy
+                #TC.totalMass <= energy
             ]):
                 tclist.append(TC)
             elif TC.length == 1:
