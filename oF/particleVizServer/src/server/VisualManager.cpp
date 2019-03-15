@@ -8,11 +8,14 @@
 #include "ParticleData.h"
 #include "Parameters.h"
 
+
 float VisualManager::fadeAmnt{Parameters::fadeAmnt};
 
 
 VisualManager::VisualManager(){
   setupFbo();
+  callToAction = make_unique<CallToActionController>(&particleMap);
+
 }
 
 void VisualManager::updateMap(PhenomenaCMD phenoCMD) {
@@ -113,6 +116,7 @@ void VisualManager::update(){
 
 
     //sDisplay.update(particleMap.size());
+    callToAction->update();
 }
 
 void VisualManager::draw(){
@@ -130,6 +134,7 @@ void VisualManager::draw(){
   glDisable(GL_BLEND);
 
   //sDisplay.display();
+  callToAction->draw();
 
 
 }

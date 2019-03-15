@@ -6,12 +6,15 @@
 #include "ParticleData.h"
 #include <memory>
 #include "StatsDisplay.h"
+#include "CallToActionController.h"
 using namespace std;
 
 class VisualManager{
   map <int, shared_ptr<Particle> > particleMap;
   map <int, shared_ptr<Particle> > ::iterator particleIt;
   StatsDisplay sDisplay;
+  unique_ptr <CallToActionController> callToAction;
+
   static float fadeAmnt;
 
 public:
