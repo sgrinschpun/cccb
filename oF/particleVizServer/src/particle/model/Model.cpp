@@ -20,6 +20,13 @@ map <string, string> Model::setXMLSettingsNames(){
   m["electron"] = "electron.xml";
   m["muon"] = "muon.xml";
   m["tau"] = "tau.xml";
+  m["higgsCTA"] ="higgsCTA.xml";
+  m["topCTA"] ="topCTA.xml";
+  m["WCTA"] ="WCTA.xml";
+  m["tauCTA"] ="tauCTA.xml";
+  m["jpsiCTA"] ="jpsiCTA.xml";
+  m["pi0CTA"] ="pi0CTA.xml";
+  m["omegaCTA"] ="omegaCTA.xml";
   return m;
 }
 

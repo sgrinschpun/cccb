@@ -37,6 +37,7 @@ void Particle::buildModel(){
     else if (type == "meson") {model = make_unique<Meson>(data);}
     else if (type == "baryon"){model = make_unique<Baryon>(data);}
     else if (type == "quark") {model = make_unique<Quark>(data);}
+    else if (type == "calltoaction") {model = make_unique<CallToActionModel>(data);}
   }
 
 void Particle::draw(){
