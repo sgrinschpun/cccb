@@ -11,6 +11,7 @@ bool CallToActionController::isEmpty(){
     status = true;
     if (delayInit == 0) {
       delayInit = ofGetElapsedTimeMillis();
+      callToActionDisplay->setNew();
     }
   }
   return status;

@@ -96,6 +96,7 @@ void VisualManager::drawFbo(){
       pair.second->draw();
       ofPopMatrix();
     }
+    callToAction->draw();
     ofEnableBlendMode(OF_BLENDMODE_ALPHA);
     ofFill();
     ofSetColor(0,0,0, fadeAmnt);
@@ -134,7 +135,7 @@ void VisualManager::draw(){
   glDisable(GL_BLEND);
 
   //sDisplay.display();
-  callToAction->draw();
+
 
 
 }
