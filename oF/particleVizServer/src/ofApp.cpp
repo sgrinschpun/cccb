@@ -7,6 +7,7 @@ void ofApp::setup(){
   ofSetFrameRate(60);
   ofSetVerticalSync(false);
   ofSetCircleResolution(100);
+  ofHideCursor();
 
   ofLog() << "listening for osc messages on port " << PORT;
   avServer.setup(PORT);
