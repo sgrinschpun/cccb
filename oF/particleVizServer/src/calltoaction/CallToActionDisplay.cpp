@@ -1,12 +1,6 @@
 #include "CallToActionDisplay.h"
 
-ofxCenteredTrueTypeFont CallToActionDisplay::myFont;
-
-void CallToActionDisplay::setupFont(){
-  if (!myFont.isLoaded()){
-    myFont.load("Lato-Regular.ttf",25);
-  }
-}
+ofxXmlSettings CallToActionDisplay::xmlTexts=ofxXmlSettings("texts.xml");
 
 void CallToActionDisplay::setParticleList(){
   shared_ptr<ParticleData> quark = make_shared<ParticleData>(-1,1,"topCTA",1.,1.,"calltoaction",1.);
@@ -25,31 +19,39 @@ void CallToActionDisplay::setParticleList(){
   particleList.push_back(make_shared<Particle>(omega));
 }
 
+void CallToActionDisplay::setTextList(){
+  xmlTexts.pushTag("textset");
+  int numberOfTexts= xmlTexts.getNumTags("text");
+  for(int i = 0; i < numberOfTexts; i++){
+    xmlTexts.pushTag("text", i);
+    string ca = xmlTexts.getValue("ca","");
+    string en = xmlTexts.getValue("en","");
+    string es = xmlTexts.getValue("es","");
+    textList.push_back(CallToActionText(ca,en,es));
+    xmlTexts.popTag();
+  }
+  xmlTexts.popTag();
+}
+
 CallToActionDisplay::CallToActionDisplay(){
-  setupFont();
   setParticleList();
   selectedParticle = 0;
+  setTextList();
+  selectedText = 1;
 }
 
 void CallToActionDisplay::draw(){
   ofPushMatrix();
   ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
   particleList[selectedParticle]->draw();
-  setText("CREATE A PARTICLE");
+  textList[selectedText].draw();
   ofPopMatrix();
 }
-
-void CallToActionDisplay::setText(const string &text){
-  ofSetColor(255,255,255);
-  ofSetLineWidth(0);
-  myFont.drawCenteredBoundingBox(text, 0, 0, padding);
-  myFont.drawStringCentered(text, 0, 0);
-}
-
 
 
 void CallToActionDisplay::update(){
   particleList[selectedParticle]->update();
+  textList[selectedText].update();
 }
 
 void CallToActionDisplay::setNew(){

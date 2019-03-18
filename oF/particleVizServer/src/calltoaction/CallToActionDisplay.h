@@ -3,19 +3,19 @@
 #include "ofMain.h"
 #include "ParticleData.h"
 #include "Particle.h"
+#include "CallToActionText.h"
 #include "ofxCenteredTrueTypeFont.h"
 
 class CallToActionDisplay {
   private:
-    static ofxCenteredTrueTypeFont myFont;
-    void setupFont();
+    static ofxXmlSettings xmlTexts;
+    vector<CallToActionText> textList;
+    void setTextList();
+    int selectedText;
 
     vector<shared_ptr<Particle>> particleList;
     void setParticleList();
     int selectedParticle;
-
-    float padding {20};
-    void setText(const string &text);
 
   public:
     void setNew();
