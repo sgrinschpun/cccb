@@ -3,6 +3,7 @@ from phenomena.particles import ServerParticle
 from phenomena.connection.phenomena_message import IncomingMessage
 from phenomena.nodes import get_save_node, ExecutableNode
 from phenomena.nodes import JsonRemoteAudioVideoNode
+from phenomena.nodes import PosadaAudioNode
 
 from phenomena.particles.particle_action import ParticleAccumulatorNode, ParticleEntryNode
 
@@ -47,11 +48,13 @@ class NodeController(ExecutableNode):
     def __init__(self):
         self._root_node = ParticleEntryNode()
         self._audiovideonode = JsonRemoteAudioVideoNode()
+        self._posadaaudionode = PosadaAudioNode()
         self._last_node = ParticleAccumulatorNode()
         _node = get_save_node()
         _node.setInitNode(self._root_node)
         self._root_node.setNextNode(self._audiovideonode)
-        self._audiovideonode.setNextNode(self._last_node)
+        self._audiovideonode.setNextNode(self._posadaaudionode)
+        self._posadaaudionode.setNextNode(self._last_node)
         #self._root_node.setNextNode(self._last_node)
         self._identifier = "node"
         self._is_particle_addible = IsParticleAddible(self._last_node)

@@ -6,12 +6,12 @@ from phenomena.particles import Particle
 from phenomena.utils import get_logger
 from phenomena.connection import OSCBundledMessageSender
 
-class JsonRemoteAudioVideoNode(ParticleActionNodeChain):
+class PosadaAudioNode(ParticleActionNodeChain):
     #_IP =  "172.16.7.183"
     #_IP = "127.0.0.1"
     #_IP = "172.16.4.23"
     _IP = "172.16.17.143"
-    _PORT = 12345
+    _PORT = 12346
     def __init__(self):
         super(ParticleActionNodeChain, self).__init__()
         self._mapping_controller = MappingsController()
@@ -54,7 +54,7 @@ class JsonRemoteAudioVideoNode(ParticleActionNodeChain):
         self._sendMessage("particle", new_message)
         
     def getIdentifier(self):
-        return "AudioVideoController"
+        return "PosadaAudioController"
 
     def setNextNode(self, n_node):
         self._node.setNextNode(self, n_node)
@@ -89,6 +89,6 @@ class JsonRemoteAudioVideoNode(ParticleActionNodeChain):
     def _sendMessage(self, module_path, message):
         self._log.info("Sending new Message to: {0}!".format(module_path))
         self._log.debug("Message: {0}".format(message))
-        message_sender = OSCBundledMessageSender(JsonRemoteAudioVideoNode._IP, JsonRemoteAudioVideoNode._PORT)
+        message_sender = OSCBundledMessageSender(PosadaAudioNode._IP, PosadaAudioNode._PORT)
         command_name = message.pop("CMD")
         message_sender.sendMessage(module_path, command_name = command_name, **message['PARAMS'])
