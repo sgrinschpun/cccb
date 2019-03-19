@@ -106,18 +106,16 @@ void VisualManager::update(){
     for(auto pair:particleMap) {
       pair.second->update();
     }
-    glEnable(GL_AUTO_NORMAL);
-    glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+    ofEnableBlendMode(OF_BLENDMODE_DISABLED);
     drawFbo();
-    glDisable(GL_AUTO_NORMAL);
+    ofDisableBlendMode();
 
 
     //sDisplay.update(particleMap.size());
 }
 
 void VisualManager::draw(){
-  glEnable(GL_BLEND);
-  glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+  ofEnableBlendMode(OF_BLENDMODE_DISABLED);
   rgbaFbo.draw(0,0);
 
   for(auto pair:particleMap) {
@@ -127,7 +125,7 @@ void VisualManager::draw(){
       pair.second->drawInfo();
     ofPopMatrix();
   }
-  glDisable(GL_BLEND);
+  ofDisableBlendMode();
 
   //sDisplay.display();
 
