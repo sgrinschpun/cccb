@@ -2,6 +2,11 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    fboWidth=ofGetWidth();
+    fboHeight=ofGetHeight();
+    //fboWidth=3840;
+    //fboHeight=2160;
+
     ofSetWindowTitle("guiParticleVizMesh");
     ofBackground(0);
     ofSetFrameRate(60);
@@ -11,7 +16,7 @@ void ofApp::setup(){
 
     gui.setup();
     gui.add(shapesNum.set("number of shapes", 1, 1, 100));
-    gui.add(radius.set("radius", ofGetHeight()/4, 1, ofGetHeight()/2));
+    gui.add(radius.set("radius", fboHeight/4, 1, fboHeight/2));
     gui.add(posAmp.set("posAmp",
                     ofVec3f(0),
                     ofVec3f(0),
@@ -50,12 +55,6 @@ void ofApp::setup(){
 }
 
 void ofApp::setupFbo(){
-  fboWidth=ofGetWidth();
-  fboHeight=ofGetHeight();
-
-  //fboWidth=3840;
-  //fboHeight=2160;
-
   ofFboSettings s;
   s.width = fboWidth;
   s.height = fboHeight;
@@ -152,10 +151,9 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-  glEnable(GL_BLEND);
-  glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+  ofEnableBlendMode(OF_BLENDMODE_DISABLED);
   rgbaFbo.draw(0,0);
-  glDisable(GL_BLEND);
+  ofDisableBlendMode();
 
   if (start==true){
     getGIF();
