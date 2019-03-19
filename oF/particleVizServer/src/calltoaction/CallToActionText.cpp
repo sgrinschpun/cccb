@@ -18,6 +18,7 @@ CallToActionText::CallToActionText(string _ca, string _en, string _es):ca(_ca),e
 }
 
 void CallToActionText::draw(){
+  ofNoFill();
   ofSetColor(255,255,255);
   ofSetLineWidth(0);
   myFont.drawCenteredBoundingBox(en, 0, -100, padding);

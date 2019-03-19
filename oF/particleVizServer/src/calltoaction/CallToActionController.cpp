@@ -45,8 +45,14 @@ void CallToActionController::update(){
   callToActionDisplay->update();
 }
 
-void CallToActionController::draw(){
+void CallToActionController::drawImage(){
   if (callToActionActivate) {
-    callToActionDisplay->draw();
+    callToActionDisplay->drawImage();
+  }
+}
+
+void CallToActionController::drawText(){
+  if (callToActionActivate) {
+    callToActionDisplay->drawText();
   }
 }

@@ -40,10 +40,16 @@ CallToActionDisplay::CallToActionDisplay(){
   selectedText = 1;
 }
 
-void CallToActionDisplay::draw(){
+void CallToActionDisplay::drawImage(){
   ofPushMatrix();
   ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
   particleList[selectedParticle]->draw();
+  ofPopMatrix();
+}
+
+void CallToActionDisplay::drawText(){
+  ofPushMatrix();
+  ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
   textList[selectedText].draw();
   ofPopMatrix();
 }

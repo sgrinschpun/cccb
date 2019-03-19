@@ -20,7 +20,8 @@ class CallToActionDisplay {
   public:
     void setNew();
     void update();
-    void draw();
+    void drawImage();
+    void drawText();
     CallToActionDisplay();
 };
 #endif

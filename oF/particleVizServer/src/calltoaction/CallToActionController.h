@@ -20,7 +20,8 @@ class CallToActionController {
     void stopCallToAction();
 
   public:
-    void draw();
+    void drawImage();
+    void drawText();
     void update();
 
     CallToActionController(map <int, shared_ptr<Particle> > *_particleMap);
