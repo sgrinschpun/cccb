@@ -8,11 +8,14 @@
 #include "ParticleData.h"
 #include "Parameters.h"
 
+
 float VisualManager::fadeAmnt{Parameters::fadeAmnt};
 
 
 VisualManager::VisualManager(){
   setupFbo();
+  callToAction = make_unique<CallToActionController>(&particleMap);
+
 }
 
 void VisualManager::updateMap(PhenomenaCMD phenoCMD) {
@@ -86,17 +89,22 @@ void VisualManager::setupFbo(){
 void VisualManager::drawFbo(){
   rgbaFbo.begin();
     ofEnableAlphaBlending();
+    ofEnableBlendMode(OF_BLENDMODE_DISABLED);
     for(auto pair:particleMap) {
       ofVec2f position = pair.second->getPosition();
       ofPushMatrix();
       ofTranslate(position.x, position.y);
+
       pair.second->draw();
       ofPopMatrix();
     }
+    ofDisableBlendMode();
+    callToAction->drawImage();
     ofEnableBlendMode(OF_BLENDMODE_ALPHA);
     ofFill();
     ofSetColor(0,0,0, fadeAmnt);
     ofDrawRectangle(0,0,ofGetWidth(),ofGetHeight());
+    ofDisableBlendMode();
     ofDisableAlphaBlending();
 
   rgbaFbo.end();
@@ -112,6 +120,7 @@ void VisualManager::update(){
 
 
     //sDisplay.update(particleMap.size());
+    callToAction->update();
 }
 
 void VisualManager::draw(){
@@ -127,7 +136,7 @@ void VisualManager::draw(){
   }
   ofDisableBlendMode();
 
+  callToAction->drawText();
   //sDisplay.display();
-
 
 }

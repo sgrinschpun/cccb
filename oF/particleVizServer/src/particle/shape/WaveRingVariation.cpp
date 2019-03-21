@@ -22,6 +22,7 @@ void WaveRingVariation::draw() {
   for(int i=0; i<waverings.size(); i++){
     waverings[i]->draw();
   }
+  ofDisableBlendMode();
 }
 
 void WaveRingVariation::setShapeNum(int _shapesNum) {

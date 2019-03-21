@@ -2,12 +2,16 @@
 
 AudioVisualManager::AudioVisualManager(){}
 
-void AudioVisualManager::update(PhenomenaCMD phenoCMD){
+void AudioVisualManager::updateMap(PhenomenaCMD phenoCMD){
     vManager.updateMap(phenoCMD);
 
 }
 
-void AudioVisualManager::draw(){
+void AudioVisualManager::update(){
     vManager.update();
+}
+
+
+void AudioVisualManager::draw(){
     vManager.draw();
 }

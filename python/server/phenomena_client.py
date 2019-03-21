@@ -16,7 +16,7 @@ class Phenomena:
         return received_message
 
     def _sendMessage(self, module_path, command_name, **kwargs):
-        message_sender = RawMessageSender(HOST)
+        message_sender = OSCMessageSender(HOST)
         return message_sender.sendMessage(module_path = module_path, command_name = command_name, **kwargs)
 
 

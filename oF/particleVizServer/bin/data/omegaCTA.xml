@@ -1,31 +1,31 @@
 <shape>
     <shapesNum>3</shapesNum>
-    <radius>8.479999542</radius>
-    <width>1.599999905</width>
+    <radius>300</radius>
+    <width>3.199999809</width>
     <segments>100</segments>
-    <speedAmp>0.037999999</speedAmp>
+    <speedAmp>0.008000000</speedAmp>
 </shape>
 <variations>
     <posAmp>
-        <x>33.061225891</x>
-        <y>36.734695435</y>
-        <z>0.000000000</z>
-    </posAmp>
-    <rotAmp>
         <x>0.000000000</x>
         <y>0.000000000</y>
+        <z>422.449005127</z>
+    </posAmp>
+    <rotAmp>
+        <x>99.183670044</x>
+        <y>99.183670044</y>
         <z>0.000000000</z>
     </rotAmp>
 </variations>
 <wiggle>
     <framesPerCycle>1</framesPerCycle>
-    <noiseStep>0.109999999</noiseStep>
-    <noiseAmount>6.500000000</noiseAmount>
+    <noiseStep>0.000000000</noiseStep>
+    <noiseAmount>0.000000000</noiseAmount>
 </wiggle>
 <color>
     <fadeAmnt>10</fadeAmnt>
     <colMode>0</colMode>
     <saturation>200</saturation>
-    <brightness>121</brightness>
-    <alpha>45</alpha>
+    <brightness>82</brightness>
+    <alpha>73</alpha>
 </color>

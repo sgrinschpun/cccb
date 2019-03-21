@@ -19,5 +19,5 @@ class Info {
       data.reset();
     }
 
-  };
-  #endif
+};
+#endif
