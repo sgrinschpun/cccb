@@ -89,18 +89,22 @@ void VisualManager::setupFbo(){
 void VisualManager::drawFbo(){
   rgbaFbo.begin();
     ofEnableAlphaBlending();
+    ofEnableBlendMode(OF_BLENDMODE_DISABLED);
     for(auto pair:particleMap) {
       ofVec2f position = pair.second->getPosition();
       ofPushMatrix();
       ofTranslate(position.x, position.y);
+
       pair.second->draw();
       ofPopMatrix();
     }
+    ofDisableBlendMode();
     callToAction->drawImage();
     ofEnableBlendMode(OF_BLENDMODE_ALPHA);
     ofFill();
     ofSetColor(0,0,0, fadeAmnt);
     ofDrawRectangle(0,0,ofGetWidth(),ofGetHeight());
+    ofDisableBlendMode();
     ofDisableAlphaBlending();
 
   rgbaFbo.end();
@@ -110,21 +114,13 @@ void VisualManager::update(){
     for(auto pair:particleMap) {
       pair.second->update();
     }
-    ofEnableBlendMode(OF_BLENDMODE_DISABLED);
-    //glEnable(GL_AUTO_NORMAL);
-    //glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
     drawFbo();
-    //glDisable(GL_AUTO_NORMAL);
-    ofDisableBlendMode();
-
 
     //sDisplay.update(particleMap.size());
     callToAction->update();
 }
 
 void VisualManager::draw(){
-  //glEnable(GL_BLEND);
-  //glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
   ofEnableBlendMode(OF_BLENDMODE_DISABLED);
   rgbaFbo.draw(0,0);
 
@@ -135,8 +131,8 @@ void VisualManager::draw(){
       pair.second->drawInfo();
     ofPopMatrix();
   }
-  //glDisable(GL_BLEND);
   ofDisableBlendMode();
+
   callToAction->drawText();
   //sDisplay.display();
 
