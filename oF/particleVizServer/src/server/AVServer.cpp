@@ -11,7 +11,7 @@ void AVServer::update(){
          ofxOscMessage message;
          oscReceiver.getNextMessage(message);
          if(message.getAddress() == "/particle/operation"){
-             manageAV.update(oscHandler.releaseParticle(message));
+             manageAV.updateMap(oscHandler.releaseParticle(message));
          }
          else if (message.getAddress().find("/particle/attributes") != string::npos) {
              oscHandler.acumulativeParticleParse(message);
@@ -20,6 +20,7 @@ void AVServer::update(){
 
          }
      }
+     manageAV.update();
 }
 void AVServer::draw(){
     manageAV.draw();

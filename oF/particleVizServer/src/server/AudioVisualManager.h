@@ -8,7 +8,8 @@ class AudioVisualManager{
     VisualManager vManager;
 public:
     AudioVisualManager();
-    void update(PhenomenaCMD phenoCMD);
+    void updateMap(PhenomenaCMD phenoCMD);
+    void update();
     void draw();
 };
 #endif
