@@ -9,19 +9,31 @@ void ofApp::setup(){
   ofSetCircleResolution(100);
   ofHideCursor();
 
+  avManager = make_shared<AVManager>();
+  oscManager.setup(PORT, avManager);
+  oscManager.startThread();
   ofLog() << "listening for osc messages on port " << PORT;
-  avServer.setup(PORT);
+
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-  avServer.update();
+  ofLog() << "update ofapp 1";
+  avManager->update();
+  ofLog() << "update ofapp 2";
 
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-  avServer.draw();
+  ofLog() << "draw ofapp 1";
+  avManager->draw();
+  ofLog() << "draw ofapp 2";
+}
+
+//--------------------------------------------------------------
+void ofApp::exit() {
+  oscManager.stopThread();
 }
 
 //--------------------------------------------------------------

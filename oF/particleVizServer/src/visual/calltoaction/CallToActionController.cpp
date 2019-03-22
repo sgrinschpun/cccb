@@ -1,6 +1,7 @@
 #include "CallToActionController.h"
 
-CallToActionController::CallToActionController(map <int, shared_ptr<Particle> > *_particleMap): particleMap(_particleMap) {
+CallToActionController::CallToActionController(shared_ptr<map <int, shared_ptr<Particle>>> _particleMap): particleMap(_particleMap) {
+  ofLog() << "calltoaction init 1";
   callToActionDisplay = make_unique<CallToActionDisplay>();
 }
 
@@ -36,6 +37,7 @@ void CallToActionController::stopCallToAction(){
 }
 
 void CallToActionController::update(){
+  ofLog() << "calltoaction update 1";
   if (isEmpty()){
     if (checkDelay()){startCallToAction();}
   }
@@ -43,6 +45,7 @@ void CallToActionController::update(){
     stopCallToAction();
   }
   callToActionDisplay->update();
+  ofLog() << "calltoaction update 2";
 }
 
 void CallToActionController::drawImage(){
