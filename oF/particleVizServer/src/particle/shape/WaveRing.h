@@ -7,7 +7,7 @@ class WaveRing {
 
   private:
 
-    ofMesh wigglyMeshRing;
+    ofVboMesh wigglyMeshRing;
 
     int segments {100};
     float width {0};
