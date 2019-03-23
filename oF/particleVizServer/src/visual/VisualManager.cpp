@@ -4,20 +4,19 @@
 #define DEBUG_MSG(str) do { } while ( false )
 #endif
 
-#include "VManager.h"
+#include "VisualManager.h"
 #include "Parameters.h"
 
-float VManager::fadeAmnt{Parameters::fadeAmnt};
-
-VManager::VManager(shared_ptr<map <int, shared_ptr<Particle>>> _particleMap){
-  ofLog() << "vmanager init 1";
-  particleMap = _particleMap;
-  setupFbo();
-  callToAction = make_unique<CallToActionController>(particleMap);
-  ofLog() << "vmanager init 2";
+VisualManager::VisualManager(){
 }
 
-void VManager::setupFbo(){
+void VisualManager::setup(ListManager &_listManager){
+  listManager = _listManager;
+  callToAction.setup(listManager);
+  fadeAmnt = Parameters::fadeAmnt;
+}
+
+void VisualManager::setupFbo(){
   fboWidth=ofGetWidth();
   fboHeight=ofGetHeight();
 
@@ -32,65 +31,56 @@ void VManager::setupFbo(){
   rgbaFbo.allocate(s);
 
   rgbaFbo.begin();
-  ofLog() << "setup rgbagbo";
   ofClear(0,0,0,0);
   rgbaFbo.end();
 
 }
 
-void VManager::drawFbo(){
-  ofLog() << "drawfbo 1";
+void VisualManager::drawFbo(){
   rgbaFbo.begin();
-    ofLog() << "drawfbo 2";
     ofEnableAlphaBlending();
     ofEnableBlendMode(OF_BLENDMODE_DISABLED);
-    for (particleIterator  it = particleMap->begin(); it != particleMap->end(); it++){
-      ofVec2f position = it->second->getPosition();
+    for(auto pair:listManager.particleMap) {
+      ofVec2f position = pair.second->getPosition();
       ofPushMatrix();
       ofTranslate(position.x, position.y);
-      it->second->draw();
+      pair.second->draw();
       ofPopMatrix();
     }
     ofDisableBlendMode();
-    callToAction->drawImage();
+    callToAction.drawImage();
     ofEnableBlendMode(OF_BLENDMODE_ALPHA);
     ofFill();
     ofSetColor(0,0,0, fadeAmnt);
     ofDrawRectangle(0,0,ofGetWidth(),ofGetHeight());
     ofDisableBlendMode();
     ofDisableAlphaBlending();
-    ofLog() << "drawfbo 2";
   rgbaFbo.end();
 }
 
-
-
-void VManager::update(){
-  ofLog() << "update vmanager 1";
+void VisualManager::update(){
     ofEnableBlendMode(OF_BLENDMODE_DISABLED);
     drawFbo();
     ofDisableBlendMode();
 
     //sDisplay.update(particleMap.size());
-    callToAction->update();
-    ofLog() << "update vmanager 2";
+    callToAction.update();
+
 }
 
-void VManager::draw(){
-  ofLog() << "draw vmanager 1";
+void VisualManager::draw(){
   ofEnableBlendMode(OF_BLENDMODE_DISABLED);
   rgbaFbo.draw(0,0);
 
-  for (particleIterator it = particleMap->begin(); it != particleMap->end(); it++){
-    ofVec2f position = it->second->getPosition();
+  for(auto pair:listManager.particleMap) {
+    ofVec2f position = pair.second->getPosition();
     ofPushMatrix();
     ofTranslate(position.x, position.y);
-      it->second->drawInfo();
+      pair.second->drawInfo();
     ofPopMatrix();
   }
   ofDisableBlendMode();
 
-  callToAction->drawText();
+  callToAction.drawText();
   //sDisplay.display();
-  ofLog() << "draw vmanager 2";
 }

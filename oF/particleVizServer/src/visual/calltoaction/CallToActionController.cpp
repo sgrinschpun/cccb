@@ -1,21 +1,22 @@
 #include "CallToActionController.h"
 
-CallToActionController::CallToActionController(shared_ptr<map <int, shared_ptr<Particle>>> _particleMap): particleMap(_particleMap) {
-  ofLog() << "calltoaction init 1";
+CallToActionController::CallToActionController() {
+
+}
+
+void CallToActionController::setup(ListManager &_listManager) {
+  listManager = _listManager;
   callToActionDisplay = make_unique<CallToActionDisplay>();
 }
 
 
-bool CallToActionController::isEmpty(){
-  bool status = false;
-  if (particleMap->size()==0) {
-    status = true;
+void CallToActionController::reset(){
+  if (listManager.listIsEmpty()) {
     if (delayInit == 0) {
       delayInit = ofGetElapsedTimeMillis();
       callToActionDisplay->setNew();
     }
   }
-  return status;
 }
 
 bool CallToActionController::checkDelay(){
@@ -38,7 +39,7 @@ void CallToActionController::stopCallToAction(){
 
 void CallToActionController::update(){
   ofLog() << "calltoaction update 1";
-  if (isEmpty()){
+  if (listManager.listIsEmpty()){
     if (checkDelay()){startCallToAction();}
   }
   else {

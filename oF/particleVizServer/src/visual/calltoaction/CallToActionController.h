@@ -1,21 +1,23 @@
 #ifndef _CallToActionController
 #define _CallToActionController
+
 #include "ofMain.h"
-#include "Particle.h"
+#include "ListManager.h"
 #include "CallToActionDisplay.h"
 
 class CallToActionController {
-
   private:
-    shared_ptr<map<int, shared_ptr<Particle>>> particleMap;
+		ListManager listManager;
+
     unique_ptr<CallToActionDisplay> callToActionDisplay;
 
     unsigned int delay {5000};
 
     bool callToActionActivate {false};
     unsigned long int delayInit {0};
-    bool isEmpty();
+
     bool checkDelay();
+    void reset();
     void startCallToAction();
     void stopCallToAction();
 
@@ -23,7 +25,8 @@ class CallToActionController {
     void drawImage();
     void drawText();
     void update();
+    void setup(ListManager &_listManager);
 
-    CallToActionController(shared_ptr<map <int, shared_ptr<Particle>>> _particleMap);
+    CallToActionController();
 };
 #endif
