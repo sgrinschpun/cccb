@@ -4,14 +4,17 @@ CallToActionController::CallToActionController() {
 
 }
 
-void CallToActionController::setup(ListManager &_listManager) {
+void CallToActionController::setup(shared_ptr<ListManager>& _listManager){
   listManager = _listManager;
   callToActionDisplay = make_unique<CallToActionDisplay>();
+  delay = 5000;
+  callToActionActivate=false;
+  delayInit=0;
 }
 
 
 void CallToActionController::reset(){
-  if (listManager.listIsEmpty()) {
+  if (listManager->listIsEmpty()) {
     if (delayInit == 0) {
       delayInit = ofGetElapsedTimeMillis();
       callToActionDisplay->setNew();
@@ -38,15 +41,14 @@ void CallToActionController::stopCallToAction(){
 }
 
 void CallToActionController::update(){
-  ofLog() << "calltoaction update 1";
-  if (listManager.listIsEmpty()){
+
+  if (listManager->listIsEmpty()){
     if (checkDelay()){startCallToAction();}
   }
   else {
     stopCallToAction();
   }
   callToActionDisplay->update();
-  ofLog() << "calltoaction update 2";
 }
 
 void CallToActionController::drawImage(){

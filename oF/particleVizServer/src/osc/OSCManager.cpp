@@ -9,7 +9,7 @@
 OSCManager::OSCManager(){
 }
 
-void OSCManager::setup(int _port, ListManager &_listManager){
+void OSCManager::setup(int _port, shared_ptr<ListManager>& _listManager){
   listManager = _listManager;
   oscReceiver.setup(_port);
 }
@@ -17,11 +17,10 @@ void OSCManager::setup(int _port, ListManager &_listManager){
 void OSCManager::threadedFunction(){
   while(isThreadRunning()) {
     while(oscReceiver.hasWaitingMessages()){
-      ofLog() << "message";
         ofxOscMessage message;
         oscReceiver.getNextMessage(message);
         if(message.getAddress() == "/particle/operation"){
-            listManager.updateMap(oscHandler.releaseParticle(message));
+            listManager->updateMap(oscHandler.releaseParticle(message));
         }
         else if (message.getAddress().find("/particle/attributes") != string::npos) {
             oscHandler.acumulativeParticleParse(message);

@@ -10,7 +10,7 @@
 VisualManager::VisualManager(){
 }
 
-void VisualManager::setup(ListManager &_listManager){
+void VisualManager::setup(shared_ptr<ListManager>& _listManager){
   listManager = _listManager;
   callToAction.setup(listManager);
   fadeAmnt = Parameters::fadeAmnt;
@@ -40,7 +40,7 @@ void VisualManager::drawFbo(){
   rgbaFbo.begin();
     ofEnableAlphaBlending();
     ofEnableBlendMode(OF_BLENDMODE_DISABLED);
-    for(auto pair:listManager.particleMap) {
+    for(auto pair:listManager->particleMap) {
       ofVec2f position = pair.second->getPosition();
       ofPushMatrix();
       ofTranslate(position.x, position.y);
@@ -72,7 +72,8 @@ void VisualManager::draw(){
   ofEnableBlendMode(OF_BLENDMODE_DISABLED);
   rgbaFbo.draw(0,0);
 
-  for(auto pair:listManager.particleMap) {
+  for(auto pair:listManager->particleMap) {
+
     ofVec2f position = pair.second->getPosition();
     ofPushMatrix();
     ofTranslate(position.x, position.y);

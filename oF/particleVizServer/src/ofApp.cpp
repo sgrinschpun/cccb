@@ -9,6 +9,8 @@ void ofApp::setup(){
   ofSetCircleResolution(100);
   ofHideCursor();
 
+  listManager = make_shared<ListManager>();
+
   oscManager.setup(PORT, listManager);
   oscManager.startThread();
   ofLog() << "listening for osc messages on port " << PORT;
@@ -19,7 +21,7 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-  listManager.update();
+  listManager->update();
   vizManager.update();
 }
 

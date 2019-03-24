@@ -7,7 +7,6 @@
 #include "ListManager.h"
 
 ListManager::ListManager(){
-
 }
 
 bool ListManager::listIsEmpty(){
@@ -21,7 +20,7 @@ bool ListManager::listIsEmpty(){
 
 void ListManager::updateMap(PhenomenaCMD phenoCMD) {
     if (phenoCMD.getCMD() == "ADD"){
-        cout << "Inserting particle to VisualManager Hashmap with id: "<< phenoCMD.getParams().id << endl;
+        ofLog(OF_LOG_NOTICE, "Inserting particle to particleMap with id: " + ofToString(phenoCMD.getParams().id));
         shared_ptr<ParticleData> newParticleData =
         make_shared<ParticleData>(phenoCMD.getParams().id,
                                   phenoCMD.getParams().parent,
@@ -52,19 +51,20 @@ void ListManager::updateMap(PhenomenaCMD phenoCMD) {
     if (phenoCMD.getCMD() == "REMOVE"){
         map <int, shared_ptr<Particle>>::const_iterator i = particleMap.find(phenoCMD.getParams().id);
         if (i != particleMap.end()) {
-            cout << "Removing particle from VisualManager Hashmap with id: "<< phenoCMD.getParams().id << endl;
+            ofLog(OF_LOG_NOTICE, "Removing particle from particleMap with id: " + ofToString(phenoCMD.getParams().id));
             particleMap.erase(i);
         }
         else{
-            cout << "The particle is not in the Hashmap! " << endl;
+            ofLog(OF_LOG_NOTICE,  "The particle is not in particleMap! ");
         }
     }
 
     if (phenoCMD.getCMD() == "PURGE"){
-        cout << "Erasing all particles in the Hashmap! PURGE!" << endl;
+        ofLog(OF_LOG_NOTICE, "Erasing all particles in particleMap! PURGE!");
         particleMap.clear();
     }
-    cout << "VisualManager Hashmap size is: " << particleMap.size() << endl;
+    ofLog(OF_LOG_NOTICE,"particleMap size is: " + ofToString(particleMap.size() ));
+    ofLog(OF_LOG_NOTICE,"particleMap is empty?" +  ofToString(listIsEmpty() ));
 }
 
 void ListManager::update(){

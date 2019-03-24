@@ -8,7 +8,7 @@
 class VisualManager{
 
 private:
-  ListManager listManager;
+  shared_ptr<ListManager> listManager;
 
   ofFbo rgbaFbo;
   float fboWidth;
@@ -20,7 +20,7 @@ private:
   CallToActionController callToAction;
 
 public:
-  void setup(ListManager &_listManager);
+  void setup(shared_ptr<ListManager>& _listManager);
   void update();
   void draw();
 

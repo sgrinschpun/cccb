@@ -9,11 +9,11 @@ class OSCManager: public ofThread{
 private:
   ofxOscReceiver oscReceiver;
   OSCHandler oscHandler;
-  ListManager listManager;
+  shared_ptr<ListManager> listManager;
 
 public:
   OSCManager();
-  void setup(int _port, ListManager &_listManager);
+  void setup(int _port, shared_ptr<ListManager>& _listManager);
   void threadedFunction();
 
 };

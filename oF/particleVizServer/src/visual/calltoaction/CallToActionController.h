@@ -7,14 +7,13 @@
 
 class CallToActionController {
   private:
-		ListManager listManager;
+	   shared_ptr<ListManager> listManager;
 
     unique_ptr<CallToActionDisplay> callToActionDisplay;
 
-    unsigned int delay {5000};
-
-    bool callToActionActivate {false};
-    unsigned long int delayInit {0};
+    unsigned int delay;
+    bool callToActionActivate;
+    unsigned long int delayInit;
 
     bool checkDelay();
     void reset();
@@ -25,7 +24,7 @@ class CallToActionController {
     void drawImage();
     void drawText();
     void update();
-    void setup(ListManager &_listManager);
+    void setup(shared_ptr<ListManager>& _listManager);
 
     CallToActionController();
 };
