@@ -9,8 +9,11 @@ void ofApp::setup(){
   ofSetCircleResolution(100);
   ofHideCursor();
 
+  fonts = make_shared<ProjectFonts>();
+
   ofLog() << "listening for osc messages on port " << PORT;
   avServer.setup(PORT);
+
 }
 
 //--------------------------------------------------------------

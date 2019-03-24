@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "AVServer.h"
+#include "ProjectFonts.h"
 #define PORT 12345
 
 class ofApp : public ofBaseApp{
@@ -23,6 +24,8 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
+		shared_ptr<ProjectFonts> fonts;
 		AVServer avServer;
+
 
 };

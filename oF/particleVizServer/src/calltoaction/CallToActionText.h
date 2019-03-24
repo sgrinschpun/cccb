@@ -1,11 +1,12 @@
 #ifndef _CallToActionText
 #define _CallToActionText
 #include "ofMain.h"
+#include "ProjectFonts.h"
 #include "ofxCenteredTrueTypeFont.h"
 
 class CallToActionText {
   private:
-    static ofxCenteredTrueTypeFont myFont;
+    shared_ptr<ofxCenteredTrueTypeFont> ctaFont;
     void setupFont();
 
     string ca;
