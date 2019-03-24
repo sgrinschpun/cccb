@@ -1,7 +1,7 @@
 #include "CallToActionText.h"
 
 CallToActionText::CallToActionText(string _ca, string _en, string _es):ca(_ca),en(_en), es(_es) {
-  ctaFont = ProjectFonts::getFont("lato20");
+  ctaFont = FontsManager::getFont("MADBold20");
 }
 
 void CallToActionText::draw(){

@@ -1,7 +1,7 @@
 #ifndef _CallToActionText
 #define _CallToActionText
 #include "ofMain.h"
-#include "ProjectFonts.h"
+#include "FontsManager.h"
 #include "ofxCenteredTrueTypeFont.h"
 
 class CallToActionText {

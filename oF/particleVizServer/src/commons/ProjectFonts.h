@@ -1,16 +1,14 @@
 #ifndef _ProjectFonts //
 #define _ProjectFonts //
 #include "ofMain.h"
+#include "FontsManager.h"
 #include "ofxCenteredTrueTypeFont.h"
 
 class ProjectFonts {
 
   public:
-    static map <string, shared_ptr<ofxCenteredTrueTypeFont> > fontList;
-    static void addFont(string _name, shared_ptr<ofxCenteredTrueTypeFont> _font);
-    static shared_ptr<ofxCenteredTrueTypeFont>  getFont(string _name);
-
-
+    string path{"fonts/"};
+    void setupFont(string _fontname, int _fontsize, string _key);
     void setupFonts();
     ProjectFonts();
 
