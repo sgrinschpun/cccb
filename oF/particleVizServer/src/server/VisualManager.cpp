@@ -119,7 +119,7 @@ void VisualManager::update(){
     ofDisableBlendMode();
 
 
-    //sDisplay.update(particleMap.size());
+    sDisplay.update(particleMap.size());
     callToAction->update();
 }
 
@@ -137,6 +137,6 @@ void VisualManager::draw(){
   ofDisableBlendMode();
 
   callToAction->drawText();
-  //sDisplay.display();
+  sDisplay.display();
 
 }

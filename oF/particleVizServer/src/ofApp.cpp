@@ -9,10 +9,10 @@ void ofApp::setup(){
   ofSetCircleResolution(100);
   ofHideCursor();
 
-  //fonts = make_shared<ProjectFonts>();
-
   ofLog() << "listening for osc messages on port " << PORT;
   avServer.setup(PORT);
+
+  bigBang.setup();
 
 }
 
@@ -24,11 +24,18 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+
   avServer.draw();
+
+  if(bigBangOn){bigBang.draw();}
+
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
+  if(key == 'b'){
+    bigBangOn = !bigBangOn;
+  }
 
 }
 
