@@ -1,7 +1,9 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ProjectFonts.h"
 #include "AVServer.h"
+
 #define PORT 12345
 
 class ofApp : public ofBaseApp{
@@ -23,6 +25,8 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
+		//shared_ptr<ProjectFonts> fonts;
 		AVServer avServer;
+
 
 };
