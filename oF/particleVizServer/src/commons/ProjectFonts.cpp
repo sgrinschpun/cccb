@@ -23,6 +23,6 @@ void ProjectFonts::setupFonts(){
   setupFont("MAD_Sans_Fill_Bold.otf", 20, "MADBold20");
   setupFont("MAD_Sans_Fill_Bold.otf", 10, "MADBold10");
   setupFont("MAD_Sans_Fill_Bold_Italic.otf", 20, "MADBoldItalic20");
-  setupFont("MAD_Sans_Fill_Black.otf", 20, "MADBlack20");
+  setupFont("MAD_Sans_Fill_Black.otf", 200, "MADBlack200");
   setupFont("MAD_Sans_Fill_Black_Italic.otf", 20, "MADBlackItalic20");
 }

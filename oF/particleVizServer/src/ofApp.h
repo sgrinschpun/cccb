@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ProjectFonts.h"
 #include "AVServer.h"
+#include "BigBang.h"
 
 #define PORT 12345
 
@@ -27,6 +28,9 @@ class ofApp : public ofBaseApp{
 
 		//shared_ptr<ProjectFonts> fonts;
 		AVServer avServer;
+
+		BigBang bigBang;
+		bool bigBangOn{false};
 
 
 };
