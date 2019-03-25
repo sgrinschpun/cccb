@@ -23,6 +23,9 @@ bool ListManager::listIsEmpty(){
 
 void ListManager::updateMap(PhenomenaCMD phenoCMD) {
     if (phenoCMD.getCMD() == "ADD"){
+      int id = phenoCMD.getParams().parent;
+      auto particleIt = particleMap.find(id);
+      if (id ==-1 || particleIt != particleMap.end()){
         ofLog(OF_LOG_NOTICE, "Inserting particle to particleMap with id: " + ofToString(phenoCMD.getParams().id));
         shared_ptr<ParticleData> newParticleData =
         make_shared<ParticleData>(phenoCMD.getParams().id,
@@ -49,8 +52,8 @@ void ListManager::updateMap(PhenomenaCMD phenoCMD) {
         DEBUG_MSG("Particle Name " + phenoCMD.getParams().name + to_string(phenoCMD.getParams().beta));
         std::unique_lock<std::mutex> lck (this->_mtx);
         particleMap.insert(make_pair(phenoCMD.getParams().id, make_shared<Particle>(newParticleData,position, velocity)));
+      }
     }
-
     else if (phenoCMD.getCMD() == "REMOVE"){
         map <int, shared_ptr<Particle>>::const_iterator i = particleMap.find(phenoCMD.getParams().id);
         if (i != particleMap.end()) {
