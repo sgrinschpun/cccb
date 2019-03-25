@@ -14,6 +14,8 @@ void ofApp::setup(){
   oscManager.startThread();
   ofLog() << "listening for osc messages on port " << PORT;
   vizManager.setup(listManager);
+
+  bigBang.setup();
 }
 
 //--------------------------------------------------------------
@@ -25,6 +27,8 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
   vizManager.draw();
+
+  if(bigBangOn){bigBang.draw();}
 }
 
 //--------------------------------------------------------------
@@ -34,6 +38,9 @@ void ofApp::exit() {
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
+  if(key == 'b'){
+  bigBangOn = !bigBangOn;
+}
 
 }
 
