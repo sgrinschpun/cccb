@@ -4,6 +4,7 @@
 #include "ofMain.h"
 #include "CallToActionController.h"
 #include "ListManager.h"
+#include "StatsDisplay.h"
 #include <mutex>
 
 class VisualManager{
@@ -20,6 +21,7 @@ private:
   float fadeAmnt;
 
   CallToActionController callToAction;
+  StatsDisplay sDisplay;
 
 public:
   void setup(shared_ptr<ListManager>& _listManager);

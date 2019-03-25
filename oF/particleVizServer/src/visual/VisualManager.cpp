@@ -62,15 +62,11 @@ void VisualManager::drawFbo(){
 }
 
 void VisualManager::update(){
-    // std::unique_lock<std::mutex> lck (this->_mtx);
-    // for(auto pair:listManager->particleMap) {
-    //   pair.second->update();
-    // }
     ofEnableBlendMode(OF_BLENDMODE_DISABLED);
     drawFbo();
     ofDisableBlendMode();
 
-    //sDisplay.update(particleMap.size());
+    sDisplay.update(listManager->particleMap.size());
     callToAction.update();
 
 }
@@ -89,5 +85,5 @@ void VisualManager::draw(){
   listManager->unlock();
   ofDisableBlendMode();
   callToAction.drawText();
-  //sDisplay.display();
+  sDisplay.display();
 }
