@@ -74,9 +74,8 @@ void ListManager::updateMap(PhenomenaCMD phenoCMD) {
 
 void ListManager::update(){
   std::unique_lock<std::mutex> lck (this->_mtx);
-  for(auto pair: particleMap) {
+  for(auto pair:particleMap) {
     pair.second->update();
-    std::cout << "PARTICLE: "<< pair.second->getName()<<" Position X: "<< pair.second->getPosition().x<<" Position Y: "<< pair.second->getPosition().y<<std::endl<<std::flush;
   }
 }
 
