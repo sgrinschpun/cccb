@@ -11,6 +11,7 @@ private:
 
 public:
   void setup();
+  float col{ofRandom(255)};
   //void update();
   void draw();
 

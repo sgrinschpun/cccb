@@ -8,7 +8,9 @@ void BigBang::setup(){
 
 
 void BigBang::draw(){
-  int col = ofRandom(255);
+  if (ofGetFrameNum()%5==0){
+    col = ofRandom(255);
+  }
   ofFloatColor thisColor = ofColor::fromHsb(col, 200, 200,255);
   ofSetColor(thisColor);
   ofPushMatrix();
