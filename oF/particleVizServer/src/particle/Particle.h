@@ -27,6 +27,7 @@ class Particle {
 
   ofVec2f getPosition();
   string getName();
+  int getId();
 
   Particle(shared_ptr<ParticleData>& _data);
   Particle(shared_ptr<ParticleData>& _data, ofVec2f _position, ofVec2f _velocity);
