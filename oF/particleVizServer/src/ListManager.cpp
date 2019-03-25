@@ -96,7 +96,7 @@ void ListManager::update(){
   for(auto pair:particleMap) {
     pair.second->update();
   }
-  cleanupList();
+  //cleanupList();
 }
 
 void ListManager::draw(){
