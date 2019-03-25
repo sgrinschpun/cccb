@@ -4,18 +4,21 @@
 #include "PhenomenaCMD.h"
 #include "Particle.h"
 #include "ParticleData.h"
-
+#include <map>
+#include <mutex>
 
 class ListManager{
 
 private:
 
 public:
-  map <int, shared_ptr<Particle>> particleMap;
-  map <int, shared_ptr<Particle> > ::iterator particleIt;
-
+  std::map <int, shared_ptr<Particle>> particleMap;
+  std::mutex _mtx;
+  // std::mutex, std::unique_lock
   void updateMap(PhenomenaCMD phenoCMD);
   bool listIsEmpty();
+  void lock(){this->_mtx.lock();};
+  void unlock(){this->_mtx.unlock();};
 
   void update();
   void draw();

@@ -7,8 +7,7 @@
 
 class CallToActionController {
   private:
-	   shared_ptr<ListManager> listManager;
-
+	shared_ptr<ListManager> listManager;
     unique_ptr<CallToActionDisplay> callToActionDisplay;
 
     unsigned int delay;

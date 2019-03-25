@@ -34,6 +34,7 @@ void Kinematics::update(){
   applyForce(Bforce);
   velocity += acceleration;
   position += velocity;
+  std::cout << "PARTICLE 2: "<< " Position X: "<< position.x<<" Position Y: "<< position.y<<std::endl<<std::flush;
   acceleration *= 0;
 
 }

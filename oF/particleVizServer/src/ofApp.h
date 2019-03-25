@@ -6,7 +6,7 @@
 #include "VisualManager.h"
 #define PORT 12345
 
-class ofApp : public ofBaseApp{
+class ofApp : public ofBaseApp {
 
 	public:
 		void setup();

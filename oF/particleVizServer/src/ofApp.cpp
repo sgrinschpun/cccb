@@ -10,13 +10,10 @@ void ofApp::setup(){
   ofHideCursor();
 
   listManager = make_shared<ListManager>();
-
   oscManager.setup(PORT, listManager);
   oscManager.startThread();
   ofLog() << "listening for osc messages on port " << PORT;
-
   vizManager.setup(listManager);
-
 }
 
 //--------------------------------------------------------------

@@ -5,7 +5,7 @@
 #include "OSCHandler.h"
 #include "ListManager.h"
 
-class OSCManager: public ofThread{
+class OSCManager: public ofThread {
 private:
   ofxOscReceiver oscReceiver;
   OSCHandler oscHandler;

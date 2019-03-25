@@ -28,5 +28,6 @@ void OSCManager::threadedFunction(){
         else{
         }
     }
+	std::this_thread::yield();
   }
 }
