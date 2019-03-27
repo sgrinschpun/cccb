@@ -9,6 +9,14 @@ void Info::drawInfo(ofVec2f& _velocity){
   float deltax = 30*textPosition.getNormalized().x;
   float deltay = 30*textPosition.getNormalized().y;
 
-  string name = data->getName();
+  string name = this->getName();
   infoFont->drawString(name, textPosition.x+deltax, textPosition.y+deltay);
+}
+
+string Info::getName(){
+  string name = data->getName();
+  if (name == "h0(H_1)"){
+    name = "H0";
+  }
+  return name;
 }
