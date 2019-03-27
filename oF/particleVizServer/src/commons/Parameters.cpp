@@ -1,13 +1,13 @@
 #include "Parameters.h"
 
 shared_ptr<ofxXmlSettings> Parameters::xmlParameters=make_shared<ofxXmlSettings>("parameters.xml");
-
+/*
 shared_ptr<ofxXmlSettings> Parameters::setXMLParameters(){
   shared_ptr<ofxXmlSettings> p;
-  p = make_shared<ofxXmlSettings>("parameters.xml");
+  p = make_shared<ofxXmlSettings>("/home/cristobal/development/particle_muzic_CCCB/oF/particleVizServer/bin/data/parameters.xml");
   return p;
 }
-
+*/
 float Parameters::BMag = setBMag();
 float Parameters::setBMag(){
   return xmlParameters->getValue("magneticField", 0.0);

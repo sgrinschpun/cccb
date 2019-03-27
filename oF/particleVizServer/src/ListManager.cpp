@@ -45,8 +45,8 @@ void ListManager::updateMap(PhenomenaCMD phenoCMD) {
 
         ofVec2f velocity;
         velocity.set(phenoCMD.getParams().vy,phenoCMD.getParams().vz);
-        velocity.scale(phenoCMD.getParams().beta);
-        DEBUG_MSG("Particle Name " + phenoCMD.getParams().name + to_string(phenoCMD.getParams().beta));
+        velocity.scale((float) phenoCMD.getParams().beta);
+        ofLog(OF_LOG_NOTICE, "Particle Name " + phenoCMD.getParams().name + " " +  ofToString(phenoCMD.getParams().beta));
         std::unique_lock<std::mutex> lck (this->_mtx);
         particleMap.insert(make_pair(phenoCMD.getParams().id, make_shared<Particle>(newParticleData,position, velocity)));
     }
@@ -76,7 +76,6 @@ void ListManager::update(){
   std::unique_lock<std::mutex> lck (this->_mtx);
   for(auto pair: particleMap) {
     pair.second->update();
-    std::cout << "PARTICLE: "<< pair.second->getName()<<" Position X: "<< pair.second->getPosition().x<<" Position Y: "<< pair.second->getPosition().y<<std::endl<<std::flush;
   }
 }
 

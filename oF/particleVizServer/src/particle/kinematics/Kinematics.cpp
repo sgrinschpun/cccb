@@ -6,14 +6,14 @@ float Kinematics::velocityAmp{Parameters::velocityAmp};
 
 Kinematics::Kinematics(shared_ptr<ParticleData>& _particleData, ofVec2f _position, ofVec2f _velocity): data(_particleData), position(_position), velocity(_velocity){
   acceleration.set(0,0);
-  velocity *= velocityAmp;
+  velocity *= Parameters::velocityAmp;
 }
 
 void Kinematics::setBforce(){
   float q = data->getCharge();
   float mass = data->getMass();
   ofVec2f perpendicular= velocity.getPerpendicular();
-  Bforce = BMag*perpendicular*q/mass;
+  Bforce = Parameters::BMag*perpendicular*q/mass;
 }
 
 void Kinematics::setVelocity(){
@@ -34,7 +34,6 @@ void Kinematics::update(){
   applyForce(Bforce);
   velocity += acceleration;
   position += velocity;
-  std::cout << "PARTICLE 2: "<< " Position X: "<< position.x<<" Position Y: "<< position.y<<std::endl<<std::flush;
   acceleration *= 0;
 
 }
@@ -46,12 +45,6 @@ ofVec2f Kinematics::getPosition(){
 ofVec2f Kinematics::getVelocity(){
   return velocity;
 }
-
-
-
-
-
-
 
 void Kinematics::checkEdges(){
   if (position.x > ofGetWidth()) {
