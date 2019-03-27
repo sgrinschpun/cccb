@@ -60,6 +60,7 @@ void ListManager::updateMap(PhenomenaCMD phenoCMD) {
             ofLog(OF_LOG_NOTICE, "Removing particle from particleMap with id: " + ofToString(phenoCMD.getParams().id));
             std::unique_lock<std::mutex> lck (this->_mtx);
             particleMap.erase(i);
+            ofLog()<<"past remove";
         }
         else{
             ofLog(OF_LOG_NOTICE,  "The particle is not in particleMap! ");
@@ -75,14 +76,26 @@ void ListManager::updateMap(PhenomenaCMD phenoCMD) {
 }
 
 void ListManager::cleanupList(){
-
   for(auto iter=particleMap.begin(); iter!=particleMap.end(); ){
     if (particleIsOutOfBounds(iter->second)){
+      std::unique_lock<std::mutex> lck (this->_mtx);
       particleMap.erase(iter++);
     }
     else{++iter;}
   }
 }
+
+int ListManager::numberOnScreen(){
+  int counter = 0;
+  std::unique_lock<std::mutex> lck (this->_mtx);
+  for(auto pair:particleMap) {
+    if (!particleIsOutOfBounds(pair.second)){
+      counter++;
+    }
+  }
+  return counter;
+}
+
 
 bool ListManager::particleIsOutOfBounds(const shared_ptr<Particle>& _particle){
   bool outOfBounds = false;

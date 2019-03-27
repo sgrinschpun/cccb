@@ -5,6 +5,7 @@
 #include "CallToActionController.h"
 #include "ListManager.h"
 #include "StatsDisplay.h"
+#include "BigBang.h"
 #include <mutex>
 
 class VisualManager{
@@ -22,6 +23,8 @@ private:
 
   CallToActionController callToAction;
   StatsDisplay sDisplay;
+  BigBang bigBang;
+  bool bigBangOn{false};
 
 public:
   void setup(shared_ptr<ListManager>& _listManager);

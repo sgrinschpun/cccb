@@ -15,6 +15,7 @@ void VisualManager::setup(shared_ptr<ListManager>& _listManager){
   listManager = _listManager;
   callToAction.setup(listManager);
   fadeAmnt = Parameters::fadeAmnt;
+  bigBang.setup();
 }
 
 void VisualManager::setupFbo(){
@@ -43,12 +44,15 @@ void VisualManager::drawFbo(){
     ofEnableBlendMode(OF_BLENDMODE_DISABLED);
     listManager->lock();
     for(auto pair:listManager->particleMap) {
-      ofVec2f position = pair.second->getPosition();
-      ofPushMatrix();
-      ofTranslate(position.x, position.y);
-      pair.second->draw();
-      ofPopMatrix();
+      if(!listManager->particleIsOutOfBounds(pair.second)){
+        ofVec2f position = pair.second->getPosition();
+        ofPushMatrix();
+        ofTranslate(position.x, position.y);
+        pair.second->draw();
+        ofPopMatrix();
+      }
     }
+    if(bigBangOn){bigBang.draw();}
     listManager->unlock();
     ofDisableBlendMode();
     callToAction.drawImage();
@@ -66,8 +70,13 @@ void VisualManager::update(){
     drawFbo();
     ofDisableBlendMode();
 
-    sDisplay.update(listManager->particleMap.size());
+    sDisplay.update(listManager->numberOnScreen());
     callToAction.update();
+
+    if (listManager->numberOnScreen()>200){
+    bigBangOn = true ;
+    }
+    else {bigBangOn=false;}
 
 }
 
