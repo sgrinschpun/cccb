@@ -28,6 +28,7 @@ class ofApp : public ofBaseApp {
 		void gotMessage(ofMessage msg);
 
 		shared_ptr<ListManager> listManager;
+		int OSCInPort;
 		OSCManager oscManager;
 		VisualManager vizManager;
 

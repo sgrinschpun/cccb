@@ -27,3 +27,18 @@ float Parameters::baseRadius = setBaseRadius();
 float Parameters::setBaseRadius(){
   return xmlParameters->getValue("baseRadius", 0.0);
 }
+
+int Parameters::OSCInPort = setOSCInPort();
+int Parameters::setOSCInPort(){
+  return xmlParameters->getValue("OSCInPort", 12345);
+}
+
+int Parameters::OSCOutPort = setOSCOutPort();
+int Parameters::setOSCOutPort(){
+  return xmlParameters->getValue("OSCOutPort", 12347);
+}
+
+int Parameters::maxNumPart = setMaxNumPart();
+int Parameters::setMaxNumPart(){
+  return xmlParameters->getValue("maxNumPart", 200);
+}

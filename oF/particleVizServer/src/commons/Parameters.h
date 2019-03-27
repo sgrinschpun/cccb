@@ -16,6 +16,12 @@ class Parameters {
     static float setFadeAmnt();
     static float baseRadius;
     static float setBaseRadius();
+    static int OSCInPort;
+    static int setOSCInPort();
+    static int OSCOutPort;
+    static int setOSCOutPort();
+    static int maxNumPart;
+    static int setMaxNumPart();
 
 };
 #endif

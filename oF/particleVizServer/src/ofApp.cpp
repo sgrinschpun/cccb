@@ -1,4 +1,5 @@
 #include "ofApp.h"
+#include "Parameters.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -10,9 +11,10 @@ void ofApp::setup(){
   ofHideCursor();
 
   listManager = make_shared<ListManager>();
-  oscManager.setup(PORT, listManager);
+  OSCInPort = Parameters::OSCInPort;
+  oscManager.setup(OSCInPort, listManager);
   oscManager.startThread();
-  ofLog() << "listening for osc messages on port " << PORT;
+  ofLog() << "listening for osc messages on port " << OSCInPort;
   vizManager.setup(listManager);
 }
 

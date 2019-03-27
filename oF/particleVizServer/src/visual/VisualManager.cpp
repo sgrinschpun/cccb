@@ -16,6 +16,8 @@ void VisualManager::setup(shared_ptr<ListManager>& _listManager){
   callToAction.setup(listManager);
   fadeAmnt = Parameters::fadeAmnt;
   bigBang.setup();
+  maxNumPart = Parameters::maxNumPart;
+  sender.setup("localhost", Parameters::OSCOutPort); //12347
 }
 
 void VisualManager::setupFbo(){
@@ -25,7 +27,7 @@ void VisualManager::setupFbo(){
   ofFboSettings s;
   s.width = fboWidth;
   s.height = fboHeight;
-  s.internalformat = GL_RGBA32F_ARB; //GL_RGBA;
+  s.internalformat = GL_RGBA; //GL_RGBA32F_ARB; //GL_RGBA;
   s.wrapModeHorizontal = GL_REPEAT; //
   s.wrapModeVertical = GL_REPEAT;
   s.useStencil = true;
@@ -41,7 +43,7 @@ void VisualManager::setupFbo(){
 void VisualManager::drawFbo(){
 	rgbaFbo.begin();
     ofEnableAlphaBlending();
-    ofEnableBlendMode(OF_BLENDMODE_DISABLED);
+    //ofEnableBlendMode(OF_BLENDMODE_DISABLED);
     listManager->lock();
     for(auto pair:listManager->particleMap) {
       if(!listManager->particleIsOutOfBounds(pair.second)){
@@ -54,7 +56,7 @@ void VisualManager::drawFbo(){
     }
     if(bigBangOn){bigBang.draw();}
     listManager->unlock();
-    ofDisableBlendMode();
+    //ofDisableBlendMode();
     callToAction.drawImage();
     ofEnableBlendMode(OF_BLENDMODE_ALPHA);
     ofFill();
@@ -73,16 +75,19 @@ void VisualManager::update(){
     sDisplay.update(listManager->numberOnScreen());
     callToAction.update();
 
-    if (listManager->numberOnScreen()>200){
-    bigBangOn = true ;
+    if (listManager->numberOnScreen()>=maxNumPart && bigBangOn == false){
+      bigBangOn = true;
+      sender.sendBigBangMessage(true);
     }
-    else {bigBangOn=false;}
-
+    else if (listManager->numberOnScreen()<maxNumPart && bigBangOn == true){
+      bigBangOn = false;
+      sender.sendBigBangMessage(false);
+    }
 }
 
 void VisualManager::draw(){
-  ofEnableBlendMode(OF_BLENDMODE_DISABLED);
   rgbaFbo.draw(0,0);
+
   listManager->lock();
   for(auto pair:listManager->particleMap) {
     ofVec2f position = pair.second->getPosition();
@@ -92,7 +97,7 @@ void VisualManager::draw(){
     ofPopMatrix();
   }
   listManager->unlock();
-  ofDisableBlendMode();
+
   callToAction.drawText();
   sDisplay.display();
 }
