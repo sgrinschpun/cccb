@@ -5,7 +5,7 @@
 #include "OSCManager.h"
 #include "VisualManager.h"
 #include "ProjectFonts.h"
-#define PORT 12345
+#include "StatsDisplay.h"
 
 class ofApp : public ofBaseApp {
 
@@ -30,7 +30,11 @@ class ofApp : public ofBaseApp {
 		shared_ptr<ListManager> listManager;
 		int OSCInPort;
 		OSCManager oscManager;
+
 		VisualManager vizManager;
+
+		bool showStats;
+		StatsDisplay sDisplay;
 
 
 };

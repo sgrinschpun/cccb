@@ -72,7 +72,6 @@ void VisualManager::update(){
     drawFbo();
     ofDisableBlendMode();
 
-    sDisplay.update(listManager->numberOnScreen());
     callToAction.update();
 
     if (listManager->numberOnScreen()>=maxNumPart && bigBangOn == false){
@@ -99,5 +98,5 @@ void VisualManager::draw(){
   listManager->unlock();
 
   callToAction.drawText();
-  sDisplay.display();
+
 }

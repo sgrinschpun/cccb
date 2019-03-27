@@ -9,6 +9,7 @@ void ofApp::setup(){
   ofSetVerticalSync(false);
   ofSetCircleResolution(100);
   ofHideCursor();
+  showStats = false;
 
   listManager = make_shared<ListManager>();
   OSCInPort = Parameters::OSCInPort;
@@ -22,11 +23,13 @@ void ofApp::setup(){
 void ofApp::update(){
   listManager->update();
   vizManager.update();
+  sDisplay.update(listManager->numberOnScreen(), listManager->particleMap.size());
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
   vizManager.draw();
+  if (showStats){sDisplay.display();}
 }
 
 //--------------------------------------------------------------
@@ -36,6 +39,9 @@ void ofApp::exit() {
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
+  if(key == 'z'){
+    showStats = !showStats;
+  }
 
 }
 
