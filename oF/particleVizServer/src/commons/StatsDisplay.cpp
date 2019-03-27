@@ -21,5 +21,5 @@ void StatsDisplay::display(){
     ofSetColor(255);
     ofDrawBitmapString("particles: "+ofToString(stats.nParticles), 0.7*ofGetWidth(), 0.9*ofGetHeight());
     ofDrawBitmapString("fps: "+ofToString(stats.fps), 0.7*ofGetWidth(), 0.925*ofGetHeight());
-    ofDrawBitmapString("CPU: "+ofToString(stats.useCPU)+"%", 0.7*ofGetWidth(), 0.95*ofGetHeight());
+    // ofDrawBitmapString("CPU: "+ofToString(stats.useCPU)+"%", 0.7*ofGetWidth(), 0.95*ofGetHeight());
 }
