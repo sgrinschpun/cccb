@@ -6,7 +6,7 @@
 class Parameters {
   private:
     static shared_ptr<ofxXmlSettings> xmlParameters;
-    static shared_ptr<ofxXmlSettings> setXMLParameters();
+    //static shared_ptr<ofxXmlSettings> setXMLParameters();
   public:
     static float BMag;
     static float setBMag();

@@ -48,8 +48,8 @@ void ListManager::updateMap(PhenomenaCMD phenoCMD) {
 
         ofVec2f velocity;
         velocity.set(phenoCMD.getParams().vy,phenoCMD.getParams().vz);
-        velocity.scale(phenoCMD.getParams().beta);
-        DEBUG_MSG("Particle Name " + phenoCMD.getParams().name + to_string(phenoCMD.getParams().beta));
+        velocity.scale((float) phenoCMD.getParams().beta);
+        ofLog(OF_LOG_NOTICE, "Particle Name " + phenoCMD.getParams().name + " " +  ofToString(phenoCMD.getParams().beta));
         std::unique_lock<std::mutex> lck (this->_mtx);
         particleMap.insert(make_pair(phenoCMD.getParams().id, make_shared<Particle>(newParticleData,position, velocity)));
       }

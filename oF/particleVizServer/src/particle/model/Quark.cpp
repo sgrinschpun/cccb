@@ -1,5 +1,5 @@
 #include "Quark.h"
-
+#include "Parameters.h"
 
 void Quark::setXMLSettingsName(){
   xmlSettingsName = "quark";
@@ -11,7 +11,7 @@ void Quark::specificParameters(){
   // auto it = find(begin(quarks), end(quarks), name);
   // if (it != end(quarks)) {radius = 10;}
   float mass = data->getMass();
-  if (mass!=0){radius = baseRadius*mass;}
+  if (mass!=0){radius = Parameters::baseRadius*mass;}
 }
 
 Quark::Quark(shared_ptr<ParticleData>& _particleData):Model(_particleData){

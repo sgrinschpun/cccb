@@ -26,9 +26,9 @@ if __name__ == '__main__':
     phenomena = Phenomena()
     begin_time = time.time()
 
-    for i in range(1):
+    for i in range(100000):
         print(phenomena.addParticle("h0(H_1)"))
-        # time.sleep()
+        time.sleep(5)
 
     # loop_1 = random.randint(1, 10)
     # print("LOOP 1: {0}".format(loop_1))
