@@ -17,7 +17,7 @@ void Boson::setXMLSettingsName(){
 
 void Boson::specificParameters(){
   float mass = data->getMass();
-  if (mass!=0){radius = Parameters::baseRadius*mass;}
+  if (mass!=0){radius = baseRadius*mass;}
 
 }
 
