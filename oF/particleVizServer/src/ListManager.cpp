@@ -75,14 +75,26 @@ void ListManager::updateMap(PhenomenaCMD phenoCMD) {
 }
 
 void ListManager::cleanupList(){
-
   for(auto iter=particleMap.begin(); iter!=particleMap.end(); ){
     if (particleIsOutOfBounds(iter->second)){
+      std::unique_lock<std::mutex> lck (this->_mtx);
       particleMap.erase(iter++);
     }
     else{++iter;}
   }
 }
+
+int ListManager::numberOnScreen(){
+  int counter = 0;
+  std::unique_lock<std::mutex> lck (this->_mtx);
+  for(auto pair:particleMap) {
+    if (!particleIsOutOfBounds(pair.second)){
+      counter++;
+    }
+  }
+  return counter;
+}
+
 
 bool ListManager::particleIsOutOfBounds(const shared_ptr<Particle>& _particle){
   bool outOfBounds = false;

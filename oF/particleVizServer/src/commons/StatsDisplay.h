@@ -4,7 +4,8 @@
 using namespace std;
 
 struct Stats{
-    int nParticles;
+    int nPartScreen;
+    int nPartAll;
     int fps;
     int pFrames;
     int useCPU;
@@ -15,7 +16,7 @@ class StatsDisplay{
     Stats stats;
 public:
     StatsDisplay();
-    void update(int nPart);
+    void update(int _nPartScreen, int _nPartAll);
     void display();
 };
 #endif

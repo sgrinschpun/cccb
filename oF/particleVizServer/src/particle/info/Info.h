@@ -8,6 +8,8 @@ class Info {
   private:
     shared_ptr<ofxCenteredTrueTypeFont> infoFont;
 
+    string getName();
+
   public:
     shared_ptr<ParticleData> data;
     float radius;

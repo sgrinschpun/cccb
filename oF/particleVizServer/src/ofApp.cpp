@@ -1,4 +1,5 @@
 #include "ofApp.h"
+#include "Parameters.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -8,27 +9,27 @@ void ofApp::setup(){
   ofSetVerticalSync(false);
   ofSetCircleResolution(100);
   ofHideCursor();
+  showStats = false;
 
   listManager = make_shared<ListManager>();
-  oscManager.setup(PORT, listManager);
+  OSCInPort = Parameters::OSCInPort;
+  oscManager.setup(OSCInPort, listManager);
   oscManager.startThread();
-  ofLog() << "listening for osc messages on port " << PORT;
+  ofLog() << "listening for osc messages on port " << OSCInPort;
   vizManager.setup(listManager);
-
-  bigBang.setup();
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
   listManager->update();
   vizManager.update();
+  sDisplay.update(listManager->numberOnScreen(), listManager->particleMap.size());
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
   vizManager.draw();
-
-  if(bigBangOn){bigBang.draw();}
+  if (showStats){sDisplay.display();}
 }
 
 //--------------------------------------------------------------
@@ -38,9 +39,9 @@ void ofApp::exit() {
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-  if(key == 'b'){
-  bigBangOn = !bigBangOn;
-}
+  if(key == 'z'){
+    showStats = !showStats;
+  }
 
 }
 

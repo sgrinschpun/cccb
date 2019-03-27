@@ -11,7 +11,8 @@ class ListManager{
 
 private:
   void cleanupList();
-  bool particleIsOutOfBounds(const shared_ptr<Particle>& _particle);
+
+
   float padding{50};
 
 public:
@@ -22,6 +23,8 @@ public:
   bool listIsEmpty();
   void lock(){this->_mtx.lock();};
   void unlock(){this->_mtx.unlock();};
+  bool particleIsOutOfBounds(const shared_ptr<Particle>& _particle);
+  int numberOnScreen();
 
   void update();
   void draw();

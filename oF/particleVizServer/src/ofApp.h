@@ -4,9 +4,8 @@
 #include "ListManager.h"
 #include "OSCManager.h"
 #include "VisualManager.h"
-#include "BigBang.h"
 #include "ProjectFonts.h"
-#define PORT 12345
+#include "StatsDisplay.h"
 
 class ofApp : public ofBaseApp {
 
@@ -29,11 +28,13 @@ class ofApp : public ofBaseApp {
 		void gotMessage(ofMessage msg);
 
 		shared_ptr<ListManager> listManager;
+		int OSCInPort;
 		OSCManager oscManager;
+
 		VisualManager vizManager;
 
-		BigBang bigBang;
-		bool bigBangOn{false};
+		bool showStats;
+		StatsDisplay sDisplay;
 
 
 };

@@ -4,7 +4,8 @@
 #include "ofMain.h"
 #include "CallToActionController.h"
 #include "ListManager.h"
-#include "StatsDisplay.h"
+#include "BigBang.h"
+#include "OSCSender.h"
 #include <mutex>
 
 class VisualManager{
@@ -21,7 +22,11 @@ private:
   float fadeAmnt;
 
   CallToActionController callToAction;
-  StatsDisplay sDisplay;
+
+  BigBang bigBang;
+  bool bigBangOn{false};
+  int maxNumPart;
+  OSCSender sender;
 
 public:
   void setup(shared_ptr<ListManager>& _listManager);
