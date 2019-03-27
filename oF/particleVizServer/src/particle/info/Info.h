@@ -1,18 +1,18 @@
 #ifndef _Info
 #define _Info
 #include "ofMain.h"
+#include "FontsManager.h"
 #include "ParticleData.h"
 
 class Info {
   private:
-    static ofTrueTypeFont myFont;
-    void setupFont();
-    float radius;
+    shared_ptr<ofxCenteredTrueTypeFont> infoFont;
 
-
+    string getName();
 
   public:
     shared_ptr<ParticleData> data;
+    float radius;
 
     void drawInfo(ofVec2f& _velocity);
 
@@ -21,5 +21,5 @@ class Info {
       data.reset();
     }
 
-  };
-  #endif
+};
+#endif

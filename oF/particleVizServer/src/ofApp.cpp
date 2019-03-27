@@ -1,4 +1,5 @@
 #include "ofApp.h"
+#include "Parameters.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -7,27 +8,40 @@ void ofApp::setup(){
   ofSetFrameRate(60);
   ofSetVerticalSync(false);
   ofSetCircleResolution(100);
+  ofHideCursor();
+  showStats = false;
 
-  ofLog() << "listening for osc messages on port " << PORT;
-  avServer.setup(PORT);
+  listManager = make_shared<ListManager>();
+  OSCInPort = Parameters::OSCInPort;
+  oscManager.setup(OSCInPort, listManager);
+  oscManager.startThread();
+  ofLog() << "listening for osc messages on port " << OSCInPort;
+  vizManager.setup(listManager);
 }
-
-
-
 
 //--------------------------------------------------------------
 void ofApp::update(){
-  avServer.update();
-
+  listManager->update();
+  vizManager.update();
+  sDisplay.update(listManager->numberOnScreen(), listManager->particleMap.size());
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-  avServer.draw();
+  vizManager.draw();
+  if (showStats){sDisplay.display();}
+}
+
+//--------------------------------------------------------------
+void ofApp::exit() {
+  oscManager.stopThread();
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
+  if(key == 'z'){
+    showStats = !showStats;
+  }
 
 }
 

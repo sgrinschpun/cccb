@@ -11,12 +11,25 @@ def test_particle():
     # for part in ['u', "ubar", "d", "dbar","c","cbar","s","sbar","b","bbar"]:
     #     this = QuantumUniverseParticle(part)
     #     print (this.transformtime)
-    particle = QuantumUniverseParticle('J/psi')
+    particle = QuantumUniverseParticle('Omega*_c0')
+    print (particle.decay_channels)
+    print (particle.mass)
+    for item in particle.decay_channels[0][1]:
+        print (ParticleDataSource.getName(item))
+    particle2 = QuantumUniverseParticle('Omega_c0')
+    print (particle2.type)
+    print (particle2.mass)
+    print (particle.name in ParticleDataSource.getExcludedParticles())
+    print (TransformationChannels.from_decaylist(particle.decay_channels).all)
+    #print (particle.transformation)
+    #for channel in particle.transformation.selectType('Decay').channels.all:
+    #    print (channel.names)
+    #Omega*_c0
     #print (top.mass)
 
-    print (DecayLanguageFetcher.getHTMLName(particle.pdgid))
-    latex = DecayLanguageFetcher.getLatexName(particle.pdgid)
-    print (LatexNodes2Text().latex_to_text(latex))
+    #print (DecayLanguageFetcher.getHTMLName(particle.pdgid))
+    #latex = DecayLanguageFetcher.getLatexName(particle.pdgid)
+    #print (LatexNodes2Text().latex_to_text(latex))
 
     #print (ParticleDataSource.getName(25))
     #print (ParticleDataSource.getName(22))

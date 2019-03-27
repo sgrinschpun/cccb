@@ -44,7 +44,7 @@ void WaveRing::draw(){
   }else{
     thisColor = ofColor::fromHsb(col, saturation, brightness, alpha);
   }
-  ofEnableBlendMode(OF_BLENDMODE_ADD);
+  //ofEnableBlendMode(OF_BLENDMODE_ADD);
   ofSetLineWidth(width);
   ofSetColor(thisColor);
   ofNoFill();

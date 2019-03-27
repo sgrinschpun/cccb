@@ -1,15 +1,19 @@
 #pragma once
 
 #include "ofMain.h"
-#include "AVServer.hpp"
-#define PORT 12345
+#include "ListManager.h"
+#include "OSCManager.h"
+#include "VisualManager.h"
+#include "ProjectFonts.h"
+#include "StatsDisplay.h"
 
-class ofApp : public ofBaseApp{
+class ofApp : public ofBaseApp {
 
 	public:
 		void setup();
 		void update();
 		void draw();
+		void exit();
 
 		void keyPressed(int key);
 		void keyReleased(int key);
@@ -23,6 +27,14 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-		AVServer avServer;
+		shared_ptr<ListManager> listManager;
+		int OSCInPort;
+		OSCManager oscManager;
+
+		VisualManager vizManager;
+
+		bool showStats;
+		StatsDisplay sDisplay;
+
 
 };

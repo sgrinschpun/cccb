@@ -22,6 +22,7 @@ void WaveRingVariation::draw() {
   for(int i=0; i<waverings.size(); i++){
     waverings[i]->draw();
   }
+  ofDisableBlendMode();
 }
 
 void WaveRingVariation::setShapeNum(int _shapesNum) {
@@ -29,10 +30,6 @@ void WaveRingVariation::setShapeNum(int _shapesNum) {
     for(int i=0; i<shapesNum; i++){
       waverings.push_back(make_unique<WaveRing>(cycle));
     }
-}
-
-void WaveRingVariation::setFadeAmnt(int _fadeAmnt){
-  fadeAmnt = _fadeAmnt;
 }
 
 void WaveRingVariation::setCycle(int _framesPerCycle){

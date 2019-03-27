@@ -37,10 +37,10 @@ void Particle::buildModel(){
     else if (type == "meson") {model = make_unique<Meson>(data);}
     else if (type == "baryon"){model = make_unique<Baryon>(data);}
     else if (type == "quark") {model = make_unique<Quark>(data);}
+    else if (type == "calltoaction") {model = make_unique<CallToActionModel>(data);}
   }
 
 void Particle::draw(){
-
   model->draw();
 
 }
@@ -62,4 +62,8 @@ ofVec2f Particle::getPosition(){
 
 string Particle::getName(){
   return data->getName();
+}
+
+int Particle::getId(){
+  return data->getId();
 }

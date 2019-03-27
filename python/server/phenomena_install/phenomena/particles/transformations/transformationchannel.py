@@ -40,6 +40,13 @@ class TransformationChannel(Channel):
         return set(self.ids)
 
     @property
+    def totalMass(self):
+        mass = 0.
+        for name in self.names:
+            mass += ParticleDataSource.getMass(name)
+        return mass
+
+    @property
     def totalCharge(self):
         charge = 0.
         for name in self.names:
@@ -105,7 +112,7 @@ class TransformationChannels(object):
         self._tclist = tclist
 
     @classmethod
-    def from_decaylist(cls, decaylist):
+    def from_decaylist(cls, decaylist, energy = 0):
         '''
         We only accept 2body and 3body channels
         If we find a 1 body channel we use the decay channels of that particle
@@ -116,7 +123,8 @@ class TransformationChannels(object):
             if all([
                 TC.length in [2,3,4],
                 TC.BR > 0.0,
-                TC.nameSet.intersection(TransformationChannels.EXCLUDEDSET) == set([])
+                TC.nameSet.intersection(TransformationChannels.EXCLUDEDSET) == set([]),
+                #TC.totalMass <= energy
             ]):
                 tclist.append(TC)
             elif TC.length == 1:

@@ -5,8 +5,8 @@
 class Kinematics {
   private:
     ofPoint position;
-    ofVec3f velocity;
-    ofVec3f acceleration;
+    ofVecf velocity;
+    ofVecf acceleration;
 
     float topSpeed;
 

@@ -4,6 +4,7 @@
 #define DEBUG_MSG(str) do { } while ( false )
 #endif
 #include "Model.h"
+#include "Parameters.h"
 
 map <string, string> Model::xmlSettingsNames = setXMLSettingsNames();
 map <string, string> Model::setXMLSettingsNames(){
@@ -14,11 +15,18 @@ map <string, string> Model::setXMLSettingsNames(){
   m["baryon"] = "baryon.xml";
   m["gamma"] = "gamma.xml";
   m["W"] = "W.xml";
-  m["Z0"] = "Z0.xml";
+  m["Z"] = "Z.xml";
   m["higgs"] = "higgs.xml";
   m["electron"] = "electron.xml";
   m["muon"] = "muon.xml";
   m["tau"] = "tau.xml";
+  m["higgsCTA"] ="higgsCTA.xml";
+  m["topCTA"] ="topCTA.xml";
+  m["WCTA"] ="WCTA.xml";
+  m["tauCTA"] ="tauCTA.xml";
+  m["jpsiCTA"] ="jpsiCTA.xml";
+  m["pi0CTA"] ="pi0CTA.xml";
+  m["omegaCTA"] ="omegaCTA.xml";
   return m;
 }
 
@@ -30,6 +38,8 @@ map <string, unique_ptr<ofxXmlSettings> > Model::setXMLsettings(){
   }
   return m;
 }
+
+float Model::baseRadius = Parameters::baseRadius;
 
 Model::Model(shared_ptr<ParticleData>& _data): data(_data){
 
@@ -64,17 +74,11 @@ void Model::buildParameters(){
       noiseAmount = settings->getValue("noiseAmount", 0.00);
       settings->popTag();
     settings->pushTag("color");
-    fadeAmnt = settings->getValue("fadeAmnt", 0);
     colMode = settings->getValue("colMode", 0);
     saturation = settings->getValue("saturation", 0);
     brightness = settings->getValue("brightness", 0);
     alpha = settings->getValue("alpha", 0);
     settings->popTag();
-    DEBUG_MSG("Parameters");
-    DEBUG_MSG("shapesNum: " + to_string(shapesNum));
-    DEBUG_MSG("SpeedAmp: " + to_string(speedAmp));
-    DEBUG_MSG("framesPerCycle: " + to_string(framesPerCycle));
-    DEBUG_MSG("fadeAmnt: " + to_string(fadeAmnt));
 
   }
   else {
@@ -97,7 +101,6 @@ void Model::setShape(){
     shape -> setRotAmp(rotAmp);
     shape -> setNoiseStep(noiseStep);
     shape -> setNoiseAmount(noiseAmount);
-    shape -> setFadeAmnt(fadeAmnt);
     shape -> setColorMode(colMode);
     shape -> setSaturation(saturation);
     shape -> setBrightness(brightness);

@@ -15,12 +15,16 @@ class Model {
     static map <string, unique_ptr<ofxXmlSettings> > xmlSettings;
     static map <string, unique_ptr<ofxXmlSettings> > setXMLsettings();
 
+
+
   public:
     virtual void setXMLSettingsName() = 0;
     void buildParameters();
     virtual void specificParameters() = 0;
     void setShape();
     void setInfo();
+
+    static float baseRadius;
 
     unique_ptr<WaveRingVariation> shape;
     unique_ptr<Info> info;
@@ -38,7 +42,6 @@ class Model {
     int framesPerCycle;
     float noiseStep;
     float noiseAmount;
-    int fadeAmnt;
     bool colMode;
     int saturation;
     int brightness;
