@@ -60,7 +60,6 @@ void ListManager::updateMap(PhenomenaCMD phenoCMD) {
             ofLog(OF_LOG_NOTICE, "Removing particle from particleMap with id: " + ofToString(phenoCMD.getParams().id));
             std::unique_lock<std::mutex> lck (this->_mtx);
             particleMap.erase(i);
-            ofLog()<<"past remove";
         }
         else{
             ofLog(OF_LOG_NOTICE,  "The particle is not in particleMap! ");
