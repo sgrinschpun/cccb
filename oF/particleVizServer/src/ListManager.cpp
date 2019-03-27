@@ -69,14 +69,34 @@ void ListManager::updateMap(PhenomenaCMD phenoCMD) {
         particleMap.clear();
     }
     ofLog(OF_LOG_NOTICE,"particleMap size is: " + ofToString(particleMap.size()));
-    ofLog(OF_LOG_NOTICE,"particleMap is empty? " +  ofToString(listIsEmpty()));
 }
+
+void ListManager::cleanupList(){
+
+  for(auto iter=particleMap.begin(); iter!=particleMap.end(); ){
+    if (particleIsOutOfBounds(iter->second)){
+      particleMap.erase(iter++);
+    }
+    else{++iter;}
+  }
+}
+
+bool ListManager::particleIsOutOfBounds(const shared_ptr<Particle>& _particle){
+  bool outOfBounds = false;
+  ofVec2f position = _particle->getPosition();
+  if (position.x > ofGetWidth()+padding || position.x < 0-padding || position.y > ofGetHeight()+padding || position.y < 0-padding){
+    outOfBounds = true;
+  }
+  return outOfBounds;
+}
+
 
 void ListManager::update(){
   std::unique_lock<std::mutex> lck (this->_mtx);
-  for(auto pair: particleMap) {
+  for(auto pair:particleMap) {
     pair.second->update();
   }
+  cleanupList();
 }
 
 void ListManager::draw(){

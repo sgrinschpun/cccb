@@ -4,6 +4,8 @@
 #include "ListManager.h"
 #include "OSCManager.h"
 #include "VisualManager.h"
+#include "BigBang.h"
+#include "ProjectFonts.h"
 #define PORT 12345
 
 class ofApp : public ofBaseApp {
@@ -29,6 +31,9 @@ class ofApp : public ofBaseApp {
 		shared_ptr<ListManager> listManager;
 		OSCManager oscManager;
 		VisualManager vizManager;
+
+		BigBang bigBang;
+		bool bigBangOn{false};
 
 
 };

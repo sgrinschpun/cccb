@@ -66,7 +66,7 @@ void VisualManager::update(){
     drawFbo();
     ofDisableBlendMode();
 
-    //sDisplay.update(particleMap.size());
+    sDisplay.update(listManager->particleMap.size());
     callToAction.update();
 
 }
@@ -85,5 +85,5 @@ void VisualManager::draw(){
   listManager->unlock();
   ofDisableBlendMode();
   callToAction.drawText();
-  //sDisplay.display();
+  sDisplay.display();
 }

@@ -4,11 +4,14 @@
 #include "ofMain.h"
 #include "CallToActionController.h"
 #include "ListManager.h"
+#include "StatsDisplay.h"
+#include <mutex>
 
 class VisualManager{
 
 private:
   shared_ptr<ListManager> listManager;
+  std::mutex _mtx;
 
   ofFbo rgbaFbo;
   float fboWidth;
@@ -18,6 +21,7 @@ private:
   float fadeAmnt;
 
   CallToActionController callToAction;
+  StatsDisplay sDisplay;
 
 public:
   void setup(shared_ptr<ListManager>& _listManager);

@@ -10,6 +10,7 @@ int main( ){
 	//ofSetupOpenGL(3840,2160,OF_WINDOW);	 // 4K
 	//ofSetupOpenGL(7680,4320,OF_WINDOW); // 8K
 
+	shared_ptr<ProjectFonts> fonts= make_shared<ProjectFonts>();
 
 	// this kicks off the running of my app
 	// can be OF_WINDOW or OF_FULLSCREEN

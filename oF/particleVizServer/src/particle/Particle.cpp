@@ -63,3 +63,7 @@ ofVec2f Particle::getPosition(){
 string Particle::getName(){
   return data->getName();
 }
+
+int Particle::getId(){
+  return data->getId();
+}

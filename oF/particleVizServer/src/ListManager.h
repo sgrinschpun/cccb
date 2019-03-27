@@ -10,6 +10,9 @@
 class ListManager{
 
 private:
+  void cleanupList();
+  bool particleIsOutOfBounds(const shared_ptr<Particle>& _particle);
+  float padding{50};
 
 public:
   std::map <int, shared_ptr<Particle>> particleMap;
