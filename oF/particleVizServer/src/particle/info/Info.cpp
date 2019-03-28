@@ -1,7 +1,7 @@
 #include "Info.h"
 
 Info::Info(shared_ptr<ParticleData>& _data, float _radius): data(_data), radius(_radius){
-  infoFont = FontsManager::getFont("lato10");
+  infoFont = FontsManager::getFont("menlo10");
 }
 
 void Info::drawInfo(ofVec2f& _velocity){
@@ -14,9 +14,10 @@ void Info::drawInfo(ofVec2f& _velocity){
 }
 
 string Info::getName(){
-  string name = data->getName();
-  if (name == "h0(H_1)"){
-    name = "\u03A8\u207A";
-  }
+  string name = data->getSymbolName();
+  // string name = data->getName();
+  // if (name == "h0(H_1)"){
+  //   name = "\u03A8\u207A";
+  // }
   return name;
 }

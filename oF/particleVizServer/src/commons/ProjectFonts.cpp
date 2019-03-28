@@ -36,4 +36,5 @@ void ProjectFonts::setupFonts(){
   setupFont("MAD_Sans_Fill_Black.otf", 200, "MADBlack200");
   setupFont("MAD_Sans_Fill_Black_Italic.otf", 20, "MADBlackItalic20");
   setupFont("Symbol.ttf", 10, "symbol10");
+  setupFont("Menlo.ttc", 10, "menlo10");
 }
