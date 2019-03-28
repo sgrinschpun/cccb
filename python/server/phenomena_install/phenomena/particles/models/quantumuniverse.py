@@ -37,6 +37,7 @@ class QuantumUniverseParticle(ParticleTransformation, ParticleBoost, ParticleDat
         self._set_type() # Particle Type (quark, lepton, boson, meson, baryon)
         self._set_composition() # Particle quark compsition in format [[q1,q2],[q3,q4],...]
         self._set_decayChannels() #All the decay channels and BRs of the particle in format [(BR,[part1,..,partn]),...]
+        self._set_symbolName()
 
         #### ParticleBoost
         self._set_fourMomentum(kwargs)#assign 4momentum vector and  boosted parameters

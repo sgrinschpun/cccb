@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
 import warnings
 warnings.filterwarnings("ignore", message="numpy.dtype size changed")
 warnings.filterwarnings("ignore", message="numpy.ufunc size changed")
@@ -6,6 +8,7 @@ from decaylanguage.particle import Particle
 from skhep.math  import width_to_lifetime
 from skhep import units as u
 from phenomena.particles.particle import Particle as P
+from pylatexenc.latex2text import LatexNodes2Text
 
 class DecayLanguageFetcher(object):
 
@@ -57,10 +60,6 @@ class DecayLanguageFetcher(object):
             return -1*pdgid
         else:
             return Particle.from_pdgid(pdgid).invert().val
-
-    @staticmethod
-    def getLatex(pdgid):
-        return Particle.from_pdgid(pdgid).latex
 
     @staticmethod
     def getLatexName(pdgid):
