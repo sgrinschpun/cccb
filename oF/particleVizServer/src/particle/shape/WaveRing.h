@@ -3,11 +3,33 @@
 #include "ofMain.h"
 #include "Cycle.h"
 
+class ofVboMeshWrapper {
+	private:
+	ofVboMesh _mesh;
+	bool _used;
+	void blockofVboMesh();
+	public:
+	ofVboMeshWrapper();
+	~ofVboMeshWrapper();
+	void freeVboMesh();
+	ofVboMesh& getofVboMesh();
+	bool isUsed() const;
+	friend class ofVboMeshPool;
+
+};
+
+class ofVboMeshPool {
+	public:
+	std::vector<ofVboMeshWrapper*> _pool;
+	ofVboMeshWrapper* getVboMesh();
+	size_t size();
+};
+
 class WaveRing {
 
   private:
 
-    ofMesh wigglyMeshRing;
+    std::unique_ptr<ofVboMeshWrapper, void (*)(ofVboMeshWrapper*)> _wiggly_mesh_ring;
 
     int segments {100};
     float width {0};
@@ -57,7 +79,7 @@ class WaveRing {
 
     WaveRing(shared_ptr<Cycle>& cycle);
     ~WaveRing(){
-      cycle.reset();;
+      //cycle.reset();
     }
 
 };
