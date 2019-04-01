@@ -3,13 +3,13 @@
 ofxXmlSettings CallToActionDisplay::xmlTexts=ofxXmlSettings("texts.xml");
 
 void CallToActionDisplay::setParticleList(){
-  shared_ptr<ParticleData> quark = make_shared<ParticleData>(-1,1,"topCTA",1.,1.,"calltoaction",1.);
-  shared_ptr<ParticleData> higgs = make_shared<ParticleData>(-1,1,"higgsCTA",1.,1.,"calltoaction",1.);
-  shared_ptr<ParticleData> w = make_shared<ParticleData>(-1,1,"WCTA",1.,1.,"calltoaction",1.);
-  shared_ptr<ParticleData> tau = make_shared<ParticleData>(-1,1,"tauCTA",1.,1.,"calltoaction",1.);
-  shared_ptr<ParticleData> pi0 = make_shared<ParticleData>(-1,1,"pi0CTA",1.,1.,"calltoaction",1.);
-  shared_ptr<ParticleData> jpsi = make_shared<ParticleData>(-1,1,"jpsiCTA",1.,1.,"calltoaction",1.);
-  shared_ptr<ParticleData> omega = make_shared<ParticleData>(-1,1,"omegaCTA",1.,1.,"calltoaction",1.);
+  shared_ptr<ParticleData> quark = make_shared<ParticleData>(-1,1,"topCTA",1.,1.,"calltoaction",1.,"");
+  shared_ptr<ParticleData> higgs = make_shared<ParticleData>(-1,1,"higgsCTA",1.,1.,"calltoaction",1.,"");
+  shared_ptr<ParticleData> w = make_shared<ParticleData>(-1,1,"WCTA",1.,1.,"calltoaction",1.,"");
+  shared_ptr<ParticleData> tau = make_shared<ParticleData>(-1,1,"tauCTA",1.,1.,"calltoaction",1.,"");
+  shared_ptr<ParticleData> pi0 = make_shared<ParticleData>(-1,1,"pi0CTA",1.,1.,"calltoaction",1.,"");
+  shared_ptr<ParticleData> jpsi = make_shared<ParticleData>(-1,1,"jpsiCTA",1.,1.,"calltoaction",1.,"");
+  shared_ptr<ParticleData> omega = make_shared<ParticleData>(-1,1,"omegaCTA",1.,1.,"calltoaction",1.,"");
   particleList.push_back(make_shared<Particle>(quark));
   particleList.push_back(make_shared<Particle>(higgs));
   particleList.push_back(make_shared<Particle>(w));

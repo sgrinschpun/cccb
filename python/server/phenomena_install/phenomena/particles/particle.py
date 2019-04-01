@@ -60,7 +60,7 @@ class BasicParticle(Particle):
     This class is used by the server to transmit the messages through the socket. It is just a container of information.
     '''
 
-    def __init__(self, parent, id, name, type, mass, charge, composition, transformtime, p, E, vx, vy, vz, beta):
+    def __init__(self, parent, id, name, type, mass, charge, composition, transformtime, p, E, vx, vy, vz, beta,symbolName):
         self._parent = parent
         self._id = id
         self._name = name
@@ -75,6 +75,7 @@ class BasicParticle(Particle):
         self._vy = vy
         self._vz = vz
         self._beta = beta
+        self._symbolName = symbolName
 
     @property
     def name(self):
@@ -129,6 +130,9 @@ class BasicParticle(Particle):
     @property
     def beta(self):
         return self._beta
+    @property
+    def symbolName(self):
+        return self._symbolName
 
     def toDictionary(self):
         return toDictionary(self)
@@ -150,5 +154,6 @@ def toDictionary(particle):
             "vx": particle.vx,
             "vy": particle.vy,
             "vz": particle.vz,
-            "beta": particle.beta
+            "beta": particle.beta,
+            "symbolName": particle.symbolName,
             }

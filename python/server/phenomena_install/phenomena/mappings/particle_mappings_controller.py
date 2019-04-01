@@ -15,7 +15,8 @@ class MappingsController:
                                "vx": MirrorMapping(),
                                "vy": MirrorMapping(),
                                "vz": MirrorMapping(),
-                               "beta": MirrorMapping()
+                               "beta": MirrorMapping(),
+                               "symbolName": MirrorMapping()
                                }
 
     def translateParticle(self, particle):

@@ -1,6 +1,6 @@
 #include "ParticleData.h"
 
-ParticleData::ParticleData(int _id, int _parent, string _name, float _mass, float _charge, string _type, float _energy): id(_id), parent(_parent), name(_name), mass(_mass), charge(_charge), type(_type), energy(_energy){
+ParticleData::ParticleData(int _id, int _parent, string _name, float _mass, float _charge, string _type, float _energy, string _symbolName): id(_id), parent(_parent), name(_name), mass(_mass), charge(_charge), type(_type), energy(_energy), symbolName(_symbolName){
 }
 
 int ParticleData::getId(void){
@@ -29,4 +29,8 @@ float ParticleData::getCharge(void){
 
 float ParticleData::getEnergy(void){
   return energy;
+}
+
+string ParticleData::getSymbolName(void){
+  return symbolName;
 }

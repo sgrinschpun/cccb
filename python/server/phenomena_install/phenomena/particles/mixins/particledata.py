@@ -111,3 +111,10 @@ class ParticleData(object):
             leptonnumber = 0
 
         return leptonnumber
+
+    def _set_symbolName(self):
+        self._symbolName = ParticleDataSource.getSymbolName(self._name)
+
+    @property
+    def symbolName(self):
+        return self._symbolName
