@@ -39,7 +39,7 @@ map <string, unique_ptr<ofxXmlSettings> > Model::setXMLsettings(){
   return m;
 }
 
-float Model::baseRadius{Parameters::baseRadius};
+float Model::baseRadius = Parameters::baseRadius;
 
 Model::Model(shared_ptr<ParticleData>& _data): data(_data){
 
