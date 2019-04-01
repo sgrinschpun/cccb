@@ -15,8 +15,8 @@ from particle_unicode import unicodedict
 
 
 def test_unicode():
-    print (unicodedict['D+'])
-    particle = QuantumUniverseParticle('B*+')
+    #print (unicodedict['D+'])
+    particle = QuantumUniverseParticle('nu_ebar')
     print (particle.name)
     print (particle.symbolName)
  #print (DecayLanguageFetcher.getLatexName(particle.pdgid))

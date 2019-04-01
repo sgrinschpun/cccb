@@ -1,7 +1,7 @@
 #include "Info.h"
 
 Info::Info(shared_ptr<ParticleData>& _data, float _radius): data(_data), radius(_radius){
-  infoFont = FontsManager::getFont("menlo10");
+  infoFont = FontsManager::getFont("consolas10");
 }
 
 void Info::drawInfo(ofVec2f& _velocity){
