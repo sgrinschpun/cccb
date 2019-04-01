@@ -2,7 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxOsc.h"
-#define PORT 12345
+#define PORT 16180
 
 class ofApp : public ofBaseApp{
 
@@ -28,7 +28,8 @@ class ofApp : public ofBaseApp{
 		ofxOscMessage message;
 		ofxOscBundle bundle;
 
-		void buildBundle();
+		void buildOfBundle();
+		void buildPythonBundleSimple(string _particle);
 
 
 

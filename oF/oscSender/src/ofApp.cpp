@@ -4,13 +4,23 @@
 void ofApp::setup(){
   sender.setup("localhost", PORT);
 
-  buildBundle();
+  //buildOfBundle();
+  buildPythonBundleSimple("Z0");
 
-  //sender.sendMessage(message);
-  sender.sendBundle(bundle);
+
+  sender.sendMessage(message);
+  //sender.sendBundle(bundle);
 }
 
-void ofApp::buildBundle(){
+void ofApp::buildPythonBundleSimple(string _particle){
+  message.setAddress("/ADD");
+  message.addStringArg("Z0");
+  //bundle.addMessage(message);
+  //message.clear();
+}
+
+
+void ofApp::buildOfBundle(){
   message.setAddress("/particle/attributes/id");
   message.addIntArg(1);
   bundle.addMessage(message);
