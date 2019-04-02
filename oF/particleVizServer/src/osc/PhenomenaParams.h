@@ -15,6 +15,7 @@ struct PhenomenaParams{
     float vy;
     float vz;
     float beta;
+    string symbolName;
 
     bool equals(PhenomenaParams p) {
         return id == p.id;

@@ -37,7 +37,8 @@ sources = {
     'getAnti':decaylanguage,
     'isNewPhysics':scikitHEP,
     'getParticleList':particledatatool,
-    'getParticleByComposition':extrainfo
+    'getParticleByComposition':extrainfo,
+    'getSymbolName':particledatatool
 }
 
 class ParticleDataSource(object):
@@ -129,6 +130,16 @@ class ParticleDataSource(object):
     @staticmethod
     def getParticleList():
         return sources['getParticleList'].getParticleList()
+
+    @staticmethod
+    def getSymbolName(name):
+        pdgid = ParticleDataSource.getPDGId(name)
+        try:
+            symbol = sources['getSymbolName'].getSymbolName(pdgid)
+        except:
+            symbol = sources['getName'].getName(pdgid)
+        finally:
+            return symbol
 
     @staticmethod
     def getExcludedParticles():

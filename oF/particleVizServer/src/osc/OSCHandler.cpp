@@ -25,6 +25,8 @@ void OSCHandler::acumulativeParticleParse(ofxOscMessage message){
         middleParams.vz = message.getArgAsFloat(0);
     if(message.getAddress() == "/particle/attributes/beta")
         middleParams.beta = message.getArgAsFloat(0);
+    if(message.getAddress() == "/particle/attributes/symbolName")
+    middleParams.symbolName = message.getArgAsString(0);
 }
 
 PhenomenaCMD OSCHandler::releaseParticle(ofxOscMessage message){
