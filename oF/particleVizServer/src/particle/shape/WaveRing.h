@@ -7,8 +7,7 @@ class WaveRing {
 
   private:
 
-    ofMesh wigglyMeshRing;
-
+    ofMesh wigglymeshring;
     int segments {100};
     float width {0};
     float noiseStep {0.0};
@@ -57,7 +56,7 @@ class WaveRing {
 
     WaveRing(shared_ptr<Cycle>& cycle);
     ~WaveRing(){
-      cycle.reset();;
+      //cycle.reset();
     }
 
 };

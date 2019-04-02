@@ -67,7 +67,7 @@ current = set()
 phenomena = Phenomena()
 
 def trigger_particle(particle):
-    print (phenomena.addParticle(particle))
+    print (phenomena.simpleAddParticle(particle))
 
 def on_press(key):
     current.add(key)
@@ -75,7 +75,7 @@ def on_press(key):
     for particle, combination in particle_keyboard.items():
         if all(k in current for k in combination):
             if particle == 'purge':
-                print(phenomena.purgeParticles())
+                print(phenomena.simplePurgeParticles())
             else:
                 print('Triggering particle', particle)
                 trigger_particle(particle)

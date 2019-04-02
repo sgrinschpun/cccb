@@ -60,3 +60,6 @@ class DataSource(object):
 
     def getParticleList(self):
         return self._imp.getParticleList()
+
+    def getSymbolName(self, pdgid):
+        return self._imp.getSymbolName(pdgid)

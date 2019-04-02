@@ -3,7 +3,11 @@
 #else
 #define DEBUG_MSG(str) do { } while ( false )
 #endif
+
+#include <memory>
 #include "WaveRing.h"
+
+
 
 WaveRing::WaveRing(shared_ptr<Cycle>& cycle):cycle(cycle){
   speedNoise = ofRandom(10);
@@ -19,20 +23,20 @@ WaveRing::WaveRing(shared_ptr<Cycle>& cycle):cycle(cycle){
 }
 
 void WaveRing::setupCircleRing(){
-  wigglyMeshRing.setMode(OF_PRIMITIVE_LINE_STRIP);
+	wigglymeshring.setMode(OF_PRIMITIVE_LINE_STRIP);
 }
 
 void WaveRing::updateWigglyCircleRing(){
   float max = noiseAmount*(cycle -> getEaseQuart2());
   ofPoint p;
-  wigglyMeshRing.clear();
+  wigglymeshring.clear();
 
   for(int i=0; i<=segments; i++){
     p.x =  radius*cos(TWO_PI * i / segments);
     p.y =  radius*sin(TWO_PI * i / segments);
     p.x += ofSignedNoise(noiseCursor+noiseStep*p.x/radius, noiseCursor+noiseStep*p.y/radius)*max;
     p.y += ofSignedNoise(noiseCursor+noiseStep*p.x/radius, noiseCursor+noiseStep*p.y/radius)*max;
-    wigglyMeshRing.addVertex(p);
+    wigglymeshring.addVertex(p);
   }
 }
 
@@ -53,7 +57,7 @@ void WaveRing::draw(){
     ofRotateX(rot.x);
     ofRotateY(rot.y);
     ofRotateZ(rot.z);
-    wigglyMeshRing.drawFaces();
+    wigglymeshring.drawFaces();
   ofPopMatrix();
 }
 

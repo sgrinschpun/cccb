@@ -45,12 +45,15 @@ class OSCMessageSender(MessageSender):
     def __init__(self, host, port = PORT):
         self._client = udp_client.SimpleUDPClient(host, port)
 
-    def sendMessage(self, module_path, command_name, *args, **kwargs):
-        module_path = "/{0}".format(module_path.replace(".", "/"))
+    def sendMessage(self, module_path, command_name = None, *args, **kwargs):
+        if command_name:
+            module_path = "/{0}/{1}".format(module_path.replace(".", "/",), command_name)
+        else:
+            module_path = module_path
         bundle = osc_bundle_builder.OscBundleBuilder(osc_bundle_builder.IMMEDIATELY)
         msg = osc_message_builder.OscMessageBuilder(address = module_path)
-        self._addArgument(msg, "command_id", OSCMessageSender.getCommandId())
-        self._addArgument(msg, "command_name", command_name)
+        #self._addArgument(msg, "command_id", OSCMessageSender.getCommandId())
+        #self._addArgument(msg, "command_name", command_name)
         for name, value in kwargs.items():
             self._addArgument(msg, name, value)
         bundle.add_content(msg.build())

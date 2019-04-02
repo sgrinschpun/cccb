@@ -11,6 +11,7 @@ class ParticleData {
     float charge;
     string type;
     float energy;
+    string symbolName;
 
   public:
     int getId();
@@ -20,8 +21,9 @@ class ParticleData {
     float getCharge();
     string getType();
     float getEnergy();
+    string getSymbolName();
 
-    ParticleData(int _id, int _parent, string _name, float _mass, float _charge, string _type, float _energy);
+    ParticleData(int _id, int _parent, string _name, float _mass, float _charge, string _type, float _energy, string _symbolName);
     ~ParticleData() {}
 
 };
