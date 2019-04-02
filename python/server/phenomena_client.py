@@ -11,11 +11,11 @@ class Phenomena:
         received_message = self._sendMessage(module_path="node", command_name="ADD", **params)
         return received_message
     
-    def SimpleAddParticle(self, particle):
+    def simpleAddParticle(self, particle):
         received_message = self._sendMessage(module_path="/ADD/{0}".format(particle))
         return received_message
 
-    def SimplePurgeParticles(self):
+    def simplePurgeParticles(self):
         received_message = self._sendMessage(module_path="/PURGE")
         return received_message
     
@@ -40,9 +40,9 @@ if __name__ == '__main__':
         loop_2 = random.randint(1, 10)
         print("LOOP 2: {0}".format(loop_2))
         for i in range(loop_2):
-            print(phenomena.addParticle("Z0"))
+            print(phenomena.simpleAddParticle("Z0"))
             time.sleep(0.5)
         time.sleep(5)
-        print(phenomena.purgeParticles())
+        print(phenomena.simplePurgeParticles())
         time.sleep(25)
     print("Total time: {0}".format(time.time() - begin_time))

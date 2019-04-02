@@ -46,7 +46,8 @@ setup_args = {
                     'scikit-hep==0.3.0',
                     'six==1.11.0',
                     'subprocess32==3.5.3',
-                    'typing==3.6.6']
+                    'typing==3.6.6',
+                    'pylatexenc==1.4']
         }
 
 setup(**setup_args)

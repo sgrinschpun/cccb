@@ -39,7 +39,11 @@ class OSCPhenomenaServer(PhenomenaServer):
             module_path = ""
             command_name = ""
             params = {}
-            if split_modules_path[0] == "ADD":
+            if(address.find("J/psi")):
+                module_path = "node" 
+                command_name = "ADD"
+                params["particle_name"] = "J/psi"
+            elif split_modules_path[0] == "ADD":
                 module_path = "node" 
                 command_name = "ADD"
                 params["particle_name"] = split_modules_path[1]
