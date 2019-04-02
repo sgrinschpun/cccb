@@ -35,10 +35,22 @@ class OSCPhenomenaServer(PhenomenaServer):
 
     def _attendPetition(self, address, *args):
         try:
-            module_path = str(address)[1:].replace('/', '.')
-            params = dict(zip(args[::2], args[1::2]))
-            _id = params.pop("command_id")
-            command_name = params.pop("command_name")
+            split_modules_path = address[1:].split('/')
+            module_path = ""
+            command_name = ""
+            params = {}
+            if split_modules_path[0] == "ADD":
+                module_path = "node" 
+                command_name = "ADD"
+                params["particle_name"] = split_modules_path[1]
+            elif split_modules_path[0] == "PURGE":
+                module_path = "node.accumulator"
+                command_name = "PURGE"
+            else:    
+                command_name = split_modules_path[1]
+                module_path = ".".join(split_modules_path[:-1])
+                params = dict(zip(args[::2], args[1::2]))
+            _id = params.pop("command_id", 0)
             new_message = IncomingMessage.fromData(command_id = _id, command_name = command_name, module_path = module_path, params = params)
             node = self._node_controller.findModule(new_message.module_path)
             node.execute(new_message)
