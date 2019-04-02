@@ -7,54 +7,9 @@
 #include <memory>
 #include "WaveRing.h"
 
-static ofVboMeshPool* _mesh_pool = new ofVboMeshPool();
-
-ofVboMeshWrapper::ofVboMeshWrapper(): _used(false){};
-ofVboMeshWrapper::~ofVboMeshWrapper(){};
-void ofVboMeshWrapper::freeVboMesh() {
-	this->_mesh.clear();
-	this->_used = false;
-};
-
-bool ofVboMeshWrapper::isUsed() const {
-	return this->_used;
-};
-
-void ofVboMeshWrapper::blockofVboMesh() {
-	this->_used = true;
-};
-
-ofVboMesh& ofVboMeshWrapper::getofVboMesh() {
-	return this->_mesh;
-};
-
-bool isFree (ofVboMeshWrapper* i) {
-  return !(i->isUsed());
-}
-
-ofVboMeshWrapper* ofVboMeshPool::getVboMesh() {
-	ofVboMeshWrapper* new_mesh;
-	auto it = std::find_if(this->_pool.begin(), this->_pool.end(), isFree);
-	if(it != this->_pool.end()) return new_mesh = *it;
-	else {
-		new_mesh = new ofVboMeshWrapper();
-		this->_pool.push_back(new_mesh);
-	}
-	new_mesh->blockofVboMesh();
-	return new_mesh;
-};
-
-void ofVboMeshDeleter(ofVboMeshWrapper* _mesh) {
-	  std::cout<<"Delete Pool size: "<< _mesh_pool->size()<< std::endl<<std::flush;
-    _mesh->freeVboMesh();
-};
-
-size_t ofVboMeshPool::size() {
-    return this->_pool.size();
-};
 
 
-WaveRing::WaveRing(shared_ptr<Cycle>& cycle):cycle(cycle), _wiggly_mesh_ring(std::unique_ptr<ofVboMeshWrapper, void(*)(ofVboMeshWrapper*)>(_mesh_pool->getVboMesh(), ofVboMeshDeleter)){
+WaveRing::WaveRing(shared_ptr<Cycle>& cycle):cycle(cycle){
   speedNoise = ofRandom(10);
   speedAmp = ofRandom(10)/10000;
   pos.set(0, 0, 0);
@@ -65,24 +20,23 @@ WaveRing::WaveRing(shared_ptr<Cycle>& cycle):cycle(cycle), _wiggly_mesh_ring(std
   rotAmp.set(0, 0, 0);
   col = ofRandom(255);
   setupCircleRing();
-  std::cout<<"Pool size: "<< _mesh_pool->size()<< std::endl<<std::flush;
 }
 
 void WaveRing::setupCircleRing(){
-  _wiggly_mesh_ring->getofVboMesh().setMode(OF_PRIMITIVE_LINE_STRIP);
+	wigglymeshring.setMode(OF_PRIMITIVE_LINE_STRIP);
 }
 
 void WaveRing::updateWigglyCircleRing(){
   float max = noiseAmount*(cycle -> getEaseQuart2());
   ofPoint p;
-  _wiggly_mesh_ring->getofVboMesh().clear();
+  wigglymeshring.clear();
 
   for(int i=0; i<=segments; i++){
     p.x =  radius*cos(TWO_PI * i / segments);
     p.y =  radius*sin(TWO_PI * i / segments);
     p.x += ofSignedNoise(noiseCursor+noiseStep*p.x/radius, noiseCursor+noiseStep*p.y/radius)*max;
     p.y += ofSignedNoise(noiseCursor+noiseStep*p.x/radius, noiseCursor+noiseStep*p.y/radius)*max;
-    _wiggly_mesh_ring->getofVboMesh().addVertex(p);
+    wigglymeshring.addVertex(p);
   }
 }
 
@@ -103,7 +57,7 @@ void WaveRing::draw(){
     ofRotateX(rot.x);
     ofRotateY(rot.y);
     ofRotateZ(rot.z);
-    _wiggly_mesh_ring->getofVboMesh().drawFaces();
+    wigglymeshring.drawFaces();
   ofPopMatrix();
 }
 
