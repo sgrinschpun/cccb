@@ -5,6 +5,7 @@ from phenomena.particles.particle import Particle
 from skhep.constants import c_light
 from skhep import units as u
 from skhep.math  import lifetime_to_width
+from .particle_unicode import unicodedict
 
 #https://github.com/afedynitch/ParticleDataTool
 
@@ -16,6 +17,14 @@ class ParticleDataToolFetcher(object):
     @staticmethod
     def getName(pdgid):
         return pythia.name(pdgid)
+
+    @staticmethod
+    def getSymbolName(pdgid):
+        name = ParticleDataToolFetcher.getName(pdgid)
+        symbolname = unicodedict[name]
+        if symbolname == '':
+            symbolname = name
+        return symbolname
 
     @staticmethod
     def getMass(pdgid):

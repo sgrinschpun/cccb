@@ -19,9 +19,8 @@ void ProjectFonts::setupFont(string _fontname, int _fontsize, string _key){
   settings.addRange(ofUnicode::CurrencySymbols);
   settings.addRange(ofUnicode::LetterLikeSymbols);
   settings.addRange(ofUnicode::NumberForms);
-  settings.addRange(ofUnicode::Arrows);
   settings.addRange(ofUnicode::MathOperators);
-  settings.addRange(ofUnicode::MiscTechnical);
+  settings.addRange(ofUnicode::range{0x0300, 0x036F});
   font -> load(settings);
   FontsManager::addFont(_key, font);
 }
@@ -36,4 +35,5 @@ void ProjectFonts::setupFonts(){
   setupFont("MAD_Sans_Fill_Black.otf", 200, "MADBlack200");
   setupFont("MAD_Sans_Fill_Black_Italic.otf", 20, "MADBlackItalic20");
   setupFont("Symbol.ttf", 10, "symbol10");
+  setupFont("Consolas.ttf", 10, "consolas10");
 }

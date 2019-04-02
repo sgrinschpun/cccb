@@ -34,7 +34,8 @@ void ListManager::updateMap(PhenomenaCMD phenoCMD) {
                                   phenoCMD.getParams().mass,
                                   phenoCMD.getParams().charge,
                                   phenoCMD.getParams().type,
-                                  phenoCMD.getParams().energy
+                                  phenoCMD.getParams().energy,
+                                  phenoCMD.getParams().symbolName
                                 );
 
         ofPoint position;
