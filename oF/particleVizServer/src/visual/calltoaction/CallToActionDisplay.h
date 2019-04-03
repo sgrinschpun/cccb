@@ -18,7 +18,8 @@ class CallToActionDisplay {
     int selectedParticle;
 
   public:
-    void setNew();
+    void setNewParticle();
+    void setNewText();
     void update();
     void drawImage();
     void drawText();

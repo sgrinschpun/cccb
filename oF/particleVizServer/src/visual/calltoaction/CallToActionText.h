@@ -7,13 +7,13 @@
 class CallToActionText {
   private:
     shared_ptr<ofxCenteredTrueTypeFont> ctaFont;
-    void setupFont();
 
     string ca;
     string en;
     string es;
 
-    float padding {20};
+    float padding;
+    float separation;
 
   public:
     void draw();

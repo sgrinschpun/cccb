@@ -12,12 +12,12 @@
 ListManager::ListManager(){
 }
 
-bool ListManager::listIsEmpty(){
-  bool status = false;
-  if (particleMap.size()==0) {
-    status = true;
-  }
-  return status;
+bool ListManager::isEmpty(){
+  return particleMap.empty();
+}
+
+bool ListManager::isScreenEmpty(){
+  return numberOnScreen()==0;
 }
 
 

@@ -20,7 +20,8 @@ public:
   std::mutex _mtx;
   // std::mutex, std::unique_lock
   void updateMap(PhenomenaCMD phenoCMD);
-  bool listIsEmpty();
+  bool isEmpty();
+  bool isScreenEmpty();
   void lock(){this->_mtx.lock();};
   void unlock(){this->_mtx.unlock();};
   bool particleIsOutOfBounds(const shared_ptr<Particle>& _particle);

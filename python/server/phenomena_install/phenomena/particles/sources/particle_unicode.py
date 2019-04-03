@@ -168,7 +168,7 @@ unicodedict ={
   "Omega*_ccc++": "",
   "Omega*_cccbar--": "",
   "Omega-": "\u03A9\u207B",
-  "Omega_b-": "\u03A9\u1d47\u207B",
+  "Omega_b-": "\u03A9\u207B b",
   "Omega_bb-": "",
   "Omega_bbar+": "",
   "Omega_bbbar+": "",

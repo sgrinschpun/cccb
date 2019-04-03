@@ -1,4 +1,5 @@
 #include "CallToActionDisplay.h"
+#include "Parameters.h"
 
 ofxXmlSettings CallToActionDisplay::xmlTexts=ofxXmlSettings("texts.xml");
 
@@ -37,7 +38,7 @@ CallToActionDisplay::CallToActionDisplay(){
   setParticleList();
   selectedParticle = 0;
   setTextList();
-  selectedText = 1;
+  selectedText = 0;
 }
 
 void CallToActionDisplay::drawImage(){
@@ -58,11 +59,18 @@ void CallToActionDisplay::drawText(){
 void CallToActionDisplay::update(){
   particleList[selectedParticle]->update();
   textList[selectedText].update();
+
+  if ( ofGetFrameNum() % Parameters::CTATextChange == 0 ){setNewText();}
 }
 
-void CallToActionDisplay::setNew(){
-  if (selectedParticle==particleList.size()){
-    selectedParticle = 0;
-  }
+void CallToActionDisplay::setNewParticle(){
+  if (selectedParticle==(particleList.size()-1)){selectedParticle = 0;}
   else {selectedParticle +=1;}
+
+}
+
+void CallToActionDisplay::setNewText(){
+  if (selectedText==(textList.size()-1)){selectedText = 0;}
+  else {selectedText +=1;}
+
 }

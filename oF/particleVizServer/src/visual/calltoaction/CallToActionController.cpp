@@ -1,4 +1,5 @@
 #include "CallToActionController.h"
+#include "Parameters.h"
 
 CallToActionController::CallToActionController() {
 
@@ -7,20 +8,11 @@ CallToActionController::CallToActionController() {
 void CallToActionController::setup(shared_ptr<ListManager>& _listManager){
   listManager = _listManager;
   callToActionDisplay = make_unique<CallToActionDisplay>();
-  delay = 5000;
+  delay = Parameters::CTADelay;
   callToActionActivate=false;
   delayInit=0;
 }
 
-
-void CallToActionController::reset(){
-  if (listManager->listIsEmpty()) {
-    if (delayInit == 0) {
-      delayInit = ofGetElapsedTimeMillis();
-      callToActionDisplay->setNew();
-    }
-  }
-}
 
 bool CallToActionController::checkDelay(){
   bool status = false;
@@ -31,6 +23,10 @@ bool CallToActionController::checkDelay(){
   return status;
 }
 
+void CallToActionController::startCounting(){
+  delayInit = ofGetElapsedTimeMillis();
+}
+
 void CallToActionController::startCallToAction(){
   callToActionActivate = true;
 }
@@ -38,16 +34,15 @@ void CallToActionController::startCallToAction(){
 void CallToActionController::stopCallToAction(){
   callToActionActivate = false;
   delayInit = 0;
+  callToActionDisplay->setNewParticle();
 }
 
 void CallToActionController::update(){
-
-  if (listManager->listIsEmpty()){
+  if (listManager->isScreenEmpty() && delayInit==0) {startCounting();}
+  else if (listManager->isScreenEmpty() && delayInit!=0) {
     if (checkDelay()){startCallToAction();}
   }
-  else {
-    stopCallToAction();
-  }
+  else if (callToActionActivate == true){stopCallToAction();}
   callToActionDisplay->update();
 }
 
