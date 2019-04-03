@@ -6,7 +6,8 @@
 
 class CallToActionText {
   private:
-    shared_ptr<ofxCenteredTrueTypeFont> ctaFont;
+    shared_ptr<ofxCenteredTrueTypeFont> ctaFont1;
+    shared_ptr<ofxCenteredTrueTypeFont> ctaFont2;
 
     string ca;
     string en;
