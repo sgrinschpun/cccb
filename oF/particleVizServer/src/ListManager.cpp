@@ -26,7 +26,7 @@ void ListManager::updateMap(PhenomenaCMD phenoCMD) {
       int id = phenoCMD.getParams().parent;
       auto particleIt = particleMap.find(id);
       if (id ==-1 || particleIt != particleMap.end()){
-        ofLog(OF_LOG_NOTICE, "Inserting particle to particleMap with id: " + ofToString(phenoCMD.getParams().id));
+        ofLog(OF_LOG_NOTICE, ofGetTimestampString() + " Inserting id: " + ofToString(phenoCMD.getParams().id));
         shared_ptr<ParticleData> newParticleData =
         make_shared<ParticleData>(phenoCMD.getParams().id,
                                   phenoCMD.getParams().parent,
@@ -50,7 +50,7 @@ void ListManager::updateMap(PhenomenaCMD phenoCMD) {
         ofVec2f velocity;
         velocity.set(phenoCMD.getParams().vy,phenoCMD.getParams().vz);
         velocity.scale((float) phenoCMD.getParams().beta);
-        ofLog(OF_LOG_NOTICE, "Particle Name " + phenoCMD.getParams().name + " " +  ofToString(phenoCMD.getParams().beta));
+        ofLog(OF_LOG_NOTICE, ofGetTimestampString() + "Particle Name " + phenoCMD.getParams().name + " " +  ofToString(phenoCMD.getParams().beta));
         std::unique_lock<std::mutex> lck (this->_mtx);
         particleMap.insert(make_pair(phenoCMD.getParams().id, make_shared<Particle>(newParticleData,position, velocity)));
       }
@@ -58,21 +58,21 @@ void ListManager::updateMap(PhenomenaCMD phenoCMD) {
     else if (phenoCMD.getCMD() == "REMOVE"){
         map <int, shared_ptr<Particle>>::const_iterator i = particleMap.find(phenoCMD.getParams().id);
         if (i != particleMap.end()) {
-            ofLog(OF_LOG_NOTICE, "Removing particle from particleMap with id: " + ofToString(phenoCMD.getParams().id));
+            ofLog(OF_LOG_NOTICE, ofGetTimestampString() + "Removing id: " + ofToString(phenoCMD.getParams().id));
             std::unique_lock<std::mutex> lck (this->_mtx);
             particleMap.erase(i);
         }
         else{
-            ofLog(OF_LOG_NOTICE,  "The particle is not in particleMap! ");
+            ofLog(OF_LOG_NOTICE,  ofGetTimestampString() + "The particle is not in particleMap! ");
         }
     }
 
     else if (phenoCMD.getCMD() == "PURGE"){
-        ofLog(OF_LOG_NOTICE, "Erasing all particles in particleMap! PURGE!");
+        ofLog(OF_LOG_NOTICE, ofGetTimestampString() + "Erasing all particles in particleMap! PURGE!");
         std::unique_lock<std::mutex> lck (this->_mtx);
         particleMap.clear();
     }
-    ofLog(OF_LOG_NOTICE,"particleMap size is: " + ofToString(particleMap.size()));
+    ofLog(OF_LOG_NOTICE,ofGetTimestampString() +  "particleMap size is: " + ofToString(particleMap.size()));
 }
 
 void ListManager::cleanupList(){
