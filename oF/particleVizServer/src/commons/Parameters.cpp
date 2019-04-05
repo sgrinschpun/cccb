@@ -42,3 +42,23 @@ int Parameters::maxNumPart = setMaxNumPart();
 int Parameters::setMaxNumPart(){
   return xmlParameters->getValue("maxNumPart", 200);
 }
+
+int Parameters::CTADelay = setCTADelay();
+int Parameters::setCTADelay(){
+  return xmlParameters->getValue("CTADelay", 5000);
+}
+
+int Parameters::CTATextChange = setCTATextChange();
+int Parameters::setCTATextChange(){
+  return xmlParameters->getValue("CTATextChange", 480);
+}
+
+int Parameters::CTATextSeparation = setCTATextSeparation();
+int Parameters::setCTATextSeparation(){
+  return xmlParameters->getValue("CTATextSeparation", 150);
+}
+
+int Parameters::CTATextPadding = setCTATextPadding();
+int Parameters::setCTATextPadding(){
+  return xmlParameters->getValue("CTATextPadding", 20);
+}

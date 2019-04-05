@@ -22,6 +22,14 @@ class Parameters {
     static int setOSCOutPort();
     static int maxNumPart;
     static int setMaxNumPart();
+    static int CTADelay;
+    static int setCTADelay();
+    static int CTATextChange;
+    static int setCTATextChange();
+    static int CTATextSeparation;
+    static int setCTATextSeparation();
+    static int CTATextPadding;
+    static int setCTATextPadding();
 
 };
 #endif
