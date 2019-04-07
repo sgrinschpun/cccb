@@ -104,7 +104,8 @@ class TransformationChannels(object):
     TCS.lengthSelection(3) -> TCs with number of output particles = 3
     '''
     EXCLUDED = ParticleDataSource.getExcludedParticles()
-    EXCLUDED.append('g')
+    additional = ['g','Omega*_c0','Omega_c0']
+    EXCLUDED.extend(additional)
     EXCLUDEDSET = set(EXCLUDED)
     #EXCLUDED = set(['rndmflavgbar','rndmflavg','g'])
 
