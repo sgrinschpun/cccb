@@ -4,14 +4,15 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
   ofSetWindowTitle("Univers Quàntic @ cccB");
-  //ofSetEscapeQuitsApp(false);
+  ofSetEscapeQuitsApp(false);
   ofBackground(0);
   ofSetFrameRate(60);
   ofSetVerticalSync(false);
   ofSetCircleResolution(100);
   ofHideCursor();
-  showStats = false;
+  ofLogToFile("/var/tmp/viz.log", true);
 
+  showStats = false;
   listManager = make_shared<ListManager>();
   OSCInPort = Parameters::OSCInPort;
   oscManager.setup(OSCInPort, listManager);

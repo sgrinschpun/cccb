@@ -4,7 +4,7 @@
 #include "ofxOsc.h"
 
 // listening port
-#define PORT 12345
+#define PORT 16180
 
 class ofApp : public ofBaseApp{
 

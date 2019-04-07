@@ -7,15 +7,16 @@
 
 class CallToActionController {
   private:
-	shared_ptr<ListManager> listManager;
+	  shared_ptr<ListManager> listManager;
     unique_ptr<CallToActionDisplay> callToActionDisplay;
+
 
     unsigned int delay;
     bool callToActionActivate;
     unsigned long int delayInit;
 
     bool checkDelay();
-    void reset();
+    void startCounting();
     void startCallToAction();
     void stopCallToAction();
 
