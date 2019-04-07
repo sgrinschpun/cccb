@@ -4,7 +4,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
   ofSetWindowTitle("Univers Quàntic @ cccB");
-  //ofSetEscapeQuitsApp(false);
+  ofSetEscapeQuitsApp(false);
   ofBackground(0);
   ofSetFrameRate(60);
   ofSetVerticalSync(false);
