@@ -12,11 +12,13 @@ void ofApp::update(){
     ofxOscMessage message;
     oscReceiver.getNextMessage(message);
     string address = message.getAddress();
+    ofLog() << "address:  "<< address;
     int numargs = message.getNumArgs();
+    ofLog() << "args:  "<< to_string(numargs);
     string type = message.getArgTypeName(0);
     if (type == "s"){
       string arg =  message.getArgAsString(0);
-      ofLog() << "address:  "<< address << arg;
+      ofLog() << "address:  "<< address <<"  "<< arg;
     }
     else if (type == "i"){
       int arg =  message.getArgAsInt(0);
