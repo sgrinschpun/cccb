@@ -8,25 +8,25 @@ class Phenomena:
 
     def addParticle(self, particle, **kwargs):
         params={'particle_name': particle, 'theta': kwargs.get('theta',0), 'phi': kwargs.get('phi',0), 'p':kwargs.get('p',0), 'E':kwargs.get('E',0)}
-        received_message = self._sendMessage(module_path="node", command_name="ADD", **params)
+        received_message = self._sendMessage("node", "ADD", **params)
         return received_message
     
     def simpleAddParticle(self, particle):
-        params = {'particle_name': particle}
-        received_message = self._sendMessage(module_path="/ADD".format(particle), **params)
+        params = [particle]
+        received_message = self._sendMessage("/ADD", None, *params)
         return received_message
 
     def simplePurgeParticles(self):
-        received_message = self._sendMessage(module_path="/PURGE")
+        received_message = self._sendMessage("/PURGE", None)
         return received_message
     
     def purgeParticles(self):
         received_message = self._sendMessage(module_path="node.accumulator", command_name="PURGE")
         return received_message
 
-    def _sendMessage(self, module_path, command_name = None, **kwargs):
+    def _sendMessage(self, module_path, command_name, *args, **kwargs):
         message_sender = OSCMessageSender(HOST)
-        return message_sender.sendMessage(module_path = module_path, command_name = command_name, **kwargs)
+        return message_sender.sendMessage(module_path, command_name, *args, **kwargs)
 
 
 if __name__ == '__main__':

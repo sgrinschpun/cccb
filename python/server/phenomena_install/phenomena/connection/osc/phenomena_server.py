@@ -54,7 +54,7 @@ class OSCPhenomenaServer(PhenomenaServer):
                 if split_modules_path[0] == "ADD":
                     module_path = "node" 
                     command_name = "ADD"
-                    params["particle_name"] = args[1]
+                    params["particle_name"] = args[0]
                 elif split_modules_path[0] == "PURGE":
                     module_path = "node.accumulator"
                     command_name = "PURGE"
