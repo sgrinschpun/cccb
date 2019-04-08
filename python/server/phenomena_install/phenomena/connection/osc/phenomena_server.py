@@ -39,17 +39,25 @@ class OSCPhenomenaServer(PhenomenaServer):
             module_path = ""
             command_name = ""
             params = {}
-            if(address.find("J/psi") != -1):
-                module_path = "node" 
-                command_name = "ADD"
-                params["particle_name"] = "J/psi"
-            elif split_modules_path[0] == "ADD":
-                module_path = "node" 
-                command_name = "ADD"
-                params["particle_name"] = split_modules_path[1]
-            elif split_modules_path[0] == "PURGE":
-                module_path = "node.accumulator"
-                command_name = "PURGE"
+            #if(address.find("J/psi") != -1):
+            #    module_path = "node" 
+            #    command_name = "ADD"
+            #    params["particle_name"] = "J/psi"
+            #elif split_modules_path[0] == "ADD":
+            #    module_path = "node" 
+            #    command_name = "ADD"
+            #    params["particle_name"] = split_modules_path[1]
+            #elif split_modules_path[0] == "PURGE":
+            #    module_path = "node.accumulator"
+            #    command_name = "PURGE"
+            if len(split_modules_path) == 1:
+                if split_modules_path[0] == "ADD":
+                    module_path = "node" 
+                    command_name = "ADD"
+                    params["particle_name"] = args[0]
+                elif split_modules_path[0] == "PURGE":
+                    module_path = "node.accumulator"
+                    command_name = "PURGE"
             else:    
                 command_name = split_modules_path[1]
                 module_path = ".".join(split_modules_path[:-1])
