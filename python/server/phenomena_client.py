@@ -12,7 +12,8 @@ class Phenomena:
         return received_message
     
     def simpleAddParticle(self, particle):
-        received_message = self._sendMessage(module_path="/ADD/{0}".format(particle))
+        params = {'particle_name': particle}
+        received_message = self._sendMessage(module_path="/ADD".format(particle), **params)
         return received_message
 
     def simplePurgeParticles(self):
