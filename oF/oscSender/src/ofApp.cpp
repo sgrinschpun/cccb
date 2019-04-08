@@ -13,8 +13,8 @@ void ofApp::setup(){
 }
 
 void ofApp::buildPythonBundleSimple(string _particle){
-  message.setAddress("/node/ADD");
-  message.addStringArg("particle_name");
+  message.setAddress("/ADD");
+  //message.addStringArg("particle_name");
   message.addStringArg(_particle);
   //bundle.addMessage(message);
   //message.clear();
