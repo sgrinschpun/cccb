@@ -30,6 +30,7 @@ class ofApp : public ofBaseApp{
 
 		void buildOfBundle();
 		void buildPythonBundleSimple(string _particle);
+		void purgeParticles();
 
 
 
