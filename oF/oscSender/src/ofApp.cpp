@@ -4,17 +4,16 @@
 void ofApp::setup(){
   sender.setup("localhost", PORT);
 
-  //buildOfBundle();
-  buildPythonBundleSimple("Z0");
+}
 
-
+void ofApp::purgeParticles(){
+  message.setAddress("/PURGE");
   sender.sendMessage(message);
-  //sender.sendBundle(bundle);
+  message.clear();
 }
 
 void ofApp::buildPythonBundleSimple(string _particle){
   message.setAddress("/ADD");
-  //message.addStringArg("particle_name");
   message.addStringArg(_particle);
   //bundle.addMessage(message);
   //message.clear();
@@ -88,6 +87,45 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
+  if(key == 'q'){
+    purgeParticles();
+  }
+
+  if(key == 'p'){
+    buildPythonBundleSimple("pi0");
+    sender.sendMessage(message);
+    message.clear();
+  }
+  if(key == 'h'){
+    buildPythonBundleSimple("h0(H_1)");
+    sender.sendMessage(message);
+    message.clear();
+  }
+  if(key == 't'){
+    buildPythonBundleSimple("tau");
+    sender.sendMessage(message);
+    message.clear();
+  }
+  if(key == '6'){
+    buildPythonBundleSimple("top");
+    sender.sendMessage(message);
+    message.clear();
+  }
+  if(key == 'w'){
+    buildPythonBundleSimple("W+");
+    sender.sendMessage(message);
+    message.clear();
+  }
+  if(key == 'j'){
+    buildPythonBundleSimple("J/psi");
+    sender.sendMessage(message);
+    message.clear();
+  }
+  if(key == 'o'){
+    buildPythonBundleSimple("Omega_b-");
+    sender.sendMessage(message);
+    message.clear();
+  }
 
 }
 
