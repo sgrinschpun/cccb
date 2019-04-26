@@ -38,6 +38,11 @@ int Parameters::setOSCOutPort(){
   return xmlParameters->getValue("OSCOutPort", 12347);
 }
 
+int Parameters::OSCKillPort = setOSCKillPort();
+int Parameters::setOSCKillPort(){
+  return xmlParameters->getValue("OSCKillPort", 9999);
+}
+
 int Parameters::maxNumPart = setMaxNumPart();
 int Parameters::setMaxNumPart(){
   return xmlParameters->getValue("maxNumPart", 200);

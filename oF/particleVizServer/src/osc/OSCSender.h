@@ -8,5 +8,6 @@ class OSCSender{
 public:
     void setup(string hostIP, int port);
     void sendBigBangMessage(bool isBigbangOn);
+    void sendKillAppMessage();
 };
 #endif
