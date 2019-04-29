@@ -19,6 +19,8 @@ void ofApp::setup(){
   oscManager.startThread();
   ofLog() << "listening for osc messages on port " << OSCInPort;
   vizManager.setup(listManager);
+
+  sender.setup("localhost", Parameters::OSCKillPort); //9999
 }
 
 //--------------------------------------------------------------
@@ -26,6 +28,7 @@ void ofApp::update(){
   listManager->update();
   vizManager.update();
   sDisplay.update(listManager->numberOnScreen(), listManager->particleMap.size());
+  checkFullScreen();
 }
 
 //--------------------------------------------------------------
@@ -45,6 +48,26 @@ void ofApp::keyPressed(int key){
     showStats = !showStats;
   }
 
+  if(key == 'r'){
+    triggerAutoKill();
+  }
+}
+//--------------------------------------------------------------
+
+void ofApp::triggerAutoKill(){
+  ofLog()<<"Triggered Autokill";
+  sender.sendKillAppMessage();
+  //ofExit(0);
+}
+
+void ofApp::checkFullScreen(){
+  auto screen = make_tuple (ofGetScreenWidth(),ofGetScreenHeight());
+  auto window = make_tuple (ofGetWindowWidth(),ofGetWindowHeight());
+  if (ofGetWindowMode() == OF_FULLSCREEN ){
+    if (screen != window){
+      triggerAutoKill();
+    }
+  }
 }
 
 //--------------------------------------------------------------

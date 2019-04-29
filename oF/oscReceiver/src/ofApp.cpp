@@ -28,8 +28,6 @@ void ofApp::update(){
       int arg =  message.getArgAsFloat(0);
       ofLog() << "address:  "<< address <<" message: " <<arg;
     }
-
-
   }
 }
 

@@ -20,6 +20,8 @@ class Parameters {
     static int setOSCInPort();
     static int OSCOutPort;
     static int setOSCOutPort();
+    static int OSCKillPort;
+    static int setOSCKillPort();
     static int maxNumPart;
     static int setMaxNumPart();
     static int CTADelay;

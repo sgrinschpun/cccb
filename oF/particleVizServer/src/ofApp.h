@@ -27,9 +27,15 @@ class ofApp : public ofBaseApp {
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
+		void checkFullScreen();
+		void triggerAutoKill();
+
 		shared_ptr<ListManager> listManager;
 		int OSCInPort;
 		OSCManager oscManager;
+
+  		OSCSender sender;
+
 
 		VisualManager vizManager;
 

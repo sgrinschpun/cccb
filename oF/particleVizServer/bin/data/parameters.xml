@@ -5,7 +5,9 @@
 <maxNumPart>200</maxNumPart>
 <OSCInPort>12345</OSCOutPort>
 <OSCOutPort>12347</OSCOutPort>
+<OSCKillPort>9999</OSCKillPort>
 <CTADelay>5000</CTADelay>
 <CTATextChange>480</CTATextChange>
 <CTATextSeparation>150</CTATextSeparation>
 <CTATextPadding>20</CTATextPadding>
+
