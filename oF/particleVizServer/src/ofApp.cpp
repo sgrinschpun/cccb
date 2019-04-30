@@ -61,9 +61,13 @@ void ofApp::triggerAutoKill(){
 }
 
 void ofApp::checkFullScreen(){
-  auto screen = make_tuple (ofGetScreenWidth(),ofGetScreenHeight());
-  auto window = make_tuple (ofGetWindowWidth(),ofGetWindowHeight());
-  if (ofGetWindowMode() == OF_FULLSCREEN ){
+  int frameNum = ofGetFrameNum();
+  int frameRate = ofGetTargetFrameRate();
+  int delaySeconds = 10;
+  if (frameNum%(delaySeconds*frameRate)==0 && ofGetWindowMode() == OF_FULLSCREEN){
+    //cout << "triggered" << frameNum << endl;
+    auto screen = make_tuple (ofGetScreenWidth(),ofGetScreenHeight());
+    auto window = make_tuple (ofGetWindowWidth(),ofGetWindowHeight());
     if (screen != window){
       triggerAutoKill();
     }
