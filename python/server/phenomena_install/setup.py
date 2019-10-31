@@ -41,7 +41,7 @@ setup_args = {
                     'pytest==3.9.3',
                     'python-dateutil==2.7.3',
                     'pytz==2018.5',
-                    'PyYAML==3.13',
+                    'PyYAML==5.1',
                     'scandir==1.9.0',
                     'scikit-hep==0.3.0',
                     'six==1.11.0',
