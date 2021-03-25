@@ -25,7 +25,7 @@ pytest==3.9.3
 python-dateutil==2.7.3
 python-osc==1.7.0
 pytz==2018.5
-PyYAML==3.13
+PyYAML==5.4
 scandir==1.9.0
 scikit-hep==0.3.0
 six==1.11.0
