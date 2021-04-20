@@ -34,7 +34,7 @@ setup_args = {
                     'pathlib2==2.3.2',
                     'pluggy==0.8.0',
                     'plumbum==1.6.7',
-                    'py==1.7.0',
+                    'py==1.10.0',
                     'pynput==1.4',
                     'pyparsing==2.2.2',
                     'PyPDT==0.7.4',
