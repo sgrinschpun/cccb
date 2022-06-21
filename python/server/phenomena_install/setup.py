@@ -28,7 +28,7 @@ setup_args = {
                     'funcsigs==1.0.2',
                     'importlib-resources==1.0.1',
                     'more-itertools==4.3.0',
-                    'numpy==1.15.2',
+                    'numpy==1.22.0',
                     'pandas==0.23.4',
                     'particletools==1.0.0rc6',
                     'pathlib2==2.3.2',
